@@ -27,6 +27,10 @@ HEADERS += \
         model/routine.h \
         controller/gestore.h \
         view/main_window.h \
+        view/home/home_view.h \
+        view/home/home_header.h \
+        view/home/home_corpo.h \
+        view/detail/detail_view.h \
 
 SOURCES += \
         main.cpp \
@@ -36,3 +40,7 @@ SOURCES += \
         model/routine.cpp \
         controller/gestore.cpp \
         view/main_window.cpp \
+        view/home/home_view.cpp \
+        view/home/home_header.cpp \
+        view/home/home_corpo.cpp \
+        view/detail/detail_view.cpp \

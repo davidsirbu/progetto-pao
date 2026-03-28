@@ -3,7 +3,6 @@
 gestore::gestore() {}
 
 gestore::~gestore() {
-    // codice
     for (auto it = gestore_attivita.begin(); it != gestore_attivita.end(); ++it) {
         delete *it;
     }
@@ -23,7 +22,6 @@ void gestore::rimuovi_attivita(const QString& id_r) {
 }
 
 attivita* gestore::cerca_attivita(const QString& id_c) const {
-    // codice
     auto it = gestore_attivita.begin();
     while ((it != gestore_attivita.end()) && ((*it) -> get_id() != id_c)) it++;
     if (it == gestore_attivita.end()) return nullptr;
