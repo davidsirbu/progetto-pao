@@ -26,6 +26,9 @@ HEADERS += \
         view/detail/detail_corpo.h \
         view/form/form_view.h \
         view/form/form_variabile.h \
+        view/form/form_attivita/form_impegno.h \
+        view/form/form_attivita/form_scadenza.h \
+        view/form/form_attivita/form_routine.h \
 
 SOURCES += \
         main.cpp \
@@ -42,4 +45,7 @@ SOURCES += \
         view/detail/detail_header.cpp \
         view/detail/detail_corpo.cpp \
         view/form/form_view.cpp \
-        view/form/form_variabile.cpp
+        view/form/form_variabile.cpp \
+        view/form/form_attivita/form_impegno.cpp \
+        view/form/form_attivita/form_scadenza.cpp \
+        view/form/form_attivita/form_routine.cpp \
