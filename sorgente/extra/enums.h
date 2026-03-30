@@ -1,7 +1,6 @@
 #ifndef ENUMS_H
 #define ENUMS_H
 
-
 enum class Gruppo {
     Studio,
     Lavoro,
@@ -16,6 +15,5 @@ enum class Fase {
     CompletatoInRitardo,
     Scaduto
 };
-
 
 #endif

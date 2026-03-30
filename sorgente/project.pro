@@ -1,5 +1,5 @@
 TEMPLATE = app
-TARGET = test_gestore
+TARGET = progetto_agenda
 INCLUDEPATH += .
 QT += \
         widgets \
@@ -9,15 +9,6 @@ CONFIG += c++17 console
 CONFIG -= app_bundle
 
 DESTDIR = $$PWD
-
-# Definisci il nome della cartella
-TEMP_DIR = .temp
-
-# Reindirizza i file generati
-OBJECTS_DIR = $$TEMP_DIR/obj
-MOC_DIR     = $$TEMP_DIR/moc
-RCC_DIR     = $$TEMP_DIR/rcc
-UI_DIR      = $$TEMP_DIR/ui
 
 HEADERS += \
         extra/enums.h \
@@ -31,6 +22,10 @@ HEADERS += \
         view/home/home_header.h \
         view/home/home_corpo.h \
         view/detail/detail_view.h \
+        view/detail/detail_header.h \
+        view/detail/detail_corpo.h \
+        view/form/form_view.h \
+        view/form/form_variabile.h \
 
 SOURCES += \
         main.cpp \
@@ -44,3 +39,7 @@ SOURCES += \
         view/home/home_header.cpp \
         view/home/home_corpo.cpp \
         view/detail/detail_view.cpp \
+        view/detail/detail_header.cpp \
+        view/detail/detail_corpo.cpp \
+        view/form/form_view.cpp \
+        view/form/form_variabile.cpp

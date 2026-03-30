@@ -15,7 +15,6 @@ class home_corpo: public QWidget {
     
         QVBoxLayout* crea_colonna(const QString& nome_attivita, QListWidget* lista);
 
-
     public:
         home_corpo(QWidget* parent = nullptr);
         ~home_corpo() = default;

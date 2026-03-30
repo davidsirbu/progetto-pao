@@ -1,6 +1,4 @@
 #include "impegno.h"
-#include <QDateTime>
-#include <QString>
 
 impegno::impegno(const QString& n, const QString& d, const Gruppo c, const QDateTime& i, const QDateTime& f, const QString& l) : attivita(n, d, c), inizio(i), fine(f), luogo(l) {}
 

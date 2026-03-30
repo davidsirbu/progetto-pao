@@ -1,9 +1,5 @@
 #include "scadenza.h"
 
-#include <QString>
-#include <QDateTime>
-
-
 scadenza::scadenza(const QString& n, const QString& d, const Gruppo c, const QDateTime& t) : attivita(n, d, c), completato(false), tempo_limite(t) {}
 
 bool scadenza::get_completato() const {

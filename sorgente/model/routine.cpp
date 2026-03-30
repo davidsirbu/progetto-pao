@@ -1,8 +1,5 @@
 #include "routine.h"
 
-#include <QDateTime>
-#include <QString>
-
 routine::routine(const QString& n, const QString& d, const Gruppo c, const QDateTime& i, const int g) : attivita(n, d, c), inizio(i), prossima_volta(i), intervallo_giorni(g), conta_puntuale(0), conta_ritardo(0) {}
 
 QDateTime routine::get_inizio() const {
@@ -30,7 +27,6 @@ void routine::set_intervallo_giorni(const int g) {
 }
 
 void routine::avanza_progressi() {
-    // codice
     QDateTime attuale = QDateTime::currentDateTime();
     if (attuale < prossima_volta) {
         prossima_volta = prossima_volta.addDays(intervallo_giorni);

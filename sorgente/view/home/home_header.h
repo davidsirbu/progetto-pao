@@ -9,15 +9,17 @@ class home_header: public QWidget {
     Q_OBJECT
 
     private:
-        QPushButton* nuova_attivita;
-        QPushButton* importa_file;
-        QPushButton* esporta_file;
+        QPushButton* pulsante_nuova_attivita;
+        QPushButton* pulsante_importa;
+        QPushButton* pulsante_esporta;
         QLineEdit* barra_ricerca;
         
-
     public:
         home_header(QWidget* parent = nullptr);
         ~home_header() = default;
+
+    signals:
+        void crea_attivita();
 };
 
 #endif

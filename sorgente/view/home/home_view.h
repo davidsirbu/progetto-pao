@@ -3,7 +3,6 @@
 
 #include "home_header.h"
 #include "home_corpo.h"
-
 #include <QWidget>
 
 class home_view: public QWidget {
@@ -16,6 +15,9 @@ class home_view: public QWidget {
     public:
         home_view(QWidget* parent = nullptr);
         ~home_view() = default;
+    
+    signals:
+        void crea_attivita();
 };
 
 #endif
