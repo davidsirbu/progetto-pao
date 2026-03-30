@@ -1,7 +1,7 @@
 #ifndef ATTIVITA_H
 #define ATTIVITA_H
 
-#include "../extra/enums.h"
+#include "../../extra/enums.h"
 #include <QString>
 #include <QUuid>
 

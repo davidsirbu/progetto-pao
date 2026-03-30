@@ -23,6 +23,7 @@ class main_window : public QWidget {
     public slots:
         void crea_attivita();
         void torna_indietro();
+        // void entra_dettagli();
 };
 
 #endif

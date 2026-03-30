@@ -1,7 +1,7 @@
 #ifndef GESTORE_H
 #define GESTORE_H
 
-#include "../model/attivita.h"
+#include "classi/attivita.h"
 #include <vector>
 #include <QString>
 

@@ -3,6 +3,8 @@
 #include <QListWidget>
 #include <QLabel>
 
+#include <QListWidgetItem>
+
 home_corpo::home_corpo(QWidget* parent): QWidget(parent) {
 
     QHBoxLayout* corpo_layout = new QHBoxLayout(this);

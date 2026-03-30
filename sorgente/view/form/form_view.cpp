@@ -17,8 +17,8 @@ form_view::form_view(QWidget* parent): QWidget(parent) {
     menu_gruppo = new QComboBox(this);
     layout_principale -> addWidget(menu_gruppo);
 
-    parte_variabile = new form_variabile(this);
-    layout_principale -> addWidget(parte_variabile);
+    parte_scelta = new form_scelta(this);
+    layout_principale -> addWidget(parte_scelta);
 
     etichetta_descrizione = new QTextEdit(this);
     etichetta_descrizione -> setPlaceholderText("Inserisci la descrizione");

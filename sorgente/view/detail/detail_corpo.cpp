@@ -6,18 +6,11 @@ detail_corpo::detail_corpo(QWidget* parent): QWidget(parent) {
 
     QHBoxLayout* corpo_layout = new QHBoxLayout(this);
 
-    QVBoxLayout* colonna = new QVBoxLayout(this);
+    lista = new QListWidget(this);
+    corpo_layout -> addWidget(lista, 1);
 
-    QLabel* etichetta = new QLabel("Etichetta", this);
-    QListWidget* lista = new QListWidget(this);
-
-    colonna -> addWidget(etichetta);
-    colonna -> addWidget(lista);
-
-    QWidget* prova = new QWidget(this);
-
-    corpo_layout -> addLayout(colonna, 1);
-    corpo_layout -> addWidget(prova, 2);
+    display_window = new display_view(this);
+    corpo_layout -> addWidget(display_window, 2);
 
     setLayout(corpo_layout);
 }

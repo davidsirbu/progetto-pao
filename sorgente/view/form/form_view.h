@@ -1,7 +1,7 @@
 #ifndef FORM_VIEW_H
 #define FORM_VIEW_H
 
-#include "form_variabile.h"
+#include "form_scelta.h"
 #include <QWidget>
 #include <QLineEdit>
 #include <QTextEdit>
@@ -14,7 +14,7 @@ class form_view: public QWidget {
     private:
         QLineEdit* etichetta_titolo;
         QComboBox* menu_gruppo;
-        form_variabile* parte_variabile;
+        form_scelta* parte_scelta;
         QTextEdit* etichetta_descrizione;
         QPushButton* pulsante_salva;
         QPushButton* pulsante_annulla;

@@ -17,11 +17,11 @@ main_window::main_window(QWidget* parent): QWidget(parent) {
     form_window = new form_view(this);
     stacked_layout -> addWidget(form_window);
 
-    stacked_layout -> setCurrentIndex(2);  
+    stacked_layout -> setCurrentIndex(0);  
 }
 
 void main_window::crea_attivita() {
-    stacked_layout -> setCurrentIndex(1);
+    stacked_layout -> setCurrentIndex(2);
 }
 
 void main_window::torna_indietro() {

@@ -12,11 +12,11 @@ DESTDIR = $$PWD
 
 HEADERS += \
         extra/enums.h \
-        model/attivita.h \
-        model/impegno.h \
-        model/scadenza.h \
-        model/routine.h \
-        controller/gestore.h \
+        model/classi/attivita.h \
+        model/classi/impegno.h \
+        model/classi/scadenza.h \
+        model/classi/routine.h \
+        model/gestore.h \
         view/main_window.h \
         view/home/home_view.h \
         view/home/home_header.h \
@@ -24,19 +24,19 @@ HEADERS += \
         view/detail/detail_view.h \
         view/detail/detail_header.h \
         view/detail/detail_corpo.h \
+        view/detail/display/display_view.h \
+        view/detail/display/display_variabile.h \
         view/form/form_view.h \
-        view/form/form_variabile.h \
-        view/form/form_attivita/form_impegno.h \
-        view/form/form_attivita/form_scadenza.h \
-        view/form/form_attivita/form_routine.h \
+        view/form/form_scelta.h \
+        view/form/form_parte_variabile.h \
 
 SOURCES += \
         main.cpp \
-        model/attivita.cpp \
-        model/impegno.cpp \
-        model/scadenza.cpp \
-        model/routine.cpp \
-        controller/gestore.cpp \
+        model/classi/attivita.cpp \
+        model/classi/impegno.cpp \
+        model/classi/scadenza.cpp \
+        model/classi/routine.cpp \
+        model/gestore.cpp \
         view/main_window.cpp \
         view/home/home_view.cpp \
         view/home/home_header.cpp \
@@ -44,8 +44,8 @@ SOURCES += \
         view/detail/detail_view.cpp \
         view/detail/detail_header.cpp \
         view/detail/detail_corpo.cpp \
+        view/detail/display/display_view.cpp \
+        view/detail/display/display_variabile.cpp \
         view/form/form_view.cpp \
-        view/form/form_variabile.cpp \
-        view/form/form_attivita/form_impegno.cpp \
-        view/form/form_attivita/form_scadenza.cpp \
-        view/form/form_attivita/form_routine.cpp \
+        view/form/form_scelta.cpp \
+        view/form/form_parte_variabile.cpp \

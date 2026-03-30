@@ -1,14 +1,12 @@
-#ifndef FORM_VARIABILE_H
-#define FORM_VARIABILE_H
+#ifndef FORM_SCELTA_H
+#define FORM_SCELTA_H
 
-#include "form_attivita/form_impegno.h"
-#include "form_attivita/form_scadenza.h"
-#include "form_attivita/form_routine.h"
+#include "form_parte_variabile.h"
 #include <QPushButton>
 #include <QWidget>
 #include <QStackedLayout>
 
-class form_variabile: public QWidget {
+class form_scelta: public QWidget {
     Q_OBJECT
 
     private:
@@ -20,10 +18,9 @@ class form_variabile: public QWidget {
         form_scadenza* scadenza_window;
         form_routine* routine_window;
         
-
     public:
-        form_variabile(QWidget* parent);
-        ~form_variabile() = default;
+        form_scelta(QWidget* parent);
+        ~form_scelta() = default;
 
     public slots:
         void cambia_in_impegno();
