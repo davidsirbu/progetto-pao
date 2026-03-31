@@ -1,9 +1,11 @@
 #ifndef HOME_VIEW_H
 #define HOME_VIEW_H
 
-#include "home_header.h"
-#include "home_corpo.h"
+
 #include <QWidget>
+
+class home_header;
+class home_corpo;
 
 class home_view: public QWidget {
     Q_OBJECT

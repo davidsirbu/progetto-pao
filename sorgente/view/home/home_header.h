@@ -2,8 +2,9 @@
 #define HOME_HEADER_H
 
 #include <QWidget>
-#include <QPushButton>
-#include <QLineEdit>
+
+class QPushButton;
+class QLineEdit;
 
 class home_header: public QWidget {
     Q_OBJECT

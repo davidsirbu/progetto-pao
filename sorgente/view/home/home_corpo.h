@@ -2,8 +2,9 @@
 #define HOME_CORPO_H
 
 #include <QWidget>
-#include <QListWidget>
-#include <QVBoxLayout>
+
+class QListWidget;
+class QVBoxLayout;
 
 class home_corpo: public QWidget {
     Q_OBJECT

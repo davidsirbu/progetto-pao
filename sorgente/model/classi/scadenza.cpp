@@ -1,4 +1,5 @@
 #include "scadenza.h"
+#include "../visitor.h"
 
 scadenza::scadenza(const QString& n, const QString& d, const Gruppo c, const QDateTime& t) : attivita(n, d, c), completato(false), tempo_limite(t) {}
 
@@ -31,4 +32,8 @@ Fase scadenza::calcola_stato() const {
     QDateTime attuale = QDateTime::currentDateTime();
     if (attuale <= tempo_limite) return Fase::DaFare;
     return Fase::Scaduto;    
+}
+
+void scadenza::accetta(visitor& v) {
+    v.visit(*this);
 }

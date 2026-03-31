@@ -22,6 +22,7 @@ class scadenza : public attivita {
 
         void segna_completato();
         Fase calcola_stato() const override;
+        void accetta(visitor& v) override;
 };
 
 #endif

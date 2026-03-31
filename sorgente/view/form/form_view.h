@@ -1,12 +1,13 @@
 #ifndef FORM_VIEW_H
 #define FORM_VIEW_H
 
-#include "form_scelta.h"
 #include <QWidget>
-#include <QLineEdit>
-#include <QTextEdit>
-#include <QComboBox>
-#include <QPushButton>
+
+class QLineEdit;
+class QComboBox;
+class form_scelta;
+class QTextEdit;
+class QPushButton;
 
 class form_view: public QWidget {
     Q_OBJECT

@@ -1,10 +1,13 @@
 #ifndef DISPLAY_VIEW_H
 #define DISPLAY_VIEW_H
 
-#include "display_variabile.h"
 #include <QWidget>
-#include <QLabel>
-#include <QStackedLayout>
+
+class QLabel;
+class QStackedLayout;
+class display_impegno;
+class display_scadenza;
+class display_routine;
 
 class display_view: public QWidget {
     Q_OBJECT

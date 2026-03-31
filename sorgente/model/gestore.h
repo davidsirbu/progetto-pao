@@ -1,9 +1,10 @@
 #ifndef GESTORE_H
 #define GESTORE_H
 
-#include "classi/attivita.h"
 #include <vector>
 #include <QString>
+
+class attivita;
 
 class gestore {
     private:

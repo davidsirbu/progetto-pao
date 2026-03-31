@@ -1,5 +1,7 @@
 #include "main_window.h"
-
+#include "home/home_view.h"
+#include "detail/detail_view.h"
+#include "form/form_view.h"
 #include <QStackedLayout>
 
 main_window::main_window(QWidget* parent): QWidget(parent) {

@@ -1,5 +1,8 @@
 #include "detail_header.h"
 #include <QHBoxLayout>
+#include <QPushButton>
+#include <QLineEdit>
+
 
 detail_header::detail_header(QWidget* parent): QWidget(parent) {
 

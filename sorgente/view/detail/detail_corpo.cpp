@@ -1,4 +1,6 @@
 #include "detail_corpo.h"
+#include "display/display_view.h"
+#include <QListWidget>
 #include <QVBoxLayout>
 #include <QLabel>
 

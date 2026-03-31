@@ -2,9 +2,11 @@
 #define FORM_PARTE_VARIABILE_H
 
 #include <QWidget>
-#include <QDateTimeEdit>
-#include <QCheckBox>
-#include <QSpinBox>
+
+class QDateTimeEdit;
+class QCheckBox;
+class QSpinBox;
+class QLineEdit;
 
 class form_impegno: public QWidget {
     Q_OBJECT

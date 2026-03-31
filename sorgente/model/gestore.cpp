@@ -1,4 +1,5 @@
 #include "gestore.h"
+#include "classi/attivita.h"
 
 gestore::gestore() {}
 

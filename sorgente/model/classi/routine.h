@@ -26,6 +26,7 @@ class routine : public attivita {
 
         void avanza_progressi();
         Fase calcola_stato() const override;
+        void accetta(visitor& v) override;
 };
 
 #endif

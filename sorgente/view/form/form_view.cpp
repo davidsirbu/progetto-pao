@@ -1,4 +1,9 @@
 #include "form_view.h"
+#include "form_scelta.h"
+#include <QLineEdit>
+#include <QTextEdit>
+#include <QComboBox>
+#include <QPushButton>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QLabel>

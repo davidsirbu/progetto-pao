@@ -1,6 +1,9 @@
 #include "home_header.h"
 #include <QHBoxLayout>
 #include <QPushButton>
+#include <QWidget>
+#include <QLineEdit>
+
 
 home_header::home_header(QWidget* parent): QWidget(parent) {
 

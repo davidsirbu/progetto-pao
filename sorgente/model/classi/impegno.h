@@ -24,6 +24,7 @@ class impegno : public attivita {
 
         QString calcolo_durata() const;
         Fase calcola_stato() const override;
+        void accetta(visitor& v) override;
 };
 
 #endif

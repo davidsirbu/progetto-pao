@@ -1,5 +1,6 @@
 #include "detail_view.h"
-
+#include "detail_header.h"
+#include "detail_corpo.h"
 #include <QVBoxLayout>
 
 detail_view::detail_view(QWidget* parent): QWidget(parent) {

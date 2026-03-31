@@ -1,11 +1,12 @@
 #ifndef MAIN_WINDOW_H
 #define MAIN_WINDOW_H
 
-#include "home/home_view.h"
-#include "detail/detail_view.h"
-#include "form/form_view.h"
 #include <QMainWindow>
 #include <QStackedLayout>
+
+class home_view;
+class detail_view;
+class form_view;
 
 class main_window : public QWidget {
     Q_OBJECT

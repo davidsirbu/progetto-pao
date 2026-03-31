@@ -2,8 +2,7 @@
 #include <QHBoxLayout>
 #include <QListWidget>
 #include <QLabel>
-
-#include <QListWidgetItem>
+#include <QVBoxLayout>
 
 home_corpo::home_corpo(QWidget* parent): QWidget(parent) {
 

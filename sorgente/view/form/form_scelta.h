@@ -1,10 +1,13 @@
 #ifndef FORM_SCELTA_H
 #define FORM_SCELTA_H
 
-#include "form_parte_variabile.h"
-#include <QPushButton>
 #include <QWidget>
-#include <QStackedLayout>
+
+class QPushButton;
+class QStackedLayout;
+class form_impegno;
+class form_scadenza;
+class form_routine;
 
 class form_scelta: public QWidget {
     Q_OBJECT

@@ -2,8 +2,9 @@
 #define DETAIL_HEADER_H
 
 #include <QWidget>
-#include <QPushButton>
-#include <QLineEdit>
+
+class QPushButton;
+class QLineEdit;
 
 class detail_header: public QWidget {
     Q_OBJECT

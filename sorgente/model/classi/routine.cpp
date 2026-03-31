@@ -1,4 +1,5 @@
 #include "routine.h"
+#include "../visitor.h"
 
 routine::routine(const QString& n, const QString& d, const Gruppo c, const QDateTime& i, const int g) : attivita(n, d, c), inizio(i), prossima_volta(i), intervallo_giorni(g), conta_puntuale(0), conta_ritardo(0) {}
 
@@ -42,4 +43,8 @@ Fase routine::calcola_stato() const {
     QDateTime attuale = QDateTime::currentDateTime();
     if (attuale < prossima_volta) return Fase::DaFare;
     return Fase::Scaduto;
+}
+
+void routine::accetta(visitor& v) {
+    v.visit(*this);
 }

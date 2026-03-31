@@ -1,5 +1,6 @@
 #include "home_view.h"
-
+#include "home_header.h"
+#include "home_corpo.h"
 #include <QVBoxLayout>
 
 home_view::home_view(QWidget* parent): QWidget(parent) {

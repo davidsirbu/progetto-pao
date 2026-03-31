@@ -1,9 +1,10 @@
 #ifndef DETAIL_VIEW_H
 #define DETAIL_VIEW_H
 
-#include "detail_header.h"
-#include "detail_corpo.h"
 #include <QWidget>
+
+class detail_header;
+class detail_corpo;
 
 class detail_view: public QWidget {
     Q_OBJECT

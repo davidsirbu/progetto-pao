@@ -1,4 +1,5 @@
 #include "impegno.h"
+#include "../visitor.h"
 
 impegno::impegno(const QString& n, const QString& d, const Gruppo c, const QDateTime& i, const QDateTime& f, const QString& l) : attivita(n, d, c), inizio(i), fine(f), luogo(l) {}
 
@@ -41,4 +42,8 @@ Fase impegno::calcola_stato() const {
     if (attuale.secsTo(fine) < 0) return Fase::Scaduto;
     if (attuale.secsTo(inizio) > 0) return Fase::DaFare;
     return Fase::InCorso; 
+}
+
+void impegno::accetta(visitor& v) {
+    v.visit(*this);
 }

@@ -1,7 +1,8 @@
 #include "display_view.h"
-#include <QVBoxLayout>
+#include "display_variabile.h"
 #include <QLabel>
-
+#include <QStackedLayout>
+#include <QVBoxLayout>
 
 display_view::display_view(QWidget* parent): QWidget(parent) {
 

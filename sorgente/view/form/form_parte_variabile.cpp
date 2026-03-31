@@ -2,6 +2,9 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QLabel>
+#include <QDateTimeEdit>
+#include <QCheckBox>
+#include <QSpinBox>
 
 form_impegno::form_impegno(QWidget* parent): QWidget(parent) {
     

@@ -1,9 +1,10 @@
 #ifndef DETAIL_CORPO_H
 #define DETAIL_CORPO_H
 
-#include "display/display_view.h"
 #include <QWidget>
-#include <QListWidget>
+
+class QListWidget;
+class display_view;
 
 class detail_corpo: public QWidget {
     Q_OBJECT

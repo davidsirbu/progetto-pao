@@ -5,6 +5,8 @@
 #include <QString>
 #include <QUuid>
 
+class visitor;
+
 class attivita {
     private:
         const QString id;
@@ -26,6 +28,7 @@ class attivita {
         void set_categoria(const Gruppo c);
 
         virtual Fase calcola_stato() const = 0;
+        virtual void accetta(visitor& v) = 0;
 };
 
 #endif

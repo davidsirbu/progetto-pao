@@ -1,4 +1,7 @@
 #include "form_scelta.h"
+#include "form_parte_variabile.h"
+#include <QPushButton>
+#include <QStackedLayout>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 
