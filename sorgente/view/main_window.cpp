@@ -1,10 +1,10 @@
 #include "main_window.h"
 #include "home/home_view.h"
-#include "detail/detail_view.h"
 #include "form/form_view.h"
+#include "../controller/controller.h"
 #include <QStackedLayout>
 
-main_window::main_window(QWidget* parent): QWidget(parent) {
+main_window::main_window(controller* c, QWidget* parent): control(c), QWidget(parent) {
 
     stacked_layout = new QStackedLayout(this);
 
@@ -12,14 +12,16 @@ main_window::main_window(QWidget* parent): QWidget(parent) {
     stacked_layout -> addWidget(home_window);
     connect(home_window, &home_view::crea_attivita, this, &main_window::crea_attivita);
 
-    detail_window = new detail_view(this);
-    stacked_layout -> addWidget(detail_window);
-    connect(detail_window, &detail_view::torna_indietro, this, &main_window::torna_indietro);
-
     form_window = new form_view(this);
     stacked_layout -> addWidget(form_window);
 
-    stacked_layout -> setCurrentIndex(0);  
+    stacked_layout -> setCurrentIndex(0);
+
+    connect(form_window, &form_view::torna_indietro, this, &main_window::torna_indietro);
+
+    connect(form_window, &form_view::salva_impegno, control, &controller::crea_impegno);
+    connect(form_window, &form_view::salva_scadenza, control, &controller::crea_scadenza);
+    connect(form_window, &form_view::salva_routine, control, &controller::crea_routine);
 }
 
 void main_window::crea_attivita() {
@@ -28,4 +30,8 @@ void main_window::crea_attivita() {
 
 void main_window::torna_indietro() {
     stacked_layout -> setCurrentIndex(0);
+}
+
+void main_window::passa_liste(const std::vector<impegno*>& i, const std::vector<scadenza*>& s, const std::vector<routine*>& r) const {
+    home_window -> passa_liste(i, s, r);
 }

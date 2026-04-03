@@ -1,5 +1,6 @@
 #include "form_view.h"
 #include "form_scelta.h"
+#include "../../extra/dto.h"
 #include <QLineEdit>
 #include <QTextEdit>
 #include <QComboBox>
@@ -35,12 +36,57 @@ form_view::form_view(QWidget* parent): QWidget(parent) {
     action_layout -> addWidget(spaziatore, 4);
 
     pulsante_salva = new QPushButton("Salva", this);
+    connect(pulsante_salva, &QPushButton::clicked, this, form_view::salva);
     action_layout -> addWidget(pulsante_salva, 1);
 
     pulsante_annulla = new QPushButton("Annulla", this);
+    connect(pulsante_annulla, &QPushButton::clicked, this, form_view::annulla);
     action_layout -> addWidget(pulsante_annulla, 1);
 
     layout_principale -> addLayout(action_layout);
 
     setLayout(layout_principale);
+}
+
+void form_view::reset() {
+    etichetta_titolo -> setText("");
+    parte_scelta -> reset();
+    etichetta_descrizione -> setText("");
+}
+
+void form_view::salva() {
+    if (parte_scelta -> stato_stacked() == 0) {
+        dati_impegno impegno;
+        impegno.nome = etichetta_titolo -> text();
+        impegno.descrizione = etichetta_descrizione -> toPlainText();
+        impegno.inizio = parte_scelta -> salva_dati_impegno() -> salva_inizio();
+        impegno.fine = parte_scelta -> salva_dati_impegno() -> salva_fine();
+        impegno.luogo = parte_scelta -> salva_dati_impegno() -> salva_luogo();
+
+        emit salva_impegno(impegno);
+    }
+    else if (parte_scelta -> stato_stacked() == 1) {
+        dati_scadenza scadenza;
+        scadenza.nome = etichetta_titolo -> text();
+        scadenza.descrizione = etichetta_descrizione -> toPlainText();
+        scadenza.limite = parte_scelta -> salva_dati_scadenza() -> salva_limite();
+
+        emit salva_scadenza(scadenza);
+    }
+    else if (parte_scelta -> stato_stacked() == 2) {
+        dati_routine routine;
+        routine.nome = etichetta_titolo -> text();
+        routine.descrizione = etichetta_descrizione -> toPlainText();
+        routine.inizio = parte_scelta -> salva_dati_routine() -> salva_inizio();
+        routine.intervallo = parte_scelta -> salva_dati_routine() -> salva_intervallo();
+
+        emit salva_routine(routine);
+    }
+    reset();
+    emit torna_indietro();
+}
+
+void form_view::annulla() {
+    reset();
+    emit torna_indietro();
 }

@@ -5,6 +5,7 @@
 #include <QString>
 
 class attivita;
+class visitor;
 
 class gestore {
     private:
@@ -21,6 +22,8 @@ class gestore {
         void aggiungi_attivita(attivita* a);
         void rimuovi_attivita(const QString& id);
         attivita* cerca_attivita(const QString& id) const;
+
+        void accetta_visitatore(visitor& v);
 };
 
 #endif

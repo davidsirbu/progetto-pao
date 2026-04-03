@@ -3,28 +3,23 @@
 
 routine::routine(const QString& n, const QString& d, const Gruppo c, const QDateTime& i, const int g) : attivita(n, d, c), inizio(i), prossima_volta(i), intervallo_giorni(g), conta_puntuale(0), conta_ritardo(0) {}
 
-QDateTime routine::get_inizio() const {
-    return inizio;
+dati_routine routine::get_dati() const {
+    dati_routine r;
+    r.nome = get_nome();
+    r.descrizione = get_descrizione();
+    r.categoria = get_categoria();
+    r.intervallo = intervallo_giorni;
+    r.puntuale = conta_puntuale;
+    r.ritardo = conta_ritardo;
 }
 
-QDateTime routine::get_prossima_volta() const {
-    return prossima_volta;
-}
-
-int routine::get_intervallo_giorni() const {
-    return intervallo_giorni;
-}
-
-int routine::get_conta_puntuale() const {
-    return conta_puntuale;
-}
-
-int routine::get_conta_ritardo() const {
-    return conta_ritardo;
-}
-
-void routine::set_intervallo_giorni(const int g) {
-    intervallo_giorni = g;
+void routine::set_dati(dati_routine& r) {
+    set_nome(r.nome);
+    set_descrizione(r.descrizione);
+    set_categoria(r.categoria);
+    intervallo_giorni = r.intervallo;
+    conta_puntuale = r.puntuale;
+    conta_ritardo = r.ritardo;
 }
 
 void routine::avanza_progressi() {

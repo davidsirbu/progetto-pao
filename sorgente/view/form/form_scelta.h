@@ -2,12 +2,11 @@
 #define FORM_SCELTA_H
 
 #include <QWidget>
+#include "form_parte_variabile.h"
 
 class QPushButton;
 class QStackedLayout;
-class form_impegno;
-class form_scadenza;
-class form_routine;
+
 
 class form_scelta: public QWidget {
     Q_OBJECT
@@ -24,6 +23,13 @@ class form_scelta: public QWidget {
     public:
         form_scelta(QWidget* parent);
         ~form_scelta() = default;
+
+        form_impegno* salva_dati_impegno();
+        form_scadenza* salva_dati_scadenza();
+        form_routine* salva_dati_routine();
+        int stato_stacked();
+
+        void reset();
 
     public slots:
         void cambia_in_impegno();

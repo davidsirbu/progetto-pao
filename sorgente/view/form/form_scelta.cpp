@@ -1,5 +1,4 @@
 #include "form_scelta.h"
-#include "form_parte_variabile.h"
 #include <QPushButton>
 #include <QStackedLayout>
 #include <QVBoxLayout>
@@ -46,6 +45,28 @@ form_scelta::form_scelta(QWidget* parent): QWidget(parent) {
     stacked_layout -> setCurrentIndex(0);  
 
     layout_principale -> addLayout(stacked_layout);
+}
+
+form_impegno* form_scelta::salva_dati_impegno() {
+    return impegno_window;
+}
+
+form_scadenza* form_scelta::salva_dati_scadenza() {
+    return scadenza_window;
+}
+
+form_routine* form_scelta::salva_dati_routine() {
+    return routine_window;
+}
+
+int form_scelta::stato_stacked() {
+    return stacked_layout -> currentIndex();
+}
+
+void form_scelta::reset() {
+    impegno_window -> reset();
+    scadenza_window -> reset();
+    routine_window -> reset();
 }
 
 void form_scelta::cambia_in_impegno() {

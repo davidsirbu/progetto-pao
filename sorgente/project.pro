@@ -16,7 +16,10 @@ HEADERS += \
         model/classi/impegno.h \
         model/classi/scadenza.h \
         model/classi/routine.h \
+        model/visitor.h \
         model/gestore.h \
+        controller/controller.h \
+        controller/visitor_filtro.h \
         view/main_window.h \
         view/home/home_view.h \
         view/home/home_header.h \
@@ -37,6 +40,8 @@ SOURCES += \
         model/classi/scadenza.cpp \
         model/classi/routine.cpp \
         model/gestore.cpp \
+        controller/controller.cpp \
+        controller/visitor_filtro.cpp \
         view/main_window.cpp \
         view/home/home_view.cpp \
         view/home/home_header.cpp \

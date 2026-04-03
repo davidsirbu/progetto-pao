@@ -1,4 +1,5 @@
 #include "gestore.h"
+#include "visitor.h"
 #include "classi/attivita.h"
 
 gestore::gestore() {}
@@ -27,4 +28,10 @@ attivita* gestore::cerca_attivita(const QString& id_c) const {
     while ((it != gestore_attivita.end()) && ((*it) -> get_id() != id_c)) it++;
     if (it == gestore_attivita.end()) return nullptr;
     return *it;
+}
+
+void gestore::accetta_visitatore(visitor& v) {
+    for (auto it = gestore_attivita.begin(); it != gestore_attivita.end(); ++it) {
+        (**it).accetta(v);
+    }
 }

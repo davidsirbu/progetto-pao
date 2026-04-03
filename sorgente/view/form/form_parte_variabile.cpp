@@ -1,10 +1,13 @@
 #include "form_parte_variabile.h"
+#include "../../model/classi/attivita.h"
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QDateTimeEdit>
+#include <QDateTime>
 #include <QCheckBox>
 #include <QSpinBox>
+#include <QLineEdit>
 
 form_impegno::form_impegno(QWidget* parent): QWidget(parent) {
     
@@ -16,6 +19,8 @@ form_impegno::form_impegno(QWidget* parent): QWidget(parent) {
     layout_orari -> addWidget(etichetta_inizio, 1);
 
     selettore_inizio = new QDateTimeEdit();
+    selettore_inizio -> setDateTime(QDateTime::currentDateTime());
+
     layout_orari -> addWidget(selettore_inizio, 1);
 
     QWidget* spazio = new QWidget(this);
@@ -25,12 +30,36 @@ form_impegno::form_impegno(QWidget* parent): QWidget(parent) {
     layout_orari -> addWidget(etichetta_fine, 1);
 
     selettore_fine = new QDateTimeEdit(this);
+    selettore_fine -> setDateTime(QDateTime::currentDateTime());
     layout_orari -> addWidget(selettore_fine, 1);
 
     layout_principale -> addLayout(layout_orari);
 
+    etichetta_luogo = new QLineEdit(this);
+    etichetta_luogo -> setPlaceholderText("Inserire luogo: ");
+    layout_principale -> addWidget(etichetta_luogo);
+
     setLayout(layout_principale);
 }
+
+QDateTime form_impegno::salva_inizio() {
+    return selettore_inizio -> dateTime();
+}
+
+QDateTime form_impegno::salva_fine() {
+    return selettore_fine -> dateTime();
+}
+
+QString form_impegno::salva_luogo() {
+    return (etichetta_luogo -> text());
+}
+
+void form_impegno::reset() {
+    selettore_inizio -> setDateTime(QDateTime::currentDateTime());
+    selettore_fine -> setDateTime(QDateTime::currentDateTime());
+}
+
+////////////////////////////////////////////////////////////////////////////
 
 form_scadenza::form_scadenza(QWidget* parent): QWidget(parent) {
     
@@ -40,6 +69,7 @@ form_scadenza::form_scadenza(QWidget* parent): QWidget(parent) {
     layout_principale -> addWidget(etichetta_tempo_limite);
 
     selettore_tempo_limite = new QDateTimeEdit(this);
+    selettore_tempo_limite -> setDateTime(QDateTime::currentDateTime());
     layout_principale -> addWidget(selettore_tempo_limite);
 
     QWidget* spazio = new QWidget(this);
@@ -48,11 +78,19 @@ form_scadenza::form_scadenza(QWidget* parent): QWidget(parent) {
     QLabel* etichetta_completamento = new QLabel("Completato: ", this);
     layout_principale -> addWidget(etichetta_completamento);
 
-    casella_completamento = new QCheckBox(this);
-    layout_principale -> addWidget(casella_completamento);
-
     setLayout(layout_principale);
 }
+
+QDateTime form_scadenza::salva_limite() {
+    return selettore_tempo_limite -> dateTime();
+}
+
+void form_scadenza::reset() {
+    selettore_tempo_limite -> setDateTime(QDateTime::currentDateTime());
+}
+
+////////////////////////////////////////////////////////////////////////////
+
 form_routine::form_routine(QWidget* parent): QWidget(parent) {
 
     QHBoxLayout* layout_principale = new QHBoxLayout(this);
@@ -61,6 +99,7 @@ form_routine::form_routine(QWidget* parent): QWidget(parent) {
     layout_principale -> addWidget(etichetta_inizio);
 
     selettore_inizio = new QDateTimeEdit(this);
+    selettore_inizio -> setDateTime(QDateTime::currentDateTime());
     layout_principale -> addWidget(selettore_inizio);
 
     QWidget* spazio = new QWidget(this);
@@ -73,4 +112,17 @@ form_routine::form_routine(QWidget* parent): QWidget(parent) {
     layout_principale -> addWidget(selettore_intervallo);
 
     setLayout(layout_principale);
+}
+
+QDateTime form_routine::salva_inizio() {
+    return selettore_inizio -> dateTime();
+}
+
+int form_routine::salva_intervallo() {
+    return selettore_intervallo -> value();
+}
+
+void form_routine::reset() {
+    selettore_inizio -> setDateTime(QDateTime::currentDateTime());
+    selettore_intervallo -> setValue(0);
 }

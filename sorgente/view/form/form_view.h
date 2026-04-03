@@ -1,6 +1,7 @@
 #ifndef FORM_VIEW_H
 #define FORM_VIEW_H
 
+#include "../../extra/dto.h"
 #include <QWidget>
 
 class QLineEdit;
@@ -20,15 +21,22 @@ class form_view: public QWidget {
         QPushButton* pulsante_salva;
         QPushButton* pulsante_annulla;
 
+        void reset();
+
     public:
         form_view(QWidget* parent = nullptr);
         ~form_view() = default;
 
+    signals:
+        void torna_indietro();
 
+        void salva_impegno(const dati_impegno&);
+        void salva_scadenza(const dati_scadenza&);
+        void salva_routine(const dati_routine&);
 
-
-
-
+    public slots:
+        void salva();
+        void annulla();
     };
 
 #endif
