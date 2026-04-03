@@ -1,6 +1,7 @@
 #ifndef FORM_PARTE_VARIABILE_H
 #define FORM_PARTE_VARIABILE_H
 
+#include "../../extra/dto.h"
 #include <QWidget>
 #include <QDateTime>
 #include <QString>
@@ -22,9 +23,7 @@ class form_impegno: public QWidget {
         form_impegno(QWidget* parent);
         ~form_impegno() = default;
 
-        QDateTime salva_inizio();
-        QDateTime salva_fine();
-        QString salva_luogo();
+        mini_dto_impegno salva_dati() const;
     
         void reset();
 };
@@ -41,7 +40,7 @@ class form_scadenza: public QWidget {
         form_scadenza(QWidget* parent);
         ~form_scadenza() = default;
 
-        QDateTime salva_limite();
+        mini_dto_scadenza salva_dati() const;
 
         void reset();
 };
@@ -59,8 +58,7 @@ class form_routine: public QWidget {
         form_routine(QWidget* parent);
         ~form_routine() = default;
 
-        QDateTime salva_inizio();
-        int salva_intervallo();
+        mini_dto_routine salva_dati() const;
 
         void reset();
 };

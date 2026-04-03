@@ -42,16 +42,13 @@ form_impegno::form_impegno(QWidget* parent): QWidget(parent) {
     setLayout(layout_principale);
 }
 
-QDateTime form_impegno::salva_inizio() {
-    return selettore_inizio -> dateTime();
-}
+mini_dto_impegno form_impegno::salva_dati() const {
+    mini_dto_impegno i;
+    i.inizio = selettore_inizio -> dateTime();
+    i.fine = selettore_fine -> dateTime();
+    i.luogo = etichetta_luogo -> text();
 
-QDateTime form_impegno::salva_fine() {
-    return selettore_fine -> dateTime();
-}
-
-QString form_impegno::salva_luogo() {
-    return (etichetta_luogo -> text());
+    return i;
 }
 
 void form_impegno::reset() {
@@ -81,8 +78,10 @@ form_scadenza::form_scadenza(QWidget* parent): QWidget(parent) {
     setLayout(layout_principale);
 }
 
-QDateTime form_scadenza::salva_limite() {
-    return selettore_tempo_limite -> dateTime();
+mini_dto_scadenza form_scadenza::salva_dati() const {
+    mini_dto_scadenza s;
+    s.limite = selettore_tempo_limite -> dateTime();
+    return s;
 }
 
 void form_scadenza::reset() {
@@ -114,12 +113,12 @@ form_routine::form_routine(QWidget* parent): QWidget(parent) {
     setLayout(layout_principale);
 }
 
-QDateTime form_routine::salva_inizio() {
-    return selettore_inizio -> dateTime();
-}
+mini_dto_routine form_routine::salva_dati() const {
+    mini_dto_routine r;
+    r.inizio = selettore_inizio -> dateTime();
+    r.intervallo = selettore_intervallo -> value();
 
-int form_routine::salva_intervallo() {
-    return selettore_intervallo -> value();
+    return r;
 }
 
 void form_routine::reset() {

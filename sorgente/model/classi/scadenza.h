@@ -16,8 +16,10 @@ class scadenza : public attivita {
         scadenza(const QString& n, const QString& d, const Gruppo c, const QDateTime& t);
         ~scadenza() = default;
 
-        dati_scadenza get_dati() const;
-        void set_dati(dati_scadenza& s);
+        QDateTime get_limite() const;
+        QDateTime get_tempo_completamento() const;
+
+        void set_limite(QDateTime& l);
 
         void segna_completato();
         Fase calcola_stato() const override;

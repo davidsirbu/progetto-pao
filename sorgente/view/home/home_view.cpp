@@ -9,7 +9,7 @@ home_view::home_view(QWidget* parent): QWidget(parent) {
 
     header = new home_header(this);
     home_layout -> addWidget(header);
-    connect(header, home_header::crea_attivita, this, home_view::crea_attivita);
+    connect(header, &home_header::crea_attivita, this, &home_view::crea_attivita);
 
     corpo = new home_corpo(this);
     home_layout -> addWidget(corpo);

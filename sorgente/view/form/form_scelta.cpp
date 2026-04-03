@@ -47,16 +47,16 @@ form_scelta::form_scelta(QWidget* parent): QWidget(parent) {
     layout_principale -> addLayout(stacked_layout);
 }
 
-form_impegno* form_scelta::salva_dati_impegno() {
-    return impegno_window;
+mini_dto_impegno form_scelta::passa_dati_impegno() const {
+    return impegno_window -> salva_dati();
 }
 
-form_scadenza* form_scelta::salva_dati_scadenza() {
-    return scadenza_window;
+mini_dto_scadenza form_scelta::passa_dati_scadenza() const {
+    return scadenza_window -> salva_dati();
 }
 
-form_routine* form_scelta::salva_dati_routine() {
-    return routine_window;
+mini_dto_routine form_scelta::passa_dati_routine() const {
+    return routine_window -> salva_dati();
 }
 
 int form_scelta::stato_stacked() {

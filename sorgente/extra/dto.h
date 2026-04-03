@@ -28,8 +28,21 @@ struct dati_routine {
     QString descrizione;
     QDateTime inizio;
     int intervallo;
-    int puntuale;
-    int ritardo;
+};
+
+struct mini_dto_impegno {
+    QDateTime inizio;
+    QDateTime fine;
+    QString luogo;
+};
+
+struct mini_dto_scadenza {
+    QDateTime limite;
+};
+
+struct mini_dto_routine {
+    QDateTime inizio;
+    int intervallo;
 };
 
 #endif

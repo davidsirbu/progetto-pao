@@ -59,17 +59,19 @@ void form_view::salva() {
         dati_impegno impegno;
         impegno.nome = etichetta_titolo -> text();
         impegno.descrizione = etichetta_descrizione -> toPlainText();
-        impegno.inizio = parte_scelta -> salva_dati_impegno() -> salva_inizio();
-        impegno.fine = parte_scelta -> salva_dati_impegno() -> salva_fine();
-        impegno.luogo = parte_scelta -> salva_dati_impegno() -> salva_luogo();
-
+        mini_dto_impegno mini = parte_scelta -> passa_dati_impegno();
+        impegno.inizio = mini.inizio;
+        impegno.fine = mini.fine;
+        impegno.luogo = mini.luogo;
+        
         emit salva_impegno(impegno);
     }
     else if (parte_scelta -> stato_stacked() == 1) {
         dati_scadenza scadenza;
         scadenza.nome = etichetta_titolo -> text();
         scadenza.descrizione = etichetta_descrizione -> toPlainText();
-        scadenza.limite = parte_scelta -> salva_dati_scadenza() -> salva_limite();
+        mini_dto_scadenza mini = parte_scelta -> passa_dati_scadenza();
+        scadenza.limite = mini.limite;
 
         emit salva_scadenza(scadenza);
     }
@@ -77,8 +79,9 @@ void form_view::salva() {
         dati_routine routine;
         routine.nome = etichetta_titolo -> text();
         routine.descrizione = etichetta_descrizione -> toPlainText();
-        routine.inizio = parte_scelta -> salva_dati_routine() -> salva_inizio();
-        routine.intervallo = parte_scelta -> salva_dati_routine() -> salva_intervallo();
+        mini_dto_routine mini = parte_scelta -> passa_dati_routine();
+        routine.inizio = mini.inizio;
+        routine.intervallo = mini.intervallo;
 
         emit salva_routine(routine);
     }

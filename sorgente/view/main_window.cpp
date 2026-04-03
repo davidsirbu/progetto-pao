@@ -1,5 +1,6 @@
 #include "main_window.h"
 #include "home/home_view.h"
+#include "detail/detail_view.h"
 #include "form/form_view.h"
 #include "../controller/controller.h"
 #include <QStackedLayout>
@@ -11,6 +12,9 @@ main_window::main_window(controller* c, QWidget* parent): control(c), QWidget(pa
     home_window = new home_view(this);
     stacked_layout -> addWidget(home_window);
     connect(home_window, &home_view::crea_attivita, this, &main_window::crea_attivita);
+
+    detail_window = new detail_view(this);
+    stacked_layout -> addWidget(detail_window);
 
     form_window = new form_view(this);
     stacked_layout -> addWidget(form_window);

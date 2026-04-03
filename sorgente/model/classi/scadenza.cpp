@@ -3,19 +3,16 @@
 
 scadenza::scadenza(const QString& n, const QString& d, const Gruppo c, const QDateTime& t) : attivita(n, d, c), completato(false), tempo_limite(t) {}
 
-dati_scadenza scadenza::get_dati() const {
-    dati_scadenza s;
-    s.nome = get_nome();
-    s.descrizione = get_descrizione();
-    s.categoria = get_categoria();
-    s.limite = tempo_limite;
+QDateTime scadenza::get_limite() const {
+    return tempo_limite;
 }
 
-void scadenza::set_dati(dati_scadenza& s) {
-    set_nome(s.nome);
-    set_descrizione(s.descrizione);
-    set_categoria(s.categoria);
-    tempo_limite = s.limite;
+QDateTime scadenza::get_tempo_completamento() const {
+    return tempo_completamento;
+}
+
+void scadenza::set_limite(QDateTime& l) {
+    tempo_limite = l;
 }
 
 void scadenza::segna_completato() {

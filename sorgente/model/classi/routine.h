@@ -16,8 +16,13 @@ class routine : public attivita {
         routine(const QString& n, const QString& d, const Gruppo c, const QDateTime& i, const int g);
         ~routine() = default;
 
-        dati_routine get_dati() const;
-        void set_dati(dati_routine& r);
+        QDateTime get_inizio() const;
+        int get_intervallo() const;
+        int get_puntuale() const;
+        int get_ritardo() const;
+
+        void set_inizio(QDateTime& d);
+        void set_intervallo(int i);
 
         void avanza_progressi();
         Fase calcola_stato() const override;

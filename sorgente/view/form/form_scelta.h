@@ -2,6 +2,7 @@
 #define FORM_SCELTA_H
 
 #include <QWidget>
+#include "../../extra/dto.h"
 #include "form_parte_variabile.h"
 
 class QPushButton;
@@ -24,9 +25,11 @@ class form_scelta: public QWidget {
         form_scelta(QWidget* parent);
         ~form_scelta() = default;
 
-        form_impegno* salva_dati_impegno();
-        form_scadenza* salva_dati_scadenza();
-        form_routine* salva_dati_routine();
+        mini_dto_impegno passa_dati_impegno() const;
+        mini_dto_scadenza passa_dati_scadenza() const;
+        mini_dto_routine passa_dati_routine() const;
+        
+
         int stato_stacked();
 
         void reset();

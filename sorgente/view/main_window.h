@@ -10,6 +10,7 @@ class scadenza;
 class routine;
 class controller;
 class home_view;
+class detail_view;
 class form_view;
 
 class main_window : public QWidget {
@@ -19,6 +20,7 @@ class main_window : public QWidget {
         controller* control;
         QStackedLayout* stacked_layout;
         home_view* home_window;
+        detail_view* detail_window;
         form_view* form_window;
 
     public:

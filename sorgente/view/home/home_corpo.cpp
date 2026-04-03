@@ -55,11 +55,9 @@ void home_corpo::carica_impegni(const std::vector<impegno*>& i) const {
     for (auto it = i.begin(); it != i.end(); ++it) {
         QListWidgetItem* item = new QListWidgetItem();
 
-        /*
         QString nome = (*it) -> get_nome();
         QString categoria = converti_enum((*it) -> get_categoria());
         item -> setText(nome + '\n' + categoria + '\n');
-        */
 
         lista_eventi -> addItem(item);
     }
@@ -72,12 +70,10 @@ void home_corpo::carica_scadenze(const std::vector<scadenza*>& s) const {
     for (auto it = s.begin(); it != s.end(); ++it) {
         QListWidgetItem* item = new QListWidgetItem();
 
-        /*
         QString nome = (*it) -> get_nome();
         QString categoria = converti_enum((*it) -> get_categoria());
-        QString tempo_limite = (*it) -> get_tempo_limite().toString("dd/MM/yyyy HH:mm");
+        QString tempo_limite = (*it) -> get_limite().toString("dd/MM/yyyy HH:mm");
         item -> setText(nome + '\n' + categoria + '\n' + tempo_limite);
-        */
 
         lista_scadenze -> addItem(item);
     }
@@ -90,11 +86,9 @@ void home_corpo::carica_routine(const std::vector<routine*>& r) const {
     for (auto it = r.begin(); it != r.end(); ++it) {
         QListWidgetItem* item = new QListWidgetItem();
 
-        /*
         QString nome = (*it) -> get_nome();
         QString categoria = converti_enum((*it) -> get_categoria());
         item -> setText(nome + '\n' + categoria);
-        */
        
         lista_routine -> addItem(item);
     }
