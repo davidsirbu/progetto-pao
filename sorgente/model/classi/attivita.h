@@ -2,7 +2,6 @@
 #define ATTIVITA_H
 
 #include "../../extra/enums.h"
-#include "../../extra/dto.h"
 #include <QString>
 #include <QUuid>
 #include <QDateTime>
