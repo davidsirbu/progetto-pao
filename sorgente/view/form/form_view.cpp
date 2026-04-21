@@ -59,7 +59,7 @@ void form_view::salva() {
         dati_impegno impegno;
         impegno.nome = etichetta_titolo -> text();
         impegno.descrizione = etichetta_descrizione -> toPlainText();
-        mini_dto_impegno mini = parte_scelta -> passa_dati_impegno();
+        mini_dto_impegno mini = parte_scelta -> ricevi_dati_impegno();
         impegno.inizio = mini.inizio;
         impegno.fine = mini.fine;
         impegno.luogo = mini.luogo;
@@ -70,7 +70,7 @@ void form_view::salva() {
         dati_scadenza scadenza;
         scadenza.nome = etichetta_titolo -> text();
         scadenza.descrizione = etichetta_descrizione -> toPlainText();
-        mini_dto_scadenza mini = parte_scelta -> passa_dati_scadenza();
+        mini_dto_scadenza mini = parte_scelta -> ricevi_dati_scadenza();
         scadenza.limite = mini.limite;
 
         emit salva_scadenza(scadenza);
@@ -79,7 +79,7 @@ void form_view::salva() {
         dati_routine routine;
         routine.nome = etichetta_titolo -> text();
         routine.descrizione = etichetta_descrizione -> toPlainText();
-        mini_dto_routine mini = parte_scelta -> passa_dati_routine();
+        mini_dto_routine mini = parte_scelta -> ricevi_dati_routine();
         routine.inizio = mini.inizio;
         routine.intervallo = mini.intervallo;
 
@@ -92,4 +92,22 @@ void form_view::salva() {
 void form_view::annulla() {
     reset();
     emit torna_indietro();
+}
+
+void form_view::carica_impegno(const dati_impegno& i) {
+    etichetta_titolo -> setText(i.nome);
+    etichetta_descrizione -> setText(i.descrizione);
+    parte_scelta -> inoltra_dati_impegno(i);
+}
+
+void form_view::carica_scadenza(const dati_scadenza& s) {
+    etichetta_titolo -> setText(s.nome);
+    etichetta_descrizione -> setText(s.descrizione);
+    parte_scelta -> inoltra_dati_scadenza(s);
+}
+
+void form_view::carica_routine(const dati_routine& r) {
+    etichetta_titolo -> setText(r.nome);
+    etichetta_descrizione -> setText(r.descrizione);
+    parte_scelta -> inoltra_dati_routine(r);
 }

@@ -7,6 +7,7 @@
 
 
 struct dati_impegno {
+    QString id;
     QString nome;
     Gruppo categoria;
     QString descrizione;
@@ -16,6 +17,7 @@ struct dati_impegno {
 };
 
 struct dati_scadenza {
+    QString id;
     QString nome;
     Gruppo categoria;
     QString descrizione;
@@ -23,6 +25,7 @@ struct dati_scadenza {
 };
 
 struct dati_routine {
+    QString id;
     QString nome;
     Gruppo categoria;
     QString descrizione;

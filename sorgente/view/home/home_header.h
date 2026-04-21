@@ -11,16 +11,21 @@ class home_header: public QWidget {
 
     private:
         QPushButton* pulsante_nuova_attivita;
-        QPushButton* pulsante_importa;
-        QPushButton* pulsante_esporta;
+        QPushButton* pulsante_modifica_attivita;
+        QPushButton* pulsante_elimina_attivita;
         QLineEdit* barra_ricerca;
         
     public:
         home_header(QWidget* parent = nullptr);
         ~home_header() = default;
 
+        void attiva_pulsanti();
+        void disattiva_pulsanti();
+
     signals:
         void crea_attivita();
+        void modifica_attivita();
+        void elimina_attivita();
 };
 
 #endif

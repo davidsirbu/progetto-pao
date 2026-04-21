@@ -1,6 +1,7 @@
 #ifndef MAIN_WINDOW_H
 #define MAIN_WINDOW_H
 
+#include "../extra/dto.h"
 #include <vector>
 #include <QMainWindow>
 #include <QStackedLayout>
@@ -30,8 +31,12 @@ class main_window : public QWidget {
         void passa_liste(const std::vector<impegno*>& i, const std::vector<scadenza*>& s, const std::vector<routine*>& r) const;
 
     public slots:
-        void crea_attivita();
         void torna_indietro();
+        void crea_attivita();
+        
+        void passa_dati_impegno(const dati_impegno& i);
+        void passa_dati_scadenza(const dati_scadenza& s);
+        void passa_dati_routine(const dati_routine& r);
 };
 
 #endif

@@ -25,6 +25,13 @@ class home_view: public QWidget {
     
     signals:
         void crea_attivita();
+        void segnale_modifica(const QString& id);
+        void segnale_elimina(const QString& id);
+    
+    public slots:
+        void attivita_selezionata();
+        void modifica_attivita();
+        void elimina_attivita();
 };
 
 #endif

@@ -38,3 +38,23 @@ void controller::smistamento() {
 void controller::passa_liste(const std::vector<impegno*>& i, const std::vector<scadenza*>& s, const std::vector<routine*>& r) const {
     m_window -> passa_liste(i, s, r);
 }
+
+void controller::modifica_attivita(const QString& id) {
+    attivita* ricercata = gestore_attivita -> cerca_attivita(id);
+    caricatore.reset();
+    ricercata -> accetta(caricatore);
+    if (!(caricatore.get_impegno().id.isEmpty())) {
+        m_window -> passa_dati_impegno(caricatore.get_impegno());
+    }
+    else if (!(caricatore.get_scadenza().id.isEmpty())) {
+        m_window -> passa_dati_scadenza(caricatore.get_scadenza());
+    }
+    else if (!(caricatore.get_routine().id.isEmpty())) {
+        m_window -> passa_dati_routine(caricatore.get_routine());
+    }
+}
+
+void controller::elimina_attivita(const QString& id) {
+    gestore_attivita -> rimuovi_attivita(id);
+    smistamento();
+}

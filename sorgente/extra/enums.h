@@ -2,6 +2,7 @@
 #define ENUMS_H
 
 enum class Gruppo {
+    Nessuno = 0,
     Studio,
     Lavoro,
     Hobby,

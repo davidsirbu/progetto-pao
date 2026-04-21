@@ -25,10 +25,13 @@ class form_scelta: public QWidget {
         form_scelta(QWidget* parent);
         ~form_scelta() = default;
 
-        mini_dto_impegno passa_dati_impegno() const;
-        mini_dto_scadenza passa_dati_scadenza() const;
-        mini_dto_routine passa_dati_routine() const;
+        mini_dto_impegno ricevi_dati_impegno() const;
+        mini_dto_scadenza ricevi_dati_scadenza() const;
+        mini_dto_routine ricevi_dati_routine() const;
         
+        void inoltra_dati_impegno(const dati_impegno& i);
+        void inoltra_dati_scadenza(const dati_scadenza& s);
+        void inoltra_dati_routine(const dati_routine& r);
 
         int stato_stacked();
 

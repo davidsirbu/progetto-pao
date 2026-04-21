@@ -51,6 +51,12 @@ mini_dto_impegno form_impegno::salva_dati() const {
     return i;
 }
 
+void form_impegno::set_dati(const dati_impegno& i) {
+    selettore_inizio -> setDateTime(i.inizio);
+    selettore_fine -> setDateTime(i.fine);
+    etichetta_luogo -> setText(i.luogo);
+}
+
 void form_impegno::reset() {
     selettore_inizio -> setDateTime(QDateTime::currentDateTime());
     selettore_fine -> setDateTime(QDateTime::currentDateTime());
@@ -82,6 +88,10 @@ mini_dto_scadenza form_scadenza::salva_dati() const {
     mini_dto_scadenza s;
     s.limite = selettore_tempo_limite -> dateTime();
     return s;
+}
+
+void form_scadenza::set_dati(const dati_scadenza& s) {
+    selettore_tempo_limite -> setDateTime(s.limite);
 }
 
 void form_scadenza::reset() {
@@ -119,6 +129,11 @@ mini_dto_routine form_routine::salva_dati() const {
     r.intervallo = selettore_intervallo -> value();
 
     return r;
+}
+
+void form_routine::set_dati(const dati_routine& r) {
+    selettore_inizio -> setDateTime(r.inizio);
+    selettore_intervallo -> setValue(r.intervallo);
 }
 
 void form_routine::reset() {

@@ -15,7 +15,7 @@ class home_corpo: public QWidget {
     Q_OBJECT
 
     private:
-        QListWidget* lista_eventi;
+        QListWidget* lista_impegni;
         QListWidget* lista_scadenze;
         QListWidget* lista_routine;
     
@@ -25,6 +25,8 @@ class home_corpo: public QWidget {
         void carica_routine(const std::vector<routine*>& r) const;
         QString converti_enum(const Gruppo e) const;
 
+        void aggiorna_stato_pulsanti();
+
     public:
         home_corpo(QWidget* parent = nullptr);
         ~home_corpo() = default;
@@ -32,6 +34,16 @@ class home_corpo: public QWidget {
         void aggiorna_liste(const std::vector<impegno*>& i, 
                             const std::vector<scadenza*>& s, 
                             const std::vector<routine*>& r) const;
+
+        QString get_id_selezionato() const;
+
+    signals:
+        void cambio_selezione();
+
+    public slots:
+        void impegno_cliccato();
+        void scadenza_cliccata();
+        void routine_cliccata();
 };
 
 #endif

@@ -30,13 +30,17 @@ class form_view: public QWidget {
     signals:
         void torna_indietro();
 
-        void salva_impegno(const dati_impegno&);
-        void salva_scadenza(const dati_scadenza&);
-        void salva_routine(const dati_routine&);
+        void salva_impegno(const dati_impegno& i);
+        void salva_scadenza(const dati_scadenza& s);
+        void salva_routine(const dati_routine& r);
 
     public slots:
         void salva();
         void annulla();
+
+        void carica_impegno(const dati_impegno& i);
+        void carica_scadenza(const dati_scadenza& s);
+        void carica_routine(const dati_routine& r);
     };
 
 #endif

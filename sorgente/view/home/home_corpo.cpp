@@ -13,13 +13,19 @@ home_corpo::home_corpo(QWidget* parent): QWidget(parent) {
 
     QHBoxLayout* corpo_layout = new QHBoxLayout(this);
 
-    lista_eventi = new QListWidget(this);
-    corpo_layout -> addLayout(crea_colonna("Eventi", lista_eventi));
+    lista_impegni = new QListWidget(this);
+    lista_impegni -> setSelectionMode(QAbstractItemView::SingleSelection);
+    connect(lista_impegni, &QListWidget::itemSelectionChanged, this, &home_corpo::impegno_cliccato);
+    corpo_layout -> addLayout(crea_colonna("impegni", lista_impegni));
 
     lista_scadenze = new QListWidget(this);
+    lista_scadenze -> setSelectionMode(QAbstractItemView::SingleSelection);
+    connect(lista_scadenze, &QListWidget::itemSelectionChanged, this, &home_corpo::scadenza_cliccata);
     corpo_layout -> addLayout(crea_colonna("Scadenze", lista_scadenze));
 
     lista_routine = new QListWidget(this);
+    lista_routine -> setSelectionMode(QAbstractItemView::SingleSelection);
+    connect(lista_routine, &QListWidget::itemSelectionChanged, this, &home_corpo::routine_cliccata);
     corpo_layout -> addLayout(crea_colonna("Routine", lista_routine));
 
     setLayout(corpo_layout);
@@ -48,18 +54,24 @@ QString home_corpo::converti_enum(const Gruppo e) const {
     }
 }
 
+void home_corpo::aggiorna_stato_pulsanti() {
+    int selezioni_totali = (lista_impegni -> selectedItems().count()) + (lista_routine -> selectedItems().count()) + (lista_scadenze -> selectedItems().count());
+    if (selezioni_totali > 0) emit cambio_selezione();
+}
+
 void home_corpo::carica_impegni(const std::vector<impegno*>& i) const {
-    lista_eventi -> blockSignals(true);
-    lista_eventi -> clear();
-    lista_eventi -> blockSignals(false);
+    lista_impegni -> blockSignals(true);
+    lista_impegni -> clear();
+    lista_impegni -> blockSignals(false);
     for (auto it = i.begin(); it != i.end(); ++it) {
         QListWidgetItem* item = new QListWidgetItem();
 
         QString nome = (*it) -> get_nome();
         QString categoria = converti_enum((*it) -> get_categoria());
         item -> setText(nome + '\n' + categoria + '\n');
+        item -> setData(Qt::UserRole, (*it) -> get_id());
 
-        lista_eventi -> addItem(item);
+        lista_impegni -> addItem(item);
     }
 }
 
@@ -74,6 +86,7 @@ void home_corpo::carica_scadenze(const std::vector<scadenza*>& s) const {
         QString categoria = converti_enum((*it) -> get_categoria());
         QString tempo_limite = (*it) -> get_limite().toString("dd/MM/yyyy HH:mm");
         item -> setText(nome + '\n' + categoria + '\n' + tempo_limite);
+        item -> setData(Qt::UserRole, (*it) -> get_id());
 
         lista_scadenze -> addItem(item);
     }
@@ -89,6 +102,7 @@ void home_corpo::carica_routine(const std::vector<routine*>& r) const {
         QString nome = (*it) -> get_nome();
         QString categoria = converti_enum((*it) -> get_categoria());
         item -> setText(nome + '\n' + categoria);
+        item -> setData(Qt::UserRole, (*it) -> get_id());
        
         lista_routine -> addItem(item);
     }
@@ -100,4 +114,40 @@ void home_corpo::aggiorna_liste(const std::vector<impegno*>& i,
     carica_impegni(i);
     carica_scadenze(s);
     carica_routine(r);
+}
+
+QString home_corpo::get_id_selezionato() const {
+    if ((lista_impegni -> selectedItems().count()) > 0) {
+        return lista_impegni -> currentItem() -> data(Qt::UserRole).toString();
+    }
+    if ((lista_scadenze -> selectedItems().count()) > 0) {
+        return lista_scadenze -> currentItem() -> data(Qt::UserRole).toString();
+    }
+    if ((lista_routine -> selectedItems().count()) > 0) {
+        return lista_routine -> currentItem() -> data(Qt::UserRole).toString();
+    }
+}
+
+void home_corpo::impegno_cliccato() {
+    if ((lista_impegni -> selectedItems()).count() > 0) {
+        lista_scadenze -> clearSelection();
+        lista_routine -> clearSelection();
+    }
+    aggiorna_stato_pulsanti();
+}
+
+void home_corpo::scadenza_cliccata() {
+    if ((lista_scadenze -> selectedItems()).count() > 0) {
+        lista_impegni -> clearSelection();
+        lista_routine -> clearSelection();
+    }
+    aggiorna_stato_pulsanti();
+}
+
+void home_corpo::routine_cliccata() {
+    if ((lista_routine -> selectedItems()).count() > 0) {
+        lista_impegni -> clearSelection();
+        lista_scadenze -> clearSelection();
+    }
+    aggiorna_stato_pulsanti();
 }

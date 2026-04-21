@@ -20,6 +20,7 @@ HEADERS += \
         model/gestore.h \
         controller/controller.h \
         controller/visitor_filtro.h \
+        controller/visitor_ricerca.h \
         view/main_window.h \
         view/home/home_view.h \
         view/home/home_header.h \
@@ -42,6 +43,7 @@ SOURCES += \
         model/gestore.cpp \
         controller/controller.cpp \
         controller/visitor_filtro.cpp \
+        controller/visitor_ricerca.cpp \
         view/main_window.cpp \
         view/home/home_view.cpp \
         view/home/home_header.cpp \
