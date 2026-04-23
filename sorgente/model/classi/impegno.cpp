@@ -15,15 +15,15 @@ QString impegno::get_luogo() const {
     return luogo;
 }
 
-void impegno::set_inizio(QDateTime& i) {
+void impegno::set_inizio(const QDateTime& i) {
     inizio = i;
 }
 
-void impegno::set_fine(QDateTime& f) {
+void impegno::set_fine(const QDateTime& f) {
     fine = f;
 }
 
-void impegno::set_luogo(QString& l) {
+void impegno::set_luogo(const QString& l) {
     luogo = l;
 }
 

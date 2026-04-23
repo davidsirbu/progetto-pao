@@ -49,6 +49,7 @@ form_view::form_view(QWidget* parent): QWidget(parent) {
 }
 
 void form_view::reset() {
+    id.clear();
     etichetta_titolo -> setText("");
     parte_scelta -> reset();
     etichetta_descrizione -> setText("");
@@ -57,6 +58,7 @@ void form_view::reset() {
 void form_view::salva() {
     if (parte_scelta -> stato_stacked() == 0) {
         dati_impegno impegno;
+        impegno.id = id;
         impegno.nome = etichetta_titolo -> text();
         impegno.descrizione = etichetta_descrizione -> toPlainText();
         mini_dto_impegno mini = parte_scelta -> ricevi_dati_impegno();
@@ -68,6 +70,7 @@ void form_view::salva() {
     }
     else if (parte_scelta -> stato_stacked() == 1) {
         dati_scadenza scadenza;
+        scadenza.id = id;
         scadenza.nome = etichetta_titolo -> text();
         scadenza.descrizione = etichetta_descrizione -> toPlainText();
         mini_dto_scadenza mini = parte_scelta -> ricevi_dati_scadenza();
@@ -77,6 +80,7 @@ void form_view::salva() {
     }
     else if (parte_scelta -> stato_stacked() == 2) {
         dati_routine routine;
+        routine.id = id;
         routine.nome = etichetta_titolo -> text();
         routine.descrizione = etichetta_descrizione -> toPlainText();
         mini_dto_routine mini = parte_scelta -> ricevi_dati_routine();
@@ -95,18 +99,21 @@ void form_view::annulla() {
 }
 
 void form_view::carica_impegno(const dati_impegno& i) {
+    id = i.id;
     etichetta_titolo -> setText(i.nome);
     etichetta_descrizione -> setText(i.descrizione);
     parte_scelta -> inoltra_dati_impegno(i);
 }
 
 void form_view::carica_scadenza(const dati_scadenza& s) {
+    id = s.id;
     etichetta_titolo -> setText(s.nome);
     etichetta_descrizione -> setText(s.descrizione);
     parte_scelta -> inoltra_dati_scadenza(s);
 }
 
 void form_view::carica_routine(const dati_routine& r) {
+    id = r.id;
     etichetta_titolo -> setText(r.nome);
     etichetta_descrizione -> setText(r.descrizione);
     parte_scelta -> inoltra_dati_routine(r);

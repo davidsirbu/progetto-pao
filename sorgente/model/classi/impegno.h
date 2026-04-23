@@ -18,9 +18,9 @@ class impegno : public attivita {
         QDateTime get_fine() const;
         QString get_luogo() const;
 
-        void set_inizio(QDateTime& i);
-        void set_fine(QDateTime& f);
-        void set_luogo(QString& l);
+        void set_inizio(const QDateTime& i);
+        void set_fine(const QDateTime& f);
+        void set_luogo(const QString& l);
 
         QString calcolo_durata() const;
         Fase calcola_stato() const override;

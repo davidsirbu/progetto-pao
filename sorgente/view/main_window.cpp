@@ -12,7 +12,7 @@ main_window::main_window(controller* c, QWidget* parent): QWidget(parent), contr
     home_window = new home_view(this);
     stacked_layout -> addWidget(home_window);
     connect(home_window, &home_view::crea_attivita, this, &main_window::crea_attivita);
-    connect(home_window, &home_view::segnale_modifica, control, &controller::modifica_attivita);
+    connect(home_window, &home_view::segnale_modifica, control, &controller::esporta_per_modifica);
     connect(home_window, &home_view::segnale_elimina, control, &controller::elimina_attivita);
 
     detail_window = new detail_view(this);
@@ -21,9 +21,9 @@ main_window::main_window(controller* c, QWidget* parent): QWidget(parent), contr
     form_window = new form_view(this);
     stacked_layout -> addWidget(form_window);
     connect(form_window, &form_view::torna_indietro, this, &main_window::torna_indietro);
-    connect(form_window, &form_view::salva_impegno, control, &controller::crea_impegno);
-    connect(form_window, &form_view::salva_scadenza, control, &controller::crea_scadenza);
-    connect(form_window, &form_view::salva_routine, control, &controller::crea_routine);
+    connect(form_window, &form_view::salva_impegno, control, &controller::importa_e_smista_impegno);
+    connect(form_window, &form_view::salva_scadenza, control, &controller::importa_e_smista_scadenza);
+    connect(form_window, &form_view::salva_routine, control, &controller::importa_e_smista_routine);
 
     stacked_layout -> setCurrentIndex(0);
 }

@@ -16,7 +16,7 @@ home_corpo::home_corpo(QWidget* parent): QWidget(parent) {
     lista_impegni = new QListWidget(this);
     lista_impegni -> setSelectionMode(QAbstractItemView::SingleSelection);
     connect(lista_impegni, &QListWidget::itemSelectionChanged, this, &home_corpo::impegno_cliccato);
-    corpo_layout -> addLayout(crea_colonna("impegni", lista_impegni));
+    corpo_layout -> addLayout(crea_colonna("Impegni", lista_impegni));
 
     lista_scadenze = new QListWidget(this);
     lista_scadenze -> setSelectionMode(QAbstractItemView::SingleSelection);

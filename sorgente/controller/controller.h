@@ -26,13 +26,21 @@ class controller: public QObject {
 
         void assegna_main_window(main_window* m);
 
-        void smistamento();
+        void refresh();
+
+        void importa_e_smista_impegno(const dati_impegno& i);
+        void importa_e_smista_scadenza(const dati_scadenza& s);
+        void importa_e_smista_routine(const dati_routine& r);
         
         void crea_impegno(const dati_impegno& i);
         void crea_scadenza(const dati_scadenza& s);
         void crea_routine(const dati_routine& r);
 
-        void modifica_attivita(const QString& id);
+        void modifica_impegno(const dati_impegno& i);
+        void modifica_scadenza(const dati_scadenza& s);
+        void modifica_routine(const dati_routine& r);
+
+        void esporta_per_modifica(const QString& id);
         void elimina_attivita(const QString& id);
 };
 

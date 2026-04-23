@@ -14,6 +14,7 @@ class form_view: public QWidget {
     Q_OBJECT
 
     private:
+        QString id;
         QLineEdit* etichetta_titolo;
         QComboBox* menu_gruppo;
         form_scelta* parte_scelta;

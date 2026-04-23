@@ -21,8 +21,8 @@ class routine : public attivita {
         int get_puntuale() const;
         int get_ritardo() const;
 
-        void set_inizio(QDateTime& d);
-        void set_intervallo(int i);
+        void set_inizio(const QDateTime& d);
+        void set_intervallo(const int i);
 
         void avanza_progressi();
         Fase calcola_stato() const override;

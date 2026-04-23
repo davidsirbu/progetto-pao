@@ -19,7 +19,7 @@ class scadenza : public attivita {
         QDateTime get_limite() const;
         QDateTime get_tempo_completamento() const;
 
-        void set_limite(QDateTime& l);
+        void set_limite(const QDateTime& l);
 
         void segna_completato();
         Fase calcola_stato() const override;

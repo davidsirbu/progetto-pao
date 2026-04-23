@@ -19,11 +19,11 @@ int routine::get_ritardo() const {
     return conta_ritardo;
 }
 
-void routine::set_inizio(QDateTime& d) {
+void routine::set_inizio(const QDateTime& d) {
     inizio = d;
 }
 
-void routine::set_intervallo(int i) {
+void routine::set_intervallo(const int i) {
     intervallo_giorni = i;
 }
 

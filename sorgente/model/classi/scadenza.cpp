@@ -11,7 +11,7 @@ QDateTime scadenza::get_tempo_completamento() const {
     return tempo_completamento;
 }
 
-void scadenza::set_limite(QDateTime& l) {
+void scadenza::set_limite(const QDateTime& l) {
     tempo_limite = l;
 }
 
