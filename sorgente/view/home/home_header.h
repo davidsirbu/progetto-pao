@@ -26,6 +26,8 @@ class home_header: public QWidget {
         void crea_attivita();
         void modifica_attivita();
         void elimina_attivita();
+
+        void barra_cambiata(const QString& s);
 };
 
 #endif

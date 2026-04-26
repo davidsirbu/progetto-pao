@@ -44,6 +44,8 @@ class home_corpo: public QWidget {
         void impegno_cliccato();
         void scadenza_cliccata();
         void routine_cliccata();
+
+        void filtra_liste(const QString& s);
 };
 
 #endif

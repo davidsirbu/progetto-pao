@@ -23,6 +23,7 @@ home_header::home_header(QWidget* parent): QWidget(parent) {
     header_layout -> addWidget(pulsante_elimina_attivita);
 
     QLineEdit* barra_ricerca = new QLineEdit(this);
+    connect(barra_ricerca, &QLineEdit::textChanged, this, &home_header::barra_cambiata);
     header_layout -> addWidget(barra_ricerca);
 
     setLayout(header_layout);

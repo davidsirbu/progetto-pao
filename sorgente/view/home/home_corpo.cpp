@@ -151,3 +151,21 @@ void home_corpo::routine_cliccata() {
     }
     aggiorna_stato_pulsanti();
 }
+
+void home_corpo::filtra_liste(const QString& s) {
+    for (int i = 0; i < lista_impegni -> count(); ++i) {
+        QListWidgetItem* oggetto_corrente = lista_impegni -> item(i);
+        bool corrispondenza = (oggetto_corrente -> text()).contains(s, Qt::CaseInsensitive);
+        oggetto_corrente -> setHidden(!corrispondenza);
+    }
+    for (int i = 0; i < lista_scadenze -> count(); ++i) {
+        QListWidgetItem* oggetto_corrente = lista_scadenze -> item(i);
+        bool corrispondenza = (oggetto_corrente -> text()).contains(s, Qt::CaseInsensitive);
+        oggetto_corrente -> setHidden(!corrispondenza);
+    }
+    for (int i = 0; i < lista_routine -> count(); ++i) {
+        QListWidgetItem* oggetto_corrente = lista_routine -> item(i);
+        bool corrispondenza = (oggetto_corrente -> text()).contains(s, Qt::CaseInsensitive);
+        oggetto_corrente -> setHidden(!corrispondenza);
+    }
+}

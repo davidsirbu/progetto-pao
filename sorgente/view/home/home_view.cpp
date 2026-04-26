@@ -17,6 +17,8 @@ home_view::home_view(QWidget* parent): QWidget(parent) {
     connect(corpo, &home_corpo::cambio_selezione, this, &home_view::attivita_selezionata);
     home_layout -> addWidget(corpo);
 
+    connect(header, &home_header::barra_cambiata, corpo, &home_corpo::filtra_liste);
+
     setLayout(home_layout);
 }
 
