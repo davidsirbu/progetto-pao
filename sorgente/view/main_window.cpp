@@ -51,6 +51,6 @@ void main_window::passa_dati_routine(const dati_routine& r) {
     stacked_layout -> setCurrentIndex(2);
 }
 
-void main_window::passa_liste(const std::vector<impegno*>& i, const std::vector<scadenza*>& s, const std::vector<routine*>& r) const {
+void main_window::passa_liste(const std::vector<dati_impegno>& i, const std::vector<dati_scadenza>& s, const std::vector<dati_routine>& r) const {
     home_window -> passa_liste(i, s, r);
 }

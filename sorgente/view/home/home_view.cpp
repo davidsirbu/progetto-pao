@@ -22,7 +22,7 @@ home_view::home_view(QWidget* parent): QWidget(parent) {
     setLayout(home_layout);
 }
 
-void home_view::passa_liste(const std::vector<impegno*>& i, const std::vector<scadenza*>& s, const std::vector<routine*>& r) const {
+void home_view::passa_liste(const std::vector<dati_impegno>& i, const std::vector<dati_scadenza>& s, const std::vector<dati_routine>& r) const {
     corpo -> aggiorna_liste(i, s, r);
 }
 

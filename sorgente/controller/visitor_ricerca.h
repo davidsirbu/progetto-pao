@@ -11,6 +11,8 @@ class visitor_ricerca: public visitor {
         dati_scadenza dto_scadenza;
         dati_routine dto_routine;
 
+        QString converti_enum(Gruppo s) const;
+
     public:
         ~visitor_ricerca() = default;
 

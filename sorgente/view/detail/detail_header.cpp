@@ -11,6 +11,9 @@ detail_header::detail_header(QWidget* parent): QWidget(parent) {
     pulsante_indietro = new QPushButton("Indietro", this);
     connect(pulsante_indietro, &QPushButton::clicked, this, &detail_header::torna_indietro);
 
+    pulsante_modifica = new QPushButton(this);
+    connect(pulsante_modifica, &QPushButton::clicked, this, &detail_header::modifica_attivita);
+
     barra_ricerca = new QLineEdit(this);
 
     header_layout -> addWidget(pulsante_indietro);

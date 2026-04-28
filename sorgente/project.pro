@@ -12,6 +12,7 @@ DESTDIR = $$PWD
 
 HEADERS += \
         extra/enums.h \
+        extra/dto.h \
         model/classi/attivita.h \
         model/classi/impegno.h \
         model/classi/scadenza.h \
@@ -28,8 +29,10 @@ HEADERS += \
         view/detail/detail_view.h \
         view/detail/detail_header.h \
         view/detail/detail_corpo.h \
-        view/detail/display/display_view.h \
-        view/detail/display/display_variabile.h \
+        view/detail/display/display_astratto.h \
+        view/detail/display/display_impegno.h \
+        view/detail/display/display_scadenza.h \
+        view/detail/display/display_routine.h \
         view/form/form_view.h \
         view/form/form_scelta.h \
         view/form/form_parte_variabile.h \
@@ -51,8 +54,10 @@ SOURCES += \
         view/detail/detail_view.cpp \
         view/detail/detail_header.cpp \
         view/detail/detail_corpo.cpp \
-        view/detail/display/display_view.cpp \
-        view/detail/display/display_variabile.cpp \
+        view/detail/display/display_astratto.cpp \
+        view/detail/display/display_impegno.cpp \
+        view/detail/display/display_scadenza.cpp \
+        view/detail/display/display_routine.cpp \
         view/form/form_view.cpp \
         view/form/form_scelta.cpp \
         view/form/form_parte_variabile.cpp \

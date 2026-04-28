@@ -11,6 +11,7 @@ class detail_header: public QWidget {
 
     private:
         QPushButton* pulsante_indietro;
+        QPushButton* pulsante_modifica;
         QLineEdit* barra_ricerca;
 
     public:
@@ -19,6 +20,7 @@ class detail_header: public QWidget {
 
     signals:
         void torna_indietro();
+        void modifica_attivita();
 
 };
 

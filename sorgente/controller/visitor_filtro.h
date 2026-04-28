@@ -2,6 +2,7 @@
 #define VISITOR_FILTRO_H
 
 #include "../model/visitor.h"
+#include "../extra/dto.h"
 #include <vector>
 
 class impegno;
@@ -10,9 +11,11 @@ class routine;
 
 class visitor_filtro: public visitor {
     private:
-        std::vector<impegno*> lista_impegni;
-        std::vector<scadenza*> lista_scadenze;
-        std::vector<routine*> lista_routine;
+        std::vector<dati_impegno> lista_impegni;
+        std::vector<dati_scadenza> lista_scadenze;
+        std::vector<dati_routine> lista_routine;
+
+        QString converti_enum(Gruppo e) const;
 
     public:
         ~visitor_filtro() = default;
@@ -21,9 +24,9 @@ class visitor_filtro: public visitor {
         void visit(scadenza& v) override;
         void visit(routine& r) override;
 
-        const std::vector<impegno*>& get_impegni() const;
-        const std::vector<scadenza*>& get_scadenze() const;
-        const std::vector<routine*>& get_routine() const;
+        const std::vector<dati_impegno>& get_impegni() const;
+        const std::vector<dati_scadenza>& get_scadenze() const;
+        const std::vector<dati_routine>& get_routine() const;
 
         void reset();
 };

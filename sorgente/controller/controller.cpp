@@ -12,7 +12,7 @@ void controller::assegna_main_window(main_window* m) {
     m_window = m;
 }
 
-void controller::passa_liste(const std::vector<impegno*>& i, const std::vector<scadenza*>& s, const std::vector<routine*>& r) const {
+void controller::passa_liste(const std::vector<dati_impegno>& i, const std::vector<dati_scadenza>& s, const std::vector<dati_routine>& r) const {
     m_window -> passa_liste(i, s, r);
 }
 
@@ -40,7 +40,7 @@ void controller::modifica_impegno(const dati_impegno& i) {
 
     impegno_da_modificare -> set_nome(i.nome);
     impegno_da_modificare -> set_descrizione(i.descrizione);
-    impegno_da_modificare -> set_categoria(i.categoria);
+    impegno_da_modificare -> set_categoria(converti_stringa_a_enum(i.categoria));
     impegno_da_modificare -> set_inizio(i.inizio);
     impegno_da_modificare -> set_fine(i.fine);
     impegno_da_modificare -> set_luogo(i.luogo);
@@ -52,7 +52,7 @@ void controller::modifica_scadenza(const dati_scadenza& s) {
 
     scadenza_da_modificare -> set_nome(s.nome);
     scadenza_da_modificare -> set_descrizione(s.descrizione);
-    scadenza_da_modificare -> set_categoria(s.categoria);
+    scadenza_da_modificare -> set_categoria(converti_stringa_a_enum(s.categoria));
     scadenza_da_modificare -> set_limite(s.limite);
 }
 
@@ -62,7 +62,7 @@ void controller::modifica_routine(const dati_routine& r) {
 
     routine_da_modificare -> set_nome(r.nome);
     routine_da_modificare -> set_descrizione(r.descrizione);
-    routine_da_modificare -> set_categoria(r.categoria);
+    routine_da_modificare -> set_categoria(converti_stringa_a_enum(r.categoria));
     routine_da_modificare -> set_inizio(r.inizio);
     routine_da_modificare -> set_intervallo(r.intervallo);
 }
@@ -109,4 +109,15 @@ void controller::importa_e_smista_routine(const dati_routine& r) {
     if(r.id.isEmpty()) crea_routine(r);
     else modifica_routine(r);
     refresh();
+}
+
+Gruppo controller::converti_stringa_a_enum(const QString& s) const {
+    QString str = s.toLower();
+
+    if (str == "studio") return Gruppo::Studio;
+    if (str == "lavoro") return Gruppo::Lavoro;
+    if (str == "hobby") return Gruppo::Hobby;
+    if (str == "altro") return Gruppo::Altro;
+
+    return Gruppo::Nessuno;
 }

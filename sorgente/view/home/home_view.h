@@ -1,6 +1,7 @@
 #ifndef HOME_VIEW_H
 #define HOME_VIEW_H
 
+#include "../../extra/dto.h"
 #include <vector>
 #include <QWidget>
 
@@ -21,7 +22,7 @@ class home_view: public QWidget {
         home_view(QWidget* parent = nullptr);
         ~home_view() = default;
 
-        void passa_liste(const std::vector<impegno*>& i, const std::vector<scadenza*>& s, const std::vector<routine*>& r) const;
+        void passa_liste(const std::vector<dati_impegno>& i, const std::vector<dati_scadenza>& s, const std::vector<dati_routine>& r) const;
     
     signals:
         void crea_attivita();

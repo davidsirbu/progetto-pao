@@ -18,7 +18,8 @@ class controller: public QObject {
         visitor_filtro smistatore;
         visitor_ricerca caricatore;
 
-        void passa_liste(const std::vector<impegno*>& i, const std::vector<scadenza*>& s, const std::vector<routine*>& r) const;
+        void passa_liste(const std::vector<dati_impegno>& i, const std::vector<dati_scadenza>& s, const std::vector<dati_routine>& r) const;
+        Gruppo converti_stringa_a_enum(const QString& s) const;
 
     public:
         controller(gestore* g);

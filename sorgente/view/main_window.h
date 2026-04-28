@@ -28,7 +28,7 @@ class main_window : public QWidget {
         main_window(controller* c, QWidget* parent = nullptr);
         ~main_window() = default;
 
-        void passa_liste(const std::vector<impegno*>& i, const std::vector<scadenza*>& s, const std::vector<routine*>& r) const;
+        void passa_liste(const std::vector<dati_impegno>& i, const std::vector<dati_scadenza>& s, const std::vector<dati_routine>& r) const;
 
     public slots:
         void torna_indietro();
