@@ -4,14 +4,13 @@
 #include <QWidget>
 
 class QListWidget;
-class display_view;
 
 class detail_corpo: public QWidget {
     Q_OBJECT
 
     private:
         QListWidget* lista;
-        display_view* display_window;
+        QWidget* contenitore;
 
     public:
         detail_corpo(QWidget* parent);

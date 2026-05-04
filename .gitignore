@@ -1,0 +1,8 @@
+# Ignora i file di configurazione di qmake
+.qmake.stash
+Makefile*
+
+# Ignora la cartella temporanea che abbiamo creato
+build/
+debug/
+release/

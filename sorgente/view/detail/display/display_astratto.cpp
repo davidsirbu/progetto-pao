@@ -4,7 +4,6 @@
 #include <QTextBrowser>
 
 display_astratto::display_astratto(const QString& titolo, const QString& categoria, const QString& descrizione, QWidget* parent): QWidget(parent) {
-
     layout = new QFormLayout(this);
 
     etichetta_titolo = new QLabel(titolo, this);

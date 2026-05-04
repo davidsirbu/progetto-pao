@@ -17,9 +17,6 @@ class display_astratto: public QWidget {
         QTextBrowser* etichetta_descrizione;
         QLabel* etichetta_categoria;
     
-    protected:
-        
-
     public:
         display_astratto(const QString& titolo, const QString& categoria, const QString& descrizione, QWidget* parent = nullptr);
         virtual ~display_astratto() = 0;

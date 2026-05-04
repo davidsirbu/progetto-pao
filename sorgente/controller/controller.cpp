@@ -10,6 +10,7 @@ controller::controller(gestore* g): gestore_attivita(g) {}
 
 void controller::assegna_main_window(main_window* m) {
     m_window = m;
+    ricercatore.set_window(m);
 }
 
 void controller::passa_liste(const std::vector<dati_impegno>& i, const std::vector<dati_scadenza>& s, const std::vector<dati_routine>& r) const {
@@ -73,19 +74,11 @@ void controller::refresh() {
     passa_liste(smistatore.get_impegni(), smistatore.get_scadenze(), smistatore.get_routine());
 }
 
-void controller::esporta_per_modifica(const QString& id) {
+void controller::esporta_per_modifica(const QString& id, bool modifica) {
     attivita* ricercata = gestore_attivita -> cerca_attivita(id);
-    caricatore.reset();
-    ricercata -> accetta(caricatore);
-    if (!(caricatore.get_impegno().id.isEmpty())) {
-        m_window -> passa_dati_impegno(caricatore.get_impegno());
-    }
-    else if (!(caricatore.get_scadenza().id.isEmpty())) {
-        m_window -> passa_dati_scadenza(caricatore.get_scadenza());
-    }
-    else if (!(caricatore.get_routine().id.isEmpty())) {
-        m_window -> passa_dati_routine(caricatore.get_routine());
-    }
+    ricercatore.reset();
+    ricercatore.set_stato(modifica);
+    ricercata -> accetta(ricercatore);
 }
 
 void controller::elimina_attivita(const QString& id) {

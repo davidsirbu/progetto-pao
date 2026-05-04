@@ -12,7 +12,7 @@ main_window::main_window(controller* c, QWidget* parent): QWidget(parent), contr
     home_window = new home_view(this);
     stacked_layout -> addWidget(home_window);
     connect(home_window, &home_view::crea_attivita, this, &main_window::crea_attivita);
-    connect(home_window, &home_view::segnale_modifica, control, &controller::esporta_per_modifica);
+    connect(home_window, &home_view::segnale_dettagli, control, &controller::esporta_per_modifica);
     connect(home_window, &home_view::segnale_elimina, control, &controller::elimina_attivita);
 
     detail_window = new detail_view(this);
@@ -36,19 +36,34 @@ void main_window::crea_attivita() {
     stacked_layout -> setCurrentIndex(2);
 }
 
-void main_window::passa_dati_impegno(const dati_impegno& i) {
-    form_window -> carica_impegno(i);
-    stacked_layout -> setCurrentIndex(2);
+void main_window::passa_dati_impegno(const dati_impegno& i, bool stato) {
+    if (stato == true) {
+        form_window -> carica_impegno(i);
+        stacked_layout -> setCurrentIndex(2);
+    }
+    else {
+        stacked_layout -> setCurrentIndex(1);
+    }
 }
 
-void main_window::passa_dati_scadenza(const dati_scadenza& s) {
-    form_window -> carica_scadenza(s);
-    stacked_layout -> setCurrentIndex(2);
+void main_window::passa_dati_scadenza(const dati_scadenza& s, bool stato) {
+    if (stato == true) {
+        form_window -> carica_scadenza(s);
+        stacked_layout -> setCurrentIndex(2);
+    }
+    else {
+        stacked_layout -> setCurrentIndex(1);
+    }
 }
 
-void main_window::passa_dati_routine(const dati_routine& r) {
-    form_window -> carica_routine(r);
-    stacked_layout -> setCurrentIndex(2);
+void main_window::passa_dati_routine(const dati_routine& r, bool stato) {
+    if (stato == true) {
+        form_window -> carica_routine(r);
+        stacked_layout -> setCurrentIndex(2);
+    }
+    else {
+        stacked_layout -> setCurrentIndex(1);
+    }
 }
 
 void main_window::passa_liste(const std::vector<dati_impegno>& i, const std::vector<dati_scadenza>& s, const std::vector<dati_routine>& r) const {

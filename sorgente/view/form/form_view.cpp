@@ -36,11 +36,11 @@ form_view::form_view(QWidget* parent): QWidget(parent) {
     action_layout -> addWidget(spaziatore, 4);
 
     pulsante_salva = new QPushButton("Salva", this);
-    connect(pulsante_salva, &QPushButton::clicked, this, form_view::salva);
+    connect(pulsante_salva, &QPushButton::clicked, this, &form_view::salva);
     action_layout -> addWidget(pulsante_salva, 1);
 
     pulsante_annulla = new QPushButton("Annulla", this);
-    connect(pulsante_annulla, &QPushButton::clicked, this, form_view::annulla);
+    connect(pulsante_annulla, &QPushButton::clicked, this, &form_view::annulla);
     action_layout -> addWidget(pulsante_annulla, 1);
 
     layout_principale -> addLayout(action_layout);

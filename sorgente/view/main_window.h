@@ -34,9 +34,9 @@ class main_window : public QWidget {
         void torna_indietro();
         void crea_attivita();
         
-        void passa_dati_impegno(const dati_impegno& i);
-        void passa_dati_scadenza(const dati_scadenza& s);
-        void passa_dati_routine(const dati_routine& r);
+        void passa_dati_impegno(const dati_impegno& i, bool stato);
+        void passa_dati_scadenza(const dati_scadenza& s, bool stato);
+        void passa_dati_routine(const dati_routine& r, bool stato);
 };
 
 #endif

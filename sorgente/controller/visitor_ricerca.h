@@ -5,11 +5,15 @@
 #include "../extra/dto.h"
 #include <QString>
 
+class main_window;
+
 class visitor_ricerca: public visitor {
     private:
+        main_window* m;
         dati_impegno dto_impegno;
         dati_scadenza dto_scadenza;
         dati_routine dto_routine;
+        bool stato;
 
         QString converti_enum(Gruppo s) const;
 
@@ -23,6 +27,10 @@ class visitor_ricerca: public visitor {
         dati_impegno get_impegno();
         dati_scadenza get_scadenza();
         dati_routine get_routine();
+
+        void set_stato(bool x);
+
+        void set_window(main_window* w);
 
         void reset();
 };

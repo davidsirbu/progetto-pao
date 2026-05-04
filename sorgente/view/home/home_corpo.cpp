@@ -16,16 +16,19 @@ home_corpo::home_corpo(QWidget* parent): QWidget(parent) {
     lista_impegni = new QListWidget(this);
     lista_impegni -> setSelectionMode(QAbstractItemView::SingleSelection);
     connect(lista_impegni, &QListWidget::itemSelectionChanged, this, &home_corpo::impegno_cliccato);
+    connect(lista_impegni, &QListWidget::itemDoubleClicked, this, &home_corpo::doppio_click_su_attivita);
     corpo_layout -> addLayout(crea_colonna("Impegni", lista_impegni));
 
     lista_scadenze = new QListWidget(this);
     lista_scadenze -> setSelectionMode(QAbstractItemView::SingleSelection);
     connect(lista_scadenze, &QListWidget::itemSelectionChanged, this, &home_corpo::scadenza_cliccata);
+    connect(lista_scadenze, &QListWidget::itemDoubleClicked, this, &home_corpo::doppio_click_su_attivita);
     corpo_layout -> addLayout(crea_colonna("Scadenze", lista_scadenze));
 
     lista_routine = new QListWidget(this);
     lista_routine -> setSelectionMode(QAbstractItemView::SingleSelection);
     connect(lista_routine, &QListWidget::itemSelectionChanged, this, &home_corpo::routine_cliccata);
+    connect(lista_routine, &QListWidget::itemDoubleClicked, this, &home_corpo::doppio_click_su_attivita);
     corpo_layout -> addLayout(crea_colonna("Routine", lista_routine));
 
     setLayout(corpo_layout);

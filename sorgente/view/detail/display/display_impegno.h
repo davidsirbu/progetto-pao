@@ -10,7 +10,7 @@ class display_impegno: public display_astratto {
         QLabel* etichetta_luogo;
 
     public:
-        display_impegno(const dati_impegno& dto, QWidget* parent = nullptr);
+        display_impegno(const dati_impegno& dto, const QDateTime& i, const QDateTime& f, const QString& l);
         ~display_impegno() = default;
 };
 #endif

@@ -14,5 +14,17 @@ detail_view::detail_view(QWidget* parent): QWidget(parent) {
 
     setLayout(detail_layout);
 
-    connect(header, &detail_header::torna_indietro, this, detail_view::torna_indietro);
+    // connect(header, &detail_header::torna_indietro, this, detail_view::torna_indietro);
+}
+
+void detail_view::inoltra_dettagli_impegno(const dati_impegno& i) {
+
+}
+
+void detail_view::inoltra_dettagli_scadenza(const dati_scadenza& s) {
+
+}
+
+void detail_view::inoltra_dettagli_routine(const dati_routine& r) {
+    
 }

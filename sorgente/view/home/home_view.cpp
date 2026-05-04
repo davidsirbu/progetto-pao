@@ -15,6 +15,7 @@ home_view::home_view(QWidget* parent): QWidget(parent) {
 
     corpo = new home_corpo(this);
     connect(corpo, &home_corpo::cambio_selezione, this, &home_view::attivita_selezionata);
+    connect(corpo, &home_corpo::doppio_click_su_attivita, this, &home_view::mostra_dettagli);
     home_layout -> addWidget(corpo);
 
     connect(header, &home_header::barra_cambiata, corpo, &home_corpo::filtra_liste);
@@ -30,8 +31,12 @@ void home_view::attivita_selezionata() {
     header -> attiva_pulsanti();
 }
 
+void home_view::mostra_dettagli() {
+    emit segnale_dettagli(corpo -> get_id_selezionato(), false);
+}
+
 void home_view::modifica_attivita() {
-    emit segnale_modifica(corpo -> get_id_selezionato());
+    emit segnale_dettagli(corpo -> get_id_selezionato(), true);
 }
 
 void home_view::elimina_attivita() {

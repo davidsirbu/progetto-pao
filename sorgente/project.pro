@@ -8,8 +8,6 @@ QT += \
 CONFIG += c++17 console
 CONFIG -= app_bundle
 
-DESTDIR = $$PWD
-
 HEADERS += \
         extra/enums.h \
         extra/dto.h \

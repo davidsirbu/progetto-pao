@@ -39,6 +39,7 @@ class home_corpo: public QWidget {
 
     signals:
         void cambio_selezione();
+        void doppio_click_su_attivita();
 
     public slots:
         void impegno_cliccato();

@@ -12,7 +12,6 @@ class detail_header: public QWidget {
     private:
         QPushButton* pulsante_indietro;
         QPushButton* pulsante_modifica;
-        QLineEdit* barra_ricerca;
 
     public:
         detail_header(QWidget* parent);

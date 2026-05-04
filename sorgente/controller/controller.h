@@ -16,7 +16,7 @@ class controller: public QObject {
         gestore* gestore_attivita;
         main_window* m_window;
         visitor_filtro smistatore;
-        visitor_ricerca caricatore;
+        visitor_ricerca ricercatore;
 
         void passa_liste(const std::vector<dati_impegno>& i, const std::vector<dati_scadenza>& s, const std::vector<dati_routine>& r) const;
         Gruppo converti_stringa_a_enum(const QString& s) const;
@@ -41,7 +41,7 @@ class controller: public QObject {
         void modifica_scadenza(const dati_scadenza& s);
         void modifica_routine(const dati_routine& r);
 
-        void esporta_per_modifica(const QString& id);
+        void esporta_per_modifica(const QString& id, bool modifica);
         void elimina_attivita(const QString& id);
 };
 
