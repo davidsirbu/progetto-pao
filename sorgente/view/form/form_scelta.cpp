@@ -95,3 +95,15 @@ void form_scelta::cambia_in_scadenza() {
 void form_scelta::cambia_in_routine() {
     stacked_layout -> setCurrentIndex(2);
 }
+
+void form_scelta::attiva_pulsanti() {
+    pulsante_impegno -> setEnabled(true);
+    pulsante_scadenza -> setEnabled(true);
+    pulsante_routine -> setEnabled(true);
+}
+
+void form_scelta::disattiva_pulsanti() {
+    pulsante_impegno -> setEnabled(false);
+    pulsante_scadenza -> setEnabled(false);
+    pulsante_routine -> setEnabled(false);
+}

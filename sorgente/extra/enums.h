@@ -12,6 +12,7 @@ enum class Gruppo {
 };
 
 enum class Fase {
+    Nessuna = 0,
     DaFare,
     InCorso,
     Completato,

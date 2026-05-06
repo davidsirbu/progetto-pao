@@ -16,6 +16,7 @@ class visitor_filtro: public visitor {
         std::vector<dati_routine> lista_routine;
 
         QString converti_enum(Gruppo e) const;
+        QString converti_enum(Fase f) const;
 
     public:
         ~visitor_filtro() = default;

@@ -21,6 +21,10 @@ form_view::form_view(QWidget* parent): QWidget(parent) {
     layout_principale -> addWidget(etichetta_titolo);
 
     menu_gruppo = new QComboBox(this);
+    menu_gruppo -> addItem("Studio");
+    menu_gruppo -> addItem("Lavoro");
+    menu_gruppo -> addItem("Hobby");
+    menu_gruppo -> addItem("Altro");
     layout_principale -> addWidget(menu_gruppo);
 
     parte_scelta = new form_scelta(this);
@@ -60,6 +64,7 @@ void form_view::salva() {
         dati_impegno impegno;
         impegno.id = id;
         impegno.nome = etichetta_titolo -> text();
+        impegno.categoria = menu_gruppo -> currentText();
         impegno.descrizione = etichetta_descrizione -> toPlainText();
         mini_dto_impegno mini = parte_scelta -> ricevi_dati_impegno();
         impegno.inizio = mini.inizio;
@@ -72,6 +77,7 @@ void form_view::salva() {
         dati_scadenza scadenza;
         scadenza.id = id;
         scadenza.nome = etichetta_titolo -> text();
+        scadenza.categoria = menu_gruppo -> currentText();
         scadenza.descrizione = etichetta_descrizione -> toPlainText();
         mini_dto_scadenza mini = parte_scelta -> ricevi_dati_scadenza();
         scadenza.limite = mini.limite;
@@ -82,6 +88,7 @@ void form_view::salva() {
         dati_routine routine;
         routine.id = id;
         routine.nome = etichetta_titolo -> text();
+        routine.categoria = menu_gruppo -> currentText();
         routine.descrizione = etichetta_descrizione -> toPlainText();
         mini_dto_routine mini = parte_scelta -> ricevi_dati_routine();
         routine.inizio = mini.inizio;
@@ -90,31 +97,40 @@ void form_view::salva() {
         emit salva_routine(routine);
     }
     reset();
+    parte_scelta -> attiva_pulsanti();
     emit torna_indietro();
 }
 
 void form_view::annulla() {
     reset();
+    parte_scelta -> attiva_pulsanti();
     emit torna_indietro();
 }
 
 void form_view::carica_impegno(const dati_impegno& i) {
+    parte_scelta -> disattiva_pulsanti();
     id = i.id;
     etichetta_titolo -> setText(i.nome);
+    menu_gruppo -> setCurrentIndex(menu_gruppo -> findText(i.categoria));
     etichetta_descrizione -> setText(i.descrizione);
     parte_scelta -> inoltra_dati_impegno(i);
 }
 
 void form_view::carica_scadenza(const dati_scadenza& s) {
+    parte_scelta -> disattiva_pulsanti();
     id = s.id;
     etichetta_titolo -> setText(s.nome);
+    menu_gruppo -> setCurrentIndex(menu_gruppo -> findText(s.categoria));
     etichetta_descrizione -> setText(s.descrizione);
     parte_scelta -> inoltra_dati_scadenza(s);
 }
 
 void form_view::carica_routine(const dati_routine& r) {
+    parte_scelta -> disattiva_pulsanti();
     id = r.id;
     etichetta_titolo -> setText(r.nome);
+    
+    menu_gruppo -> setCurrentIndex(menu_gruppo -> findText(r.categoria));
     etichetta_descrizione -> setText(r.descrizione);
     parte_scelta -> inoltra_dati_routine(r);
 }

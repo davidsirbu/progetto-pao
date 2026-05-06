@@ -1,13 +1,12 @@
 #ifndef FORM_SCELTA_H
 #define FORM_SCELTA_H
 
-#include <QWidget>
 #include "../../extra/dto.h"
 #include "form_parte_variabile.h"
+#include <QWidget>
 
 class QPushButton;
 class QStackedLayout;
-
 
 class form_scelta: public QWidget {
     Q_OBJECT
@@ -34,6 +33,9 @@ class form_scelta: public QWidget {
         void inoltra_dati_routine(const dati_routine& r);
 
         int stato_stacked();
+
+        void attiva_pulsanti();
+        void disattiva_pulsanti();
 
         void reset();
 

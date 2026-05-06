@@ -7,14 +7,14 @@
 #include <QObject>
 
 class gestore;
-class main_window;
+class main_view;
 
 class controller: public QObject {
     Q_OBJECT
 
     private:
         gestore* gestore_attivita;
-        main_window* m_window;
+        main_view* main_window;
         visitor_filtro smistatore;
         visitor_ricerca ricercatore;
 
@@ -22,10 +22,8 @@ class controller: public QObject {
         Gruppo converti_stringa_a_enum(const QString& s) const;
 
     public:
-        controller(gestore* g);
+        controller(gestore* g, main_view* v);
         ~controller() = default;
-
-        void assegna_main_window(main_window* m);
 
         void refresh();
 

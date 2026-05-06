@@ -2,7 +2,6 @@
 #include "../model/classi/impegno.h"
 #include "../model/classi/scadenza.h"
 #include "../model/classi/routine.h"
-#include "../view/main_window.h"
 
 void visitor_ricerca::visit(impegno& i) {
     dto_impegno.id = i.get_id();
@@ -13,7 +12,7 @@ void visitor_ricerca::visit(impegno& i) {
     dto_impegno.fine = i.get_fine();
     dto_impegno.luogo = i.get_luogo();
 
-    m -> passa_dati_impegno(dto_impegno, stato);
+    emit trovato_impegno(dto_impegno, stato);
 }
 
 void visitor_ricerca::visit(scadenza& s) {
@@ -23,7 +22,7 @@ void visitor_ricerca::visit(scadenza& s) {
     dto_scadenza.descrizione = s.get_descrizione();
     dto_scadenza.limite = s.get_limite();
 
-    m -> passa_dati_scadenza(dto_scadenza, stato);
+    emit trovata_scadenza(dto_scadenza, stato);
 }
 
 void visitor_ricerca::visit(routine& r) {
@@ -34,19 +33,7 @@ void visitor_ricerca::visit(routine& r) {
     dto_routine.inizio = r.get_inizio();
     dto_routine.intervallo = r.get_intervallo();
 
-    m -> passa_dati_routine(dto_routine, stato);
-}
-
-dati_impegno visitor_ricerca::get_impegno() {
-    return dto_impegno;
-}
-
-dati_scadenza visitor_ricerca::get_scadenza() {
-    return dto_scadenza;
-}
-
-dati_routine visitor_ricerca::get_routine() {
-    return dto_routine;
+    emit trovata_routine(dto_routine, stato);
 }
 
 void visitor_ricerca::reset() {
@@ -82,8 +69,8 @@ QString visitor_ricerca::converti_enum(Gruppo e) const {
     }
 }
 
-void visitor_ricerca::set_window(main_window* w) {
-    m = w;
+bool visitor_ricerca::get_stato() {
+    return stato;
 }
 
 void visitor_ricerca::set_stato(bool x) {

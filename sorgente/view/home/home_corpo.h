@@ -20,7 +20,9 @@ class home_corpo: public QWidget {
         QListWidget* lista_scadenze;
         QListWidget* lista_routine;
     
+        QListWidget* setup_lista();
         QVBoxLayout* crea_colonna(const QString& nome_attivita, QListWidget* lista);
+
         void carica_impegni(const std::vector<dati_impegno>& i) const;
         void carica_scadenze(const std::vector<dati_scadenza>& s) const;
         void carica_routine(const std::vector<dati_routine>& r) const;

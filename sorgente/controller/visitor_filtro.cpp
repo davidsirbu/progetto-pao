@@ -10,9 +10,11 @@ void visitor_filtro::visit(impegno& i) {
     dto.id = i.get_id();
     dto.nome = i.get_nome();
     dto.categoria = converti_enum(i.get_categoria());
+    dto.fase = converti_enum(i.calcola_stato());
     dto.descrizione = i.get_descrizione();
     dto.inizio = i.get_inizio();
     dto.fine = i.get_fine();
+    dto.durata = i.calcolo_durata();
     dto.luogo = i.get_luogo();
     lista_impegni.push_back(dto);
 }
@@ -22,9 +24,10 @@ void visitor_filtro::visit(scadenza& s) {
     dto.id = s.get_id();
     dto.nome = s.get_nome();
     dto.categoria = converti_enum(s.get_categoria());
+    dto.fase = converti_enum(s.calcola_stato());
     dto.descrizione = s.get_descrizione();
     dto.limite = s.get_limite();
-
+    lista_scadenze.push_back(dto);
 }
 
 void visitor_filtro::visit(routine& r) {
@@ -32,9 +35,12 @@ void visitor_filtro::visit(routine& r) {
     dto.id = r.get_id();
     dto.nome = r.get_nome();
     dto.categoria = converti_enum(r.get_categoria());
+    dto.fase = converti_enum(r.calcola_stato());
     dto.descrizione = r.get_descrizione();
     dto.inizio = r.get_inizio();
+    dto.prossima_volta = r.get_prossima_volta();
     dto.intervallo = r.get_intervallo();
+    lista_routine.push_back(dto);
 }
 
 const std::vector<dati_impegno>& visitor_filtro::get_impegni() const {
@@ -63,5 +69,16 @@ QString visitor_filtro::converti_enum(Gruppo e) const {
         case Gruppo::Hobby: return "Hobby";
         case Gruppo::Altro: return "Altro";
         default: return "Altro";
+    }
+}
+
+QString visitor_filtro::converti_enum(Fase f) const {
+    switch(f) {
+        case Fase::DaFare: return "Da fare";
+        case Fase::InCorso: return "In corso";
+        case Fase::Completato: return "Completato";
+        case Fase::CompletatoInRitardo: return "Completato in ritardo";
+        case Fase::Scaduto: return "Scaduto";
+        default: return "Nessuno";
     }
 }

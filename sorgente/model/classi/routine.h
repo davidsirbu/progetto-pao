@@ -17,6 +17,7 @@ class routine : public attivita {
         ~routine() = default;
 
         QDateTime get_inizio() const;
+        QDateTime get_prossima_volta() const;
         int get_intervallo() const;
         int get_puntuale() const;
         int get_ritardo() const;
@@ -25,8 +26,10 @@ class routine : public attivita {
         void set_intervallo(const int i);
 
         void avanza_progressi();
+
         Fase calcola_stato() const override;
         void accetta(visitor& v) override;
+        QJsonObject salva_in_json() const override;
 };
 
 #endif

@@ -3,7 +3,7 @@
 #include <QLabel>
 #include <QTextBrowser>
 
-display_astratto::display_astratto(const QString& titolo, const QString& categoria, const QString& descrizione, QWidget* parent): QWidget(parent) {
+display_astratto::display_astratto(const QString i, const QString& titolo, const QString& categoria, const QString& descrizione, QWidget* parent): QWidget(parent), id(i) {
     layout = new QFormLayout(this);
 
     etichetta_titolo = new QLabel(titolo, this);
@@ -26,3 +26,6 @@ void display_astratto::aggiungi_riga_al_form(const QString& categoria, const QSt
     layout -> addRow(categoria, label);
 }
 
+const QString& display_astratto::get_id_attuale() const {
+    return id;
+}

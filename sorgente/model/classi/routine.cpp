@@ -7,6 +7,10 @@ QDateTime routine::get_inizio() const {
     return inizio;
 }
 
+QDateTime routine::get_prossima_volta() const {
+    return prossima_volta;
+}
+
 int routine::get_intervallo() const {
     return intervallo_giorni;
 }
@@ -47,4 +51,20 @@ Fase routine::calcola_stato() const {
 
 void routine::accetta(visitor& v) {
     v.visit(*this);
+}
+
+QJsonObject routine::salva_in_json() const {
+    QJsonObject oggetto_json;
+
+    oggetto_json["tipo"] = "routine";
+    oggetto_json["id"] = get_id();
+    oggetto_json["nome"] = get_nome();
+    oggetto_json["categoria"] = static_cast<int>(get_categoria());
+    oggetto_json["inizio"] = inizio.toString();
+    oggetto_json["prossima_volta"] = prossima_volta.toString();
+    oggetto_json["intervallo_giorni"] = intervallo_giorni;
+    oggetto_json["conta_puntuale"] = conta_puntuale;
+    oggetto_json["conta_ritardo"] = conta_ritardo;
+
+    return oggetto_json;
 }

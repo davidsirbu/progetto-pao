@@ -3,13 +3,15 @@
 
 #include "../model/visitor.h"
 #include "../extra/dto.h"
+#include <QObject>
 #include <QString>
 
-class main_window;
+class main_view;
 
-class visitor_ricerca: public visitor {
+class visitor_ricerca: public QObject, public visitor {
+    Q_OBJECT
+
     private:
-        main_window* m;
         dati_impegno dto_impegno;
         dati_scadenza dto_scadenza;
         dati_routine dto_routine;
@@ -24,15 +26,15 @@ class visitor_ricerca: public visitor {
         void visit(scadenza& v) override;
         void visit(routine& r) override;
 
-        dati_impegno get_impegno();
-        dati_scadenza get_scadenza();
-        dati_routine get_routine();
-
+        bool get_stato();
         void set_stato(bool x);
 
-        void set_window(main_window* w);
-
         void reset();
+
+    signals:
+        void trovato_impegno(const dati_impegno& i, bool modifica);
+        void trovata_scadenza(const dati_scadenza& s, bool modifica);
+        void trovata_routine(const dati_routine& r, bool modifica);
 };
 
 #endif

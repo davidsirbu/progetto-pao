@@ -23,8 +23,10 @@ class impegno : public attivita {
         void set_luogo(const QString& l);
 
         QString calcolo_durata() const;
+
         Fase calcola_stato() const override;
         void accetta(visitor& v) override;
+        QJsonObject salva_in_json() const override;
 };
 
 #endif

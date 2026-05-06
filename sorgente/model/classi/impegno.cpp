@@ -29,11 +29,12 @@ void impegno::set_luogo(const QString& l) {
 
 QString impegno::calcolo_durata() const {
     int secondi = inizio.secsTo(fine);
+    int giorni = secondi / 86400;
+    int ore = (secondi % 86400) / 3600;
+    int minuti = (secondi % 3600) / 60;
     
-    int ore = secondi / 3600;
-    int minuti = secondi / 60;
-
-    return QString("%1h %2m").arg(ore).arg(minuti);
+    if (giorni > 0) return QString("%1d %2h %3m").arg(giorni).arg(ore).arg(minuti);
+    else return QString("%1h %2m").arg(ore).arg(minuti);
 }
 
 Fase impegno::calcola_stato() const {
@@ -46,4 +47,18 @@ Fase impegno::calcola_stato() const {
 
 void impegno::accetta(visitor& v) {
     v.visit(*this);
+}
+
+QJsonObject impegno::salva_in_json() const {
+    QJsonObject oggetto_json;
+
+    oggetto_json["tipo"] = "impegno";
+    oggetto_json["id"] = get_id();
+    oggetto_json["nome"] = get_nome();
+    oggetto_json["categoria"] = static_cast<int>(get_categoria());
+    oggetto_json["inizio"] = inizio.toString();
+    oggetto_json["fine"] = fine.toString();
+    oggetto_json["luogo"] = luogo;
+
+    return oggetto_json;
 }

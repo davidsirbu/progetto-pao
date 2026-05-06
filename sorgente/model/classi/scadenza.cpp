@@ -33,3 +33,17 @@ Fase scadenza::calcola_stato() const {
 void scadenza::accetta(visitor& v) {
     v.visit(*this);
 }
+
+QJsonObject scadenza::salva_in_json() const {
+    QJsonObject oggetto_json;
+
+    oggetto_json["tipo"] = "scadenza";
+    oggetto_json["id"] = get_id();
+    oggetto_json["nome"] = get_nome();
+    oggetto_json["categoria"] = static_cast<int>(get_categoria());
+    oggetto_json["completato"] = completato;
+    oggetto_json["tempo_limite"] = tempo_limite.toString();
+    if (completato) oggetto_json["tempo_completamento"] = tempo_completamento.toString();
+
+    return oggetto_json;
+}

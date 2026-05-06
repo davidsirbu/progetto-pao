@@ -22,8 +22,10 @@ class scadenza : public attivita {
         void set_limite(const QDateTime& l);
 
         void segna_completato();
+
         Fase calcola_stato() const override;
         void accetta(visitor& v) override;
+        QJsonObject salva_in_json() const override;
 };
 
 #endif

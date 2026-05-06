@@ -1,24 +1,17 @@
 #include <QApplication>
-#include <QDateTime> // <-- Cambiato in QDateTime!
 
-// I tuoi header (verifica che i percorsi siano giusti)
-#include "controller/controller.h"
-#include "view/main_window.h"
 #include "model/gestore.h"
-#include "model/classi/scadenza.h"
-#include "controller/controller.h" 
+#include "view/main_view.h"
+#include "controller/controller.h"
 
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
 
-    gestore mio_gestore;
+    gestore gestore_attivita;
+    main_view main_window;
 
-    controller mio_controller(&mio_gestore);
+    controller controller_applicazione(&gestore_attivita, &main_window);
 
-    main_window m(&mio_controller);
-
-    mio_controller.assegna_main_window(&m);
-
-    m.show();
+    main_window.show();
     return app.exec();
 }

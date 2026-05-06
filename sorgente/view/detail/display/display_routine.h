@@ -8,7 +8,7 @@ class display_routine: public display_astratto {
         QLabel* etichetta_inizio;
         QLabel* etichetta_intervallo;
     public:
-        display_routine(const dati_routine& dto, const QDateTime& l, const int n);
+        display_routine(const dati_routine& dto);
         ~display_routine() = default;
 };
 #endif

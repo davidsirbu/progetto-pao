@@ -37,6 +37,7 @@ void home_view::mostra_dettagli() {
 
 void home_view::modifica_attivita() {
     emit segnale_dettagli(corpo -> get_id_selezionato(), true);
+    header -> disattiva_pulsanti();
 }
 
 void home_view::elimina_attivita() {

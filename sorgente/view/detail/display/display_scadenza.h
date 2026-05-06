@@ -7,7 +7,7 @@ class display_scadenza: public display_astratto {
     private:
         QLabel* etichetta_limite;
     public:
-        display_scadenza(const dati_scadenza& dto, const QDateTime& l);
+        display_scadenza(const dati_scadenza& dto);
         ~display_scadenza() = default;
 };
 #endif

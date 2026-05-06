@@ -13,25 +13,32 @@ home_corpo::home_corpo(QWidget* parent): QWidget(parent) {
 
     QHBoxLayout* corpo_layout = new QHBoxLayout(this);
 
-    lista_impegni = new QListWidget(this);
-    lista_impegni -> setSelectionMode(QAbstractItemView::SingleSelection);
+    lista_impegni = setup_lista();
     connect(lista_impegni, &QListWidget::itemSelectionChanged, this, &home_corpo::impegno_cliccato);
-    connect(lista_impegni, &QListWidget::itemDoubleClicked, this, &home_corpo::doppio_click_su_attivita);
     corpo_layout -> addLayout(crea_colonna("Impegni", lista_impegni));
 
-    lista_scadenze = new QListWidget(this);
-    lista_scadenze -> setSelectionMode(QAbstractItemView::SingleSelection);
+    lista_scadenze = setup_lista();
     connect(lista_scadenze, &QListWidget::itemSelectionChanged, this, &home_corpo::scadenza_cliccata);
-    connect(lista_scadenze, &QListWidget::itemDoubleClicked, this, &home_corpo::doppio_click_su_attivita);
     corpo_layout -> addLayout(crea_colonna("Scadenze", lista_scadenze));
 
-    lista_routine = new QListWidget(this);
-    lista_routine -> setSelectionMode(QAbstractItemView::SingleSelection);
+    lista_routine = setup_lista();
     connect(lista_routine, &QListWidget::itemSelectionChanged, this, &home_corpo::routine_cliccata);
-    connect(lista_routine, &QListWidget::itemDoubleClicked, this, &home_corpo::doppio_click_su_attivita);
     corpo_layout -> addLayout(crea_colonna("Routine", lista_routine));
 
     setLayout(corpo_layout);
+}
+
+QListWidget* home_corpo::setup_lista() {
+    QListWidget* lista = new QListWidget(this);
+    lista -> setSelectionMode(QAbstractItemView::SingleSelection);
+    lista -> setAlternatingRowColors(true);
+    connect(lista, &QListWidget::itemDoubleClicked, this, &home_corpo::doppio_click_su_attivita);
+
+    QPalette palette = lista -> palette();
+    palette.setColor(QPalette::Base, QColor("#000000")); 
+    lista -> setPalette(palette);
+
+    return lista;
 }
 
 QVBoxLayout* home_corpo::crea_colonna(const QString& nome_attivita, QListWidget* lista) {
@@ -58,9 +65,10 @@ void home_corpo::carica_impegni(const std::vector<dati_impegno>& i) const {
     for (auto it = i.begin(); it != i.end(); ++it) {
         QListWidgetItem* item = new QListWidgetItem();
 
-        QString nome = it -> nome;
-        QString categoria = it -> categoria;
-        item -> setText(nome + '\n' + categoria + '\n');
+        item -> setText((it -> nome) + '\n' +
+                        '\n' +
+                        (it -> categoria) + " - " + (it -> fase) + '\n' +
+                        ((it -> inizio).toString("dd/MM/yyyy HH:mm")) + " (" + (it -> durata) + ")" + '\n');
         item -> setData(Qt::UserRole, it -> id);
 
         lista_impegni -> addItem(item);
@@ -74,10 +82,11 @@ void home_corpo::carica_scadenze(const std::vector<dati_scadenza>& s) const {
     for (auto it = s.begin(); it != s.end(); ++it) {
         QListWidgetItem* item = new QListWidgetItem();
 
-        QString nome = it -> nome;
-        QString categoria = it -> categoria;
-        QString tempo_limite = (it -> limite).toString("dd/MM/yyyy HH:mm");
-        item -> setText(nome + '\n' + categoria + '\n' + tempo_limite);
+        item -> setText((it -> nome) + '\n' +
+                        '\n' +
+                        (it -> categoria) + " - " + (it -> fase) + '\n' +
+                        ((it -> limite).toString("dd/MM/yyyy HH:mm")) + '\n');
+
         item -> setData(Qt::UserRole, it -> id);
 
         lista_scadenze -> addItem(item);
@@ -90,12 +99,14 @@ void home_corpo::carica_routine(const std::vector<dati_routine>& r) const {
     lista_routine -> blockSignals(false);
     for (auto it = r.begin(); it != r.end(); ++it) {
         QListWidgetItem* item = new QListWidgetItem();
-
-        QString nome = it -> id;
-        QString categoria = it -> categoria;
-        item -> setText(nome + '\n' + categoria);
+ 
+        item -> setText((it -> nome) + '\n' +
+                        '\n' +
+                        (it -> categoria) + " - " + (it -> fase) + '\n' +
+                        ((it -> prossima_volta).toString("dd/MM/yyyy HH:mm")) + '\n');
+        
         item -> setData(Qt::UserRole, it -> id);
-       
+              
         lista_routine -> addItem(item);
     }
 }
@@ -118,6 +129,7 @@ QString home_corpo::get_id_selezionato() const {
     if ((lista_routine -> selectedItems().count()) > 0) {
         return lista_routine -> currentItem() -> data(Qt::UserRole).toString();
     }
+    return QString();
 }
 
 void home_corpo::impegno_cliccato() {

@@ -10,9 +10,11 @@ struct dati_impegno {
     QString id;
     QString nome;
     QString categoria;
+    QString fase;
     QString descrizione;
     QDateTime inizio;
     QDateTime fine;
+    QString durata;
     QString luogo;
 };
 
@@ -20,6 +22,7 @@ struct dati_scadenza {
     QString id;
     QString nome;
     QString categoria;
+    QString fase;
     QString descrizione;
     QDateTime limite;
 };
@@ -28,8 +31,10 @@ struct dati_routine {
     QString id;
     QString nome;
     QString categoria;
+    QString fase;
     QString descrizione;
     QDateTime inizio;
+    QDateTime prossima_volta;
     int intervallo;
 };
 

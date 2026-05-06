@@ -5,6 +5,7 @@
 #include <QString>
 #include <QUuid>
 #include <QDateTime>
+#include <QJsonObject>
 
 class visitor;
 
@@ -31,6 +32,7 @@ class attivita {
 
         virtual Fase calcola_stato() const = 0;
         virtual void accetta(visitor& v) = 0;
+        virtual QJsonObject salva_in_json() const = 0;
 };
 
 #endif

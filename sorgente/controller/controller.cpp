@@ -3,34 +3,40 @@
 #include "../model/classi/impegno.h"
 #include "../model/classi/scadenza.h"
 #include "../model/classi/routine.h"
-#include "../view/main_window.h"
+#include "../view/main_view.h"
 #include <QMessageBox>
 
-controller::controller(gestore* g): gestore_attivita(g) {}
+controller::controller(gestore* g, main_view* v): gestore_attivita(g), main_window(v) {
 
-void controller::assegna_main_window(main_window* m) {
-    m_window = m;
-    ricercatore.set_window(m);
+    connect(main_window, &main_view::segnale_richiesta_dati, this, &controller::esporta_per_modifica);
+    connect(main_window, &main_view::segnale_elimina_attivita, this, &controller::elimina_attivita);
+    connect(main_window, &main_view::invia_dati_impegno, this, &controller::importa_e_smista_impegno);
+    connect(main_window, &main_view::invia_dati_scadenza, this, &controller::importa_e_smista_scadenza);
+    connect(main_window, &main_view::invia_dati_routine, this, &controller::importa_e_smista_routine);
+
+    connect(&ricercatore, &visitor_ricerca::trovato_impegno, main_window, &main_view::passa_dati_impegno);
+    connect(&ricercatore, &visitor_ricerca::trovata_scadenza, main_window, &main_view::passa_dati_scadenza);
+    connect(&ricercatore, &visitor_ricerca::trovata_routine, main_window, &main_view::passa_dati_routine);
 }
 
 void controller::passa_liste(const std::vector<dati_impegno>& i, const std::vector<dati_scadenza>& s, const std::vector<dati_routine>& r) const {
-    m_window -> passa_liste(i, s, r);
+    main_window -> passa_liste(i, s, r);
 }
 
 void controller::crea_impegno(const dati_impegno& i) {
-    impegno* aux = new impegno(i.nome, i.descrizione, Gruppo::Altro, i.inizio, i.fine, i.luogo);
+    impegno* aux = new impegno(i.nome, i.descrizione, converti_stringa_a_enum(i.categoria), i.inizio, i.fine, i.luogo);
     gestore_attivita -> aggiungi_attivita(aux);
     refresh();
 }
 
 void controller::crea_scadenza(const dati_scadenza& s) {
-    scadenza* aux = new scadenza(s.nome, s.descrizione, Gruppo::Altro, s.limite);
+    scadenza* aux = new scadenza(s.nome, s.descrizione, converti_stringa_a_enum(s.categoria), s.limite);
     gestore_attivita -> aggiungi_attivita(aux);
     refresh();
 }
 
 void controller::crea_routine(const dati_routine& r) {
-    routine* aux = new routine(r.nome, r.descrizione, Gruppo::Altro, r.inizio, r.intervallo);
+    routine* aux = new routine(r.nome, r.descrizione, converti_stringa_a_enum(r.categoria), r.inizio, r.intervallo);
     gestore_attivita -> aggiungi_attivita(aux);
     refresh();
 }
