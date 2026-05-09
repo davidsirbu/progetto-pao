@@ -8,11 +8,12 @@ class routine : public attivita {
     private:
         QDateTime inizio;
         QDateTime prossima_volta;
-        int intervallo_giorni;
-        int conta_puntuale;
-        int conta_ritardo;
+        int intervallo_giorni = 0;
+        int conta_puntuale = 0;
+        int conta_ritardo = 0;
 
     public:
+        routine() = default;
         routine(const QString& n, const QString& d, const Gruppo c, const QDateTime& i, const int g);
         ~routine() = default;
 
@@ -30,6 +31,7 @@ class routine : public attivita {
         Fase calcola_stato() const override;
         void accetta(visitor& v) override;
         QJsonObject salva_in_json() const override;
+        void carica_da_json(const QJsonObject& oggetto_json) override;
 };
 
 #endif

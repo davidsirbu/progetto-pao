@@ -47,3 +47,12 @@ QJsonObject scadenza::salva_in_json() const {
 
     return oggetto_json;
 }
+
+void scadenza::carica_da_json(const QJsonObject& oggetto_json) {
+    set_nome(oggetto_json["nome"].toString());
+    set_categoria(static_cast<Gruppo>(oggetto_json["categoria"].toInt()));
+    set_descrizione(oggetto_json["descrizione"].toString());
+    completato = oggetto_json["completato"].toInt();
+    tempo_limite = QDateTime::fromString(oggetto_json["limite"].toString());
+    tempo_completamento = QDateTime::fromString(oggetto_json["fine"].toString());
+}

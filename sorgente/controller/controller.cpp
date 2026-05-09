@@ -8,6 +8,8 @@
 
 controller::controller(gestore* g, main_view* v): gestore_attivita(g), main_window(v) {
 
+    connect(main_window, &main_view::segnale_salvataggio_manuale, this, &controller::salva_su_file);
+    connect(main_window, &main_view::segnale_caricamento, this, &controller::carica_da_file);
     connect(main_window, &main_view::segnale_richiesta_dati, this, &controller::esporta_per_modifica);
     connect(main_window, &main_view::segnale_elimina_attivita, this, &controller::elimina_attivita);
     connect(main_window, &main_view::invia_dati_impegno, this, &controller::importa_e_smista_impegno);
@@ -119,4 +121,16 @@ Gruppo controller::converti_stringa_a_enum(const QString& s) const {
     if (str == "altro") return Gruppo::Altro;
 
     return Gruppo::Nessuno;
+}
+
+void controller::salva_su_file() {
+    if (percorso_salvataggio_attuale.isEmpty()) {
+        percorso_salvataggio_attuale = main_window -> chiedi_percorso_salvataggio();
+    }
+    gestore_attivita -> salva_dati(percorso_salvataggio_attuale);
+}
+
+void controller::carica_da_file() {
+    gestore_attivita -> importa_dati(main_window -> chiedi_percorso_caricamento());
+    refresh();
 }

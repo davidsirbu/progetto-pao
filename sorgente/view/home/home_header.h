@@ -13,6 +13,9 @@ class home_header: public QWidget {
         QPushButton* pulsante_nuova_attivita;
         QPushButton* pulsante_modifica_attivita;
         QPushButton* pulsante_elimina_attivita;
+        QPushButton* pulsante_salvataggio_automatico;
+        QPushButton* pulsante_salvataggio_manuale;
+        QPushButton* pulsante_caricamento_dati;
         QLineEdit* barra_ricerca;
         
     public:
@@ -26,6 +29,9 @@ class home_header: public QWidget {
         void crea_attivita();
         void modifica_attivita();
         void elimina_attivita();
+        void salva_dati();
+        void salva_dati_con_nome();
+        void carica_dati();
 
         void barra_cambiata(const QString& s);
 };

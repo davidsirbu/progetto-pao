@@ -15,9 +15,10 @@ class attivita {
         const QString id;
         QString nome;
         QString descrizione;
-        Gruppo categoria;
+        Gruppo categoria = Gruppo::Nessuno;
 
     public:
+        attivita() = default;
         attivita(const QString& n, const QString& d, const Gruppo c);
         virtual ~attivita() = default;
 
@@ -33,6 +34,7 @@ class attivita {
         virtual Fase calcola_stato() const = 0;
         virtual void accetta(visitor& v) = 0;
         virtual QJsonObject salva_in_json() const = 0;
+        virtual void carica_da_json(const QJsonObject& oggetto_json) = 0;
 };
 
 #endif

@@ -12,6 +12,9 @@ home_view::home_view(QWidget* parent): QWidget(parent) {
     connect(header, &home_header::crea_attivita, this, &home_view::crea_attivita);
     connect(header, &home_header::modifica_attivita, this, &home_view::modifica_attivita);
     connect(header, &home_header::elimina_attivita, this, &home_view::elimina_attivita);
+    connect(header, &home_header::salva_dati, this, &home_view::salva_dati);
+    connect(header, &home_header::salva_dati_con_nome, this, &home_view::salva_con_nome);
+    connect(header, &home_header::carica_dati, this, &home_view::carica_dati);
 
     corpo = new home_corpo(this);
     connect(corpo, &home_corpo::cambio_selezione, this, &home_view::attivita_selezionata);

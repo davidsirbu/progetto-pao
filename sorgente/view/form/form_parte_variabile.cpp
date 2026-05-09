@@ -11,9 +11,9 @@
 
 form_impegno::form_impegno(QWidget* parent): QWidget(parent) {
     
-    QVBoxLayout* layout_principale = new QVBoxLayout(this);
+    QVBoxLayout* layout_principale = new QVBoxLayout();
 
-    QHBoxLayout* layout_orari = new QHBoxLayout(this);
+    QHBoxLayout* layout_orari = new QHBoxLayout();
 
     QLabel* etichetta_inizio = new QLabel("Ora di inizio: ", this);
     layout_orari -> addWidget(etichetta_inizio, 1);
@@ -66,7 +66,7 @@ void form_impegno::reset() {
 
 form_scadenza::form_scadenza(QWidget* parent): QWidget(parent) {
     
-    QHBoxLayout* layout_principale = new QHBoxLayout(this);
+    QHBoxLayout* layout_principale = new QHBoxLayout();
 
     QLabel* etichetta_tempo_limite = new QLabel("Limite: ", this);
     layout_principale -> addWidget(etichetta_tempo_limite);
@@ -102,7 +102,7 @@ void form_scadenza::reset() {
 
 form_routine::form_routine(QWidget* parent): QWidget(parent) {
 
-    QHBoxLayout* layout_principale = new QHBoxLayout(this);
+    QHBoxLayout* layout_principale = new QHBoxLayout();
 
     QLabel* etichetta_inizio = new QLabel("Inizio: ", this);
     layout_principale -> addWidget(etichetta_inizio);

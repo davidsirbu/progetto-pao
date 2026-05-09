@@ -3,6 +3,7 @@
 #include "detail/detail_view.h"
 #include "form/form_view.h"
 #include <QStackedLayout>
+#include <QFileDialog>
 
 main_view::main_view(QWidget* parent): QWidget(parent) {
 
@@ -10,6 +11,9 @@ main_view::main_view(QWidget* parent): QWidget(parent) {
 
     home_window = new home_view(this);
     stacked_layout -> addWidget(home_window);
+    connect(home_window, &home_view::salva_con_nome, this, &main_view::segnale_salvataggio_manuale);
+    connect(home_window, &home_view::salva_dati, this, &main_view::segnale_salvataggio_automatico);
+    connect(home_window, &home_view::carica_dati, this, &main_view::segnale_caricamento);
     connect(home_window, &home_view::crea_attivita, this, &main_view::crea_attivita);
     connect(home_window, &home_view::segnale_dettagli, this, &main_view::segnale_richiesta_dati);
     connect(home_window, &home_view::segnale_elimina, this, &main_view::segnale_elimina_attivita);
@@ -72,4 +76,24 @@ void main_view::passa_dati_routine(const dati_routine& r, bool stato) {
 
 void main_view::passa_liste(const std::vector<dati_impegno>& i, const std::vector<dati_scadenza>& s, const std::vector<dati_routine>& r) const {
     home_window -> passa_liste(i, s, r);
+}
+
+QString main_view::chiedi_percorso_salvataggio() {
+    QString percorso = QFileDialog::getSaveFileName(
+        this,
+        "Salva la tua agenda",
+        "mia_agenda.json",
+        "File JSON (*.json);;Tutti i file (*.*)");
+
+    return percorso;
+}
+
+QString main_view::chiedi_percorso_caricamento() {
+    QString percorso = QFileDialog::getOpenFileName(
+        this,
+        "Apri un'Agenda esistente",
+        "",
+        "File JSON (*.json);;Tutti i file (*.*)");
+
+    return percorso;
 }

@@ -6,6 +6,7 @@
 #include <QMainWindow>
 #include <QStackedLayout>
 
+
 class impegno;
 class scadenza;
 class routine;
@@ -26,11 +27,16 @@ class main_view : public QWidget {
         main_view(QWidget* parent = nullptr);
         ~main_view() = default;
 
-        void passa_liste(const std::vector<dati_impegno>& i, const std::vector<dati_scadenza>& s, const std::vector<dati_routine>& r) const;
+        void passa_liste(const std::vector<dati_impegno>& i, 
+                         const std::vector<dati_scadenza>& s, 
+                         const std::vector<dati_routine>& r) const;
 
     signals:
         void segnale_richiesta_dati(const QString& id, bool modifica);
         void segnale_elimina_attivita(const QString& id);
+        void segnale_salvataggio_manuale();
+        void segnale_salvataggio_automatico();
+        void segnale_caricamento();
         void invia_dati_impegno(const dati_impegno& i);
         void invia_dati_scadenza(const dati_scadenza& s);
         void invia_dati_routine(const dati_routine& r);
@@ -42,6 +48,9 @@ class main_view : public QWidget {
         void passa_dati_impegno(const dati_impegno& i, bool stato);
         void passa_dati_scadenza(const dati_scadenza& s, bool stato);
         void passa_dati_routine(const dati_routine& r, bool stato);
+
+        QString chiedi_percorso_salvataggio();
+        QString chiedi_percorso_caricamento();
 };
 
 #endif

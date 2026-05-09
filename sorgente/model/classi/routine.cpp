@@ -68,3 +68,13 @@ QJsonObject routine::salva_in_json() const {
 
     return oggetto_json;
 }
+
+void routine::carica_da_json(const QJsonObject& oggetto_json) {
+    set_nome(oggetto_json["nome"].toString());
+    set_categoria(static_cast<Gruppo>(oggetto_json["categoria"].toInt()));
+    set_descrizione(oggetto_json["descrizione"].toString());
+    inizio = QDateTime::fromString(oggetto_json["inizio"].toString());
+    prossima_volta = QDateTime::fromString(oggetto_json["prossima_volta"].toString());
+    conta_puntuale = oggetto_json["conta_puntuale"].toInt();
+    conta_ritardo = oggetto_json["conta_ritardo"].toInt();
+}

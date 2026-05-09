@@ -62,3 +62,12 @@ QJsonObject impegno::salva_in_json() const {
 
     return oggetto_json;
 }
+
+void impegno::carica_da_json(const QJsonObject& oggetto_json) {
+    set_nome(oggetto_json["nome"].toString());
+    set_categoria(static_cast<Gruppo>(oggetto_json["categoria"].toInt()));
+    set_descrizione(oggetto_json["descrizione"].toString());
+    inizio = QDateTime::fromString(oggetto_json["inizio"].toString());
+    fine = QDateTime::fromString(oggetto_json["fine"].toString());
+    luogo = oggetto_json["luogo"].toString();
+}

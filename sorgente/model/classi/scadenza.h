@@ -7,12 +7,13 @@
 
 class scadenza : public attivita {
     private:
-        bool completato;
+        bool completato = false;
         QDateTime tempo_limite;
         QDateTime tempo_completamento;
 
         
     public:
+        scadenza() = default;
         scadenza(const QString& n, const QString& d, const Gruppo c, const QDateTime& t);
         ~scadenza() = default;
 
@@ -26,6 +27,7 @@ class scadenza : public attivita {
         Fase calcola_stato() const override;
         void accetta(visitor& v) override;
         QJsonObject salva_in_json() const override;
+        void carica_da_json(const QJsonObject& oggetto_json) override;
 };
 
 #endif

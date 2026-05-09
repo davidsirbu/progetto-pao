@@ -21,9 +21,13 @@ class gestore {
 
         void aggiungi_attivita(attivita* a);
         void rimuovi_attivita(const QString& id);
+        void svuota_lista();
         attivita* cerca_attivita(const QString& id) const;
 
         void accetta_visitatore(visitor& v);
+
+        void salva_dati(const QString& percorso);
+        bool importa_dati(const QString& percorso);
 };
 
 #endif

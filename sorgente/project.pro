@@ -17,6 +17,7 @@ HEADERS += \
         model/classi/routine.h \
         model/visitor.h \
         model/gestore.h \
+        model/gestore_file.h \
         controller/controller.h \
         controller/visitor_filtro.h \
         controller/visitor_ricerca.h \
@@ -41,6 +42,7 @@ SOURCES += \
         model/classi/scadenza.cpp \
         model/classi/routine.cpp \
         model/gestore.cpp \
+        model/gestore_file.cpp \
         controller/controller.cpp \
         controller/visitor_filtro.cpp \
         controller/visitor_ricerca.cpp \

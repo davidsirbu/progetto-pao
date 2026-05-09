@@ -6,9 +6,9 @@
 
 form_scelta::form_scelta(QWidget* parent): QWidget(parent) {
 
-    QVBoxLayout* layout_principale = new QVBoxLayout(this);
+    QVBoxLayout* layout_principale = new QVBoxLayout();
 
-    QHBoxLayout* layout_attivita = new QHBoxLayout(this);
+    QHBoxLayout* layout_attivita = new QHBoxLayout();
 
     pulsante_impegno = new QPushButton("Impegno", this);
     pulsante_impegno -> setCheckable(true);
@@ -31,7 +31,7 @@ form_scelta::form_scelta(QWidget* parent): QWidget(parent) {
 
     layout_principale -> addLayout(layout_attivita);
 
-    stacked_layout = new QStackedLayout(this);
+    stacked_layout = new QStackedLayout();
 
     impegno_window = new form_impegno(this);
     stacked_layout -> addWidget(impegno_window);
@@ -45,6 +45,8 @@ form_scelta::form_scelta(QWidget* parent): QWidget(parent) {
     stacked_layout -> setCurrentIndex(0);  
 
     layout_principale -> addLayout(stacked_layout);
+
+    setLayout(layout_principale);
 }
 
 mini_dto_impegno form_scelta::ricevi_dati_impegno() const {
