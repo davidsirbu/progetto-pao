@@ -1,8 +1,8 @@
-#include <QApplication>
-
 #include "model/gestore.h"
 #include "view/main_view.h"
 #include "controller/controller.h"
+
+#include <QApplication>
 
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);

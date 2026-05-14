@@ -9,11 +9,12 @@ home_header::home_header(QWidget* parent): QWidget(parent) {
 
     QHBoxLayout* header_layout = new QHBoxLayout();
 
-    pulsante_salvataggio_automatico = new QPushButton("Salva", this);
-    connect(pulsante_salvataggio_automatico, &QPushButton::clicked, this, &home_header::salva_dati);
-
     pulsante_salvataggio_manuale = new QPushButton("Salva con nome", this);
-    connect(pulsante_salvataggio_manuale, &QPushButton::clicked, this, &home_header::salva_dati_con_nome);
+    connect(pulsante_salvataggio_manuale, &QPushButton::clicked, this, &home_header::salvataggio_manuale);
+
+    pulsante_salvataggio_automatico = new QPushButton("Salva", this);
+    pulsante_salvataggio_automatico -> setEnabled(false);
+    connect(pulsante_salvataggio_automatico, &QPushButton::clicked, this, &home_header::salvataggio_automatico);
 
     pulsante_caricamento_dati = new QPushButton("Apri", this);
     connect(pulsante_caricamento_dati, &QPushButton::clicked, this, &home_header::carica_dati);
@@ -59,4 +60,16 @@ void home_header::attiva_pulsanti() {
 void home_header::disattiva_pulsanti() {
     pulsante_modifica_attivita -> setEnabled(false);
     pulsante_elimina_attivita -> setEnabled(false);
+}
+
+void home_header::salvataggio_automatico() {
+    emit segnale_salvataggio(false);
+}
+
+void home_header::salvataggio_manuale() {
+    emit segnale_salvataggio(true);
+}
+
+void home_header::abilita_salvataggio_automatico() {
+    pulsante_salvataggio_automatico -> setEnabled(true);
 }

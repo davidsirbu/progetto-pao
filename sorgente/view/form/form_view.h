@@ -6,6 +6,7 @@
 
 class QLineEdit;
 class QComboBox;
+class QLabel;
 class form_scelta;
 class QTextEdit;
 class QPushButton;
@@ -15,6 +16,7 @@ class form_view: public QWidget {
 
     private:
         QString id;
+        QLabel* titolo_finestra;
         QLineEdit* etichetta_titolo;
         QComboBox* menu_gruppo;
         form_scelta* parte_scelta;
@@ -23,10 +25,13 @@ class form_view: public QWidget {
         QPushButton* pulsante_annulla;
 
         void reset();
+        void controlla_stringa(const QString& input);
 
     public:
         form_view(QWidget* parent = nullptr);
         ~form_view() = default;
+
+        void imposta_titolo_finestra(const QString& titolo);
 
     signals:
         void torna_indietro();
@@ -42,6 +47,6 @@ class form_view: public QWidget {
         void carica_impegno(const dati_impegno& i);
         void carica_scadenza(const dati_scadenza& s);
         void carica_routine(const dati_routine& r);
-    };
+};
 
 #endif

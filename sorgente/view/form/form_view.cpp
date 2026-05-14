@@ -11,14 +11,15 @@
 
 form_view::form_view(QWidget* parent): QWidget(parent) {
 
-    QVBoxLayout* layout_principale = new QVBoxLayout(this);
+    QVBoxLayout* layout_principale = new QVBoxLayout();
 
-    QLabel* titolo_finestra = new QLabel("Crea/Modifica attività", this);
+    titolo_finestra = new QLabel();
     layout_principale -> addWidget(titolo_finestra);
 
-    etichetta_titolo = new QLineEdit(this);
-    etichetta_titolo -> setPlaceholderText("Inserisci il titolo");
+    etichetta_titolo = new QLineEdit();
+    etichetta_titolo -> setPlaceholderText("Inserisci il titolo (obbligatorio)");
     layout_principale -> addWidget(etichetta_titolo);
+    connect(etichetta_titolo, &QLineEdit::textChanged, this, &form_view::controlla_stringa);
 
     menu_gruppo = new QComboBox(this);
     menu_gruppo -> addItem("Studio");
@@ -30,16 +31,17 @@ form_view::form_view(QWidget* parent): QWidget(parent) {
     parte_scelta = new form_scelta(this);
     layout_principale -> addWidget(parte_scelta);
 
-    etichetta_descrizione = new QTextEdit(this);
+    etichetta_descrizione = new QTextEdit();
     etichetta_descrizione -> setPlaceholderText("Inserisci la descrizione");
     layout_principale -> addWidget(etichetta_descrizione);
 
-    QHBoxLayout* action_layout = new QHBoxLayout(this);
+    QHBoxLayout* action_layout = new QHBoxLayout();
 
-    QWidget* spaziatore = new QWidget(this);
+    QWidget* spaziatore = new QWidget();
     action_layout -> addWidget(spaziatore, 4);
 
     pulsante_salva = new QPushButton("Salva", this);
+    pulsante_salva -> setEnabled(false);
     connect(pulsante_salva, &QPushButton::clicked, this, &form_view::salva);
     action_layout -> addWidget(pulsante_salva, 1);
 
@@ -133,4 +135,13 @@ void form_view::carica_routine(const dati_routine& r) {
     menu_gruppo -> setCurrentIndex(menu_gruppo -> findText(r.categoria));
     etichetta_descrizione -> setText(r.descrizione);
     parte_scelta -> inoltra_dati_routine(r);
+}
+
+void form_view::controlla_stringa(const QString& input) {
+    if (input.trimmed().isEmpty()) pulsante_salva -> setEnabled(false);
+    else pulsante_salva -> setEnabled(true);
+}
+
+void form_view::imposta_titolo_finestra(const QString& titolo) {
+    titolo_finestra -> setText(titolo);
 }

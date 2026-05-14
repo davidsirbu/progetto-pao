@@ -25,12 +25,16 @@ class home_header: public QWidget {
         void attiva_pulsanti();
         void disattiva_pulsanti();
 
+        void salvataggio_automatico();
+        void salvataggio_manuale();
+
+        void abilita_salvataggio_automatico();
+
     signals:
         void crea_attivita();
         void modifica_attivita();
         void elimina_attivita();
-        void salva_dati();
-        void salva_dati_con_nome();
+        void segnale_salvataggio(bool manuale);
         void carica_dati();
 
         void barra_cambiata(const QString& s);

@@ -34,9 +34,9 @@ class main_view : public QWidget {
     signals:
         void segnale_richiesta_dati(const QString& id, bool modifica);
         void segnale_elimina_attivita(const QString& id);
-        void segnale_salvataggio_manuale();
-        void segnale_salvataggio_automatico();
+        void segnale_salvataggio(bool manuale);
         void segnale_caricamento();
+        void attivita_completata(const QString& id);
         void invia_dati_impegno(const dati_impegno& i);
         void invia_dati_scadenza(const dati_scadenza& s);
         void invia_dati_routine(const dati_routine& r);

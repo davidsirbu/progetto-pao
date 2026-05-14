@@ -6,6 +6,7 @@
 #include <QDateTime>
 #include <QString>
 
+class QDateEdit;
 class QDateTimeEdit;
 class QCheckBox;
 class QSpinBox;
@@ -19,6 +20,8 @@ class form_impegno: public QWidget {
         QDateTimeEdit* selettore_fine;
         QLineEdit* etichetta_luogo;
 
+        void controlla_coerenza_orari(const QDateTime& nuovo_inizio);
+
     public:
         form_impegno(QWidget* parent);
         ~form_impegno() = default;
@@ -28,8 +31,6 @@ class form_impegno: public QWidget {
     
         void reset();
 };
-
-///////////////////////////////////////////////////////
 
 class form_scadenza: public QWidget {
     Q_OBJECT
@@ -47,14 +48,13 @@ class form_scadenza: public QWidget {
         void reset();
 };
 
-///////////////////////////////////////////////////////
-
 class form_routine: public QWidget {
     Q_OBJECT
 
     private:
-        QDateTimeEdit* selettore_inizio;
+        QDateEdit* selettore_inizio;
         QSpinBox* selettore_intervallo;
+        QCheckBox* selettore_tutto_il_giorno;
 
     public:
         form_routine(QWidget* parent);

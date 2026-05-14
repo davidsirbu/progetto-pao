@@ -12,13 +12,13 @@ home_view::home_view(QWidget* parent): QWidget(parent) {
     connect(header, &home_header::crea_attivita, this, &home_view::crea_attivita);
     connect(header, &home_header::modifica_attivita, this, &home_view::modifica_attivita);
     connect(header, &home_header::elimina_attivita, this, &home_view::elimina_attivita);
-    connect(header, &home_header::salva_dati, this, &home_view::salva_dati);
-    connect(header, &home_header::salva_dati_con_nome, this, &home_view::salva_con_nome);
+    connect(header, &home_header::segnale_salvataggio, this, &home_view::segnale_salvataggio);
     connect(header, &home_header::carica_dati, this, &home_view::carica_dati);
 
     corpo = new home_corpo(this);
     connect(corpo, &home_corpo::cambio_selezione, this, &home_view::attivita_selezionata);
     connect(corpo, &home_corpo::doppio_click_su_attivita, this, &home_view::mostra_dettagli);
+    connect(corpo, &home_corpo::segnale_attivita_completata, this, &home_view::attivita_completata);
     home_layout -> addWidget(corpo);
 
     connect(header, &home_header::barra_cambiata, corpo, &home_corpo::filtra_liste);
@@ -46,4 +46,8 @@ void home_view::modifica_attivita() {
 void home_view::elimina_attivita() {
     emit segnale_elimina(corpo -> get_id_selezionato());
     header -> disattiva_pulsanti();
+}
+
+void home_view::abilita_salvatggio_automatico() {
+    header -> abilita_salvataggio_automatico();
 }

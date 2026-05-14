@@ -19,7 +19,6 @@ class controller: public QObject {
         visitor_ricerca ricercatore;
 
         QString percorso_salvataggio_attuale;
-        bool modificato;
 
         void passa_liste(const std::vector<dati_impegno>& i, 
                          const std::vector<dati_scadenza>& s, 
@@ -48,8 +47,10 @@ class controller: public QObject {
         void elimina_attivita(const QString& id);
 
     public slots:
-        void salva_su_file();
+        void salva_su_file(bool manuale);
         void carica_da_file();
+
+        void attivita_completata(const QString& id);
 };
 
 #endif

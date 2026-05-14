@@ -8,13 +8,14 @@
 
 controller::controller(gestore* g, main_view* v): gestore_attivita(g), main_window(v) {
 
-    connect(main_window, &main_view::segnale_salvataggio_manuale, this, &controller::salva_su_file);
+    connect(main_window, &main_view::segnale_salvataggio, this, &controller::salva_su_file);
     connect(main_window, &main_view::segnale_caricamento, this, &controller::carica_da_file);
     connect(main_window, &main_view::segnale_richiesta_dati, this, &controller::esporta_per_modifica);
     connect(main_window, &main_view::segnale_elimina_attivita, this, &controller::elimina_attivita);
     connect(main_window, &main_view::invia_dati_impegno, this, &controller::importa_e_smista_impegno);
     connect(main_window, &main_view::invia_dati_scadenza, this, &controller::importa_e_smista_scadenza);
     connect(main_window, &main_view::invia_dati_routine, this, &controller::importa_e_smista_routine);
+    connect(main_window, &main_view::attivita_completata, this, &controller::attivita_completata);
 
     connect(&ricercatore, &visitor_ricerca::trovato_impegno, main_window, &main_view::passa_dati_impegno);
     connect(&ricercatore, &visitor_ricerca::trovata_scadenza, main_window, &main_view::passa_dati_scadenza);
@@ -123,14 +124,22 @@ Gruppo controller::converti_stringa_a_enum(const QString& s) const {
     return Gruppo::Nessuno;
 }
 
-void controller::salva_su_file() {
-    if (percorso_salvataggio_attuale.isEmpty()) {
-        percorso_salvataggio_attuale = main_window -> chiedi_percorso_salvataggio();
+void controller::salva_su_file(bool manuale) {
+    if (manuale) {
+        QString nuovo_percorso = main_window -> chiedi_percorso_salvataggio();
+        if (nuovo_percorso.isEmpty()) return; 
+        percorso_salvataggio_attuale = nuovo_percorso;
     }
     gestore_attivita -> salva_dati(percorso_salvataggio_attuale);
 }
 
 void controller::carica_da_file() {
     gestore_attivita -> importa_dati(main_window -> chiedi_percorso_caricamento());
+    refresh();
+}
+
+void controller::attivita_completata(const QString& id) {
+    attivita* completata = gestore_attivita -> cerca_attivita(id);
+    completata -> esegui_completamento();
     refresh();
 }

@@ -10,6 +10,7 @@ class impegno;
 class scadenza;
 class routine;
 class QListWidget;
+class QListWidgetItem;
 class QVBoxLayout;
 
 class home_corpo: public QWidget {
@@ -42,6 +43,7 @@ class home_corpo: public QWidget {
     signals:
         void cambio_selezione();
         void doppio_click_su_attivita();
+        void segnale_attivita_completata(const QString id);
 
     public slots:
         void impegno_cliccato();
@@ -49,6 +51,9 @@ class home_corpo: public QWidget {
         void routine_cliccata();
 
         void filtra_liste(const QString& s);
+
+        void attivita_completata(QListWidgetItem* item);
+
 };
 
 #endif

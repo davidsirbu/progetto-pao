@@ -11,12 +11,12 @@ main_view::main_view(QWidget* parent): QWidget(parent) {
 
     home_window = new home_view(this);
     stacked_layout -> addWidget(home_window);
-    connect(home_window, &home_view::salva_con_nome, this, &main_view::segnale_salvataggio_manuale);
-    connect(home_window, &home_view::salva_dati, this, &main_view::segnale_salvataggio_automatico);
+    connect(home_window, &home_view::segnale_salvataggio, this, &main_view::segnale_salvataggio);
     connect(home_window, &home_view::carica_dati, this, &main_view::segnale_caricamento);
     connect(home_window, &home_view::crea_attivita, this, &main_view::crea_attivita);
     connect(home_window, &home_view::segnale_dettagli, this, &main_view::segnale_richiesta_dati);
     connect(home_window, &home_view::segnale_elimina, this, &main_view::segnale_elimina_attivita);
+    connect(home_window, &home_view::attivita_completata, this, &main_view::attivita_completata);
 
     detail_window = new detail_view(this);
     stacked_layout -> addWidget(detail_window);
@@ -38,12 +38,14 @@ void main_view::torna_indietro() {
 }
 
 void main_view::crea_attivita() {
+    form_window -> imposta_titolo_finestra("Crea attività");
     stacked_layout -> setCurrentIndex(2);
 }
 
 void main_view::passa_dati_impegno(const dati_impegno& i, bool stato) {
     if (stato == true) {
         form_window -> carica_impegno(i);
+        form_window -> imposta_titolo_finestra("Modifica attività");
         stacked_layout -> setCurrentIndex(2);
     }
     else {
@@ -55,6 +57,7 @@ void main_view::passa_dati_impegno(const dati_impegno& i, bool stato) {
 void main_view::passa_dati_scadenza(const dati_scadenza& s, bool stato) {
     if (stato == true) {
         form_window -> carica_scadenza(s);
+        form_window -> imposta_titolo_finestra("Modifica attività");
         stacked_layout -> setCurrentIndex(2);
     }
     else {
@@ -66,6 +69,7 @@ void main_view::passa_dati_scadenza(const dati_scadenza& s, bool stato) {
 void main_view::passa_dati_routine(const dati_routine& r, bool stato) {
     if (stato == true) {
         form_window -> carica_routine(r);
+        form_window -> imposta_titolo_finestra("Modifica attività");
         stacked_layout -> setCurrentIndex(2);
     }
     else {
@@ -85,6 +89,7 @@ QString main_view::chiedi_percorso_salvataggio() {
         "mia_agenda.json",
         "File JSON (*.json);;Tutti i file (*.*)");
 
+    home_window -> abilita_salvatggio_automatico();
     return percorso;
 }
 
@@ -95,5 +100,6 @@ QString main_view::chiedi_percorso_caricamento() {
         "",
         "File JSON (*.json);;Tutti i file (*.*)");
 
+    home_window -> abilita_salvatggio_automatico();
     return percorso;
 }

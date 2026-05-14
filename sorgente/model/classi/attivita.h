@@ -32,6 +32,7 @@ class attivita {
         void set_categoria(const Gruppo c);
 
         virtual Fase calcola_stato() const = 0;
+        virtual void esegui_completamento() = 0;
         virtual void accetta(visitor& v) = 0;
         virtual QJsonObject salva_in_json() const = 0;
         virtual void carica_da_json(const QJsonObject& oggetto_json) = 0;

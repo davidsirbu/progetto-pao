@@ -27,6 +27,7 @@ void visitor_filtro::visit(scadenza& s) {
     dto.fase = converti_enum(s.calcola_stato());
     dto.descrizione = s.get_descrizione();
     dto.limite = s.get_limite();
+    dto.completata = s.get_completato();
     lista_scadenze.push_back(dto);
 }
 
@@ -40,6 +41,8 @@ void visitor_filtro::visit(routine& r) {
     dto.inizio = r.get_inizio();
     dto.prossima_volta = r.get_prossima_volta();
     dto.intervallo = r.get_intervallo();
+    dto.volte_puntuale = r.get_puntuale();
+    dto.volte_ritardo = r.get_ritardo();
     lista_routine.push_back(dto);
 }
 

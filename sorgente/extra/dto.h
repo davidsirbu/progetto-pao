@@ -25,6 +25,7 @@ struct dati_scadenza {
     QString fase;
     QString descrizione;
     QDateTime limite;
+    bool completata = false;
 };
 
 struct dati_routine {
@@ -35,7 +36,9 @@ struct dati_routine {
     QString descrizione;
     QDateTime inizio;
     QDateTime prossima_volta;
-    int intervallo;
+    int intervallo = 0;
+    int volte_puntuale = 0;
+    int volte_ritardo = 0;
 };
 
 struct mini_dto_impegno {
@@ -50,7 +53,7 @@ struct mini_dto_scadenza {
 
 struct mini_dto_routine {
     QDateTime inizio;
-    int intervallo;
+    int intervallo = 0;
 };
 
 #endif

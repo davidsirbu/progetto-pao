@@ -1,7 +1,9 @@
 #include "routine.h"
 #include "../visitor.h"
 
-routine::routine(const QString& n, const QString& d, const Gruppo c, const QDateTime& i, const int g) : attivita(n, d, c), inizio(i), prossima_volta(i), intervallo_giorni(g), conta_puntuale(0), conta_ritardo(0) {}
+routine::routine(const QString& n, const QString& d, const Gruppo c, const QDateTime& i, const int g) : attivita(n, d, c), inizio(i), prossima_volta(i), intervallo_giorni(g), conta_puntuale(0), conta_ritardo(0) {
+    prossima_volta = inizio.addDays(intervallo_giorni);
+}
 
 QDateTime routine::get_inizio() const {
     return inizio;
@@ -31,14 +33,15 @@ void routine::set_intervallo(const int i) {
     intervallo_giorni = i;
 }
 
-void routine::avanza_progressi() {
+void routine::esegui_completamento() {
     QDateTime attuale = QDateTime::currentDateTime();
-    if (attuale < prossima_volta) {
+
+    if (attuale.date() <= prossima_volta.date()) {
         prossima_volta = prossima_volta.addDays(intervallo_giorni);
         conta_puntuale++;
     }
     else {
-        prossima_volta = attuale.addDays(intervallo_giorni);
+        prossima_volta = QDateTime(attuale.date().addDays(intervallo_giorni), QTime(23, 59, 59));
         conta_ritardo++;
     }
 }

@@ -3,6 +3,7 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QLabel>
+#include <QDateEdit>
 #include <QDateTimeEdit>
 #include <QDateTime>
 #include <QCheckBox>
@@ -20,6 +21,7 @@ form_impegno::form_impegno(QWidget* parent): QWidget(parent) {
 
     selettore_inizio = new QDateTimeEdit();
     selettore_inizio -> setDateTime(QDateTime::currentDateTime());
+    connect(selettore_inizio, &QDateTimeEdit::dateTimeChanged, this, &form_impegno::controlla_coerenza_orari);
 
     layout_orari -> addWidget(selettore_inizio, 1);
 
@@ -62,7 +64,9 @@ void form_impegno::reset() {
     selettore_fine -> setDateTime(QDateTime::currentDateTime());
 }
 
-////////////////////////////////////////////////////////////////////////////
+void form_impegno::controlla_coerenza_orari(const QDateTime& nuovo_inizio) {
+    selettore_fine -> setMinimumDateTime(nuovo_inizio);
+}
 
 form_scadenza::form_scadenza(QWidget* parent): QWidget(parent) {
     
@@ -74,12 +78,6 @@ form_scadenza::form_scadenza(QWidget* parent): QWidget(parent) {
     selettore_tempo_limite = new QDateTimeEdit(this);
     selettore_tempo_limite -> setDateTime(QDateTime::currentDateTime());
     layout_principale -> addWidget(selettore_tempo_limite);
-
-    QWidget* spazio = new QWidget(this);
-    layout_principale -> addWidget(spazio);
-
-    QLabel* etichetta_completamento = new QLabel("Completato: ", this);
-    layout_principale -> addWidget(etichetta_completamento);
 
     setLayout(layout_principale);
 }
@@ -98,8 +96,6 @@ void form_scadenza::reset() {
     selettore_tempo_limite -> setDateTime(QDateTime::currentDateTime());
 }
 
-////////////////////////////////////////////////////////////////////////////
-
 form_routine::form_routine(QWidget* parent): QWidget(parent) {
 
     QHBoxLayout* layout_principale = new QHBoxLayout();
@@ -107,12 +103,9 @@ form_routine::form_routine(QWidget* parent): QWidget(parent) {
     QLabel* etichetta_inizio = new QLabel("Inizio: ", this);
     layout_principale -> addWidget(etichetta_inizio);
 
-    selettore_inizio = new QDateTimeEdit(this);
+    selettore_inizio = new QDateEdit(this);
     selettore_inizio -> setDateTime(QDateTime::currentDateTime());
     layout_principale -> addWidget(selettore_inizio);
-
-    QWidget* spazio = new QWidget(this);
-    layout_principale -> addWidget(spazio);
 
     QLabel* etichetta_intervallo = new QLabel("Intervallo: ", this);
     layout_principale -> addWidget(etichetta_intervallo);
@@ -125,7 +118,7 @@ form_routine::form_routine(QWidget* parent): QWidget(parent) {
 
 mini_dto_routine form_routine::salva_dati() const {
     mini_dto_routine r;
-    r.inizio = selettore_inizio -> dateTime();
+    r.inizio = QDateTime(selettore_inizio -> date(), QTime(23, 59, 59));
     r.intervallo = selettore_intervallo -> value();
 
     return r;

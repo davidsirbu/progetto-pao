@@ -40,7 +40,7 @@ QString impegno::calcolo_durata() const {
 Fase impegno::calcola_stato() const {
     QDateTime attuale = QDateTime::currentDateTime();
 
-    if (attuale.secsTo(fine) < 0) return Fase::Scaduto;
+    if (attuale.secsTo(fine) < 0) return Fase::Completato;
     if (attuale.secsTo(inizio) > 0) return Fase::DaFare;
     return Fase::InCorso; 
 }
@@ -70,4 +70,8 @@ void impegno::carica_da_json(const QJsonObject& oggetto_json) {
     inizio = QDateTime::fromString(oggetto_json["inizio"].toString());
     fine = QDateTime::fromString(oggetto_json["fine"].toString());
     luogo = oggetto_json["luogo"].toString();
+}
+
+void impegno::esegui_completamento() {
+
 }

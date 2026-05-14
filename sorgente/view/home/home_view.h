@@ -28,15 +28,16 @@ class home_view: public QWidget {
         void crea_attivita();
         void segnale_dettagli(const QString& id, bool modifica);
         void segnale_elimina(const QString& id);
-        void salva_dati();
-        void salva_con_nome();
+        void segnale_salvataggio(bool manuale);
         void carica_dati();
+        void attivita_completata(const QString& id);
     
     public slots:
         void attivita_selezionata();
         void mostra_dettagli();
         void modifica_attivita();
         void elimina_attivita();
+        void abilita_salvatggio_automatico();
 };
 
 #endif

@@ -15,7 +15,7 @@ void scadenza::set_limite(const QDateTime& l) {
     tempo_limite = l;
 }
 
-void scadenza::segna_completato() {
+void scadenza::esegui_completamento() {
     completato = true;
     tempo_completamento = QDateTime::currentDateTime();
 }
@@ -55,4 +55,8 @@ void scadenza::carica_da_json(const QJsonObject& oggetto_json) {
     completato = oggetto_json["completato"].toInt();
     tempo_limite = QDateTime::fromString(oggetto_json["limite"].toString());
     tempo_completamento = QDateTime::fromString(oggetto_json["fine"].toString());
+}
+
+bool scadenza::get_completato() {
+    return completato;
 }

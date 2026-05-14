@@ -19,10 +19,12 @@ home_corpo::home_corpo(QWidget* parent): QWidget(parent) {
 
     lista_scadenze = setup_lista();
     connect(lista_scadenze, &QListWidget::itemSelectionChanged, this, &home_corpo::scadenza_cliccata);
+    connect(lista_scadenze, &QListWidget::itemChanged, this, &home_corpo::attivita_completata);
     corpo_layout -> addLayout(crea_colonna("Scadenze", lista_scadenze));
 
     lista_routine = setup_lista();
     connect(lista_routine, &QListWidget::itemSelectionChanged, this, &home_corpo::routine_cliccata);
+    connect(lista_routine, &QListWidget::itemChanged, this, &home_corpo::attivita_completata);
     corpo_layout -> addLayout(crea_colonna("Routine", lista_routine));
 
     setLayout(corpo_layout);
@@ -61,7 +63,6 @@ void home_corpo::aggiorna_stato_pulsanti() {
 void home_corpo::carica_impegni(const std::vector<dati_impegno>& i) const {
     lista_impegni -> blockSignals(true);
     lista_impegni -> clear();
-    lista_impegni -> blockSignals(false);
     for (auto it = i.begin(); it != i.end(); ++it) {
         QListWidgetItem* item = new QListWidgetItem();
 
@@ -73,15 +74,24 @@ void home_corpo::carica_impegni(const std::vector<dati_impegno>& i) const {
 
         lista_impegni -> addItem(item);
     }
+    
+    lista_impegni -> blockSignals(false);
 }
 
 void home_corpo::carica_scadenze(const std::vector<dati_scadenza>& s) const {
     lista_scadenze -> blockSignals(true);
     lista_scadenze -> clear();
-    lista_scadenze -> blockSignals(false);
+
     for (auto it = s.begin(); it != s.end(); ++it) {
         QListWidgetItem* item = new QListWidgetItem();
 
+        item -> setFlags(item -> flags() | Qt::ItemIsUserCheckable);
+        if (it -> completata) {
+            item -> setCheckState(Qt::Checked);
+            item -> setFlags(item -> flags() & ~Qt::ItemIsUserCheckable); 
+        }
+        else item -> setCheckState(Qt::Unchecked);
+        
         item -> setText((it -> nome) + '\n' +
                         '\n' +
                         (it -> categoria) + " - " + (it -> fase) + '\n' +
@@ -91,24 +101,31 @@ void home_corpo::carica_scadenze(const std::vector<dati_scadenza>& s) const {
 
         lista_scadenze -> addItem(item);
     }
+
+    lista_scadenze -> blockSignals(false);
 }
 
 void home_corpo::carica_routine(const std::vector<dati_routine>& r) const {
     lista_routine -> blockSignals(true);
     lista_routine -> clear();
-    lista_routine -> blockSignals(false);
     for (auto it = r.begin(); it != r.end(); ++it) {
         QListWidgetItem* item = new QListWidgetItem();
+
+        item -> setFlags(item -> flags() | Qt::ItemIsUserCheckable);
+        item -> setCheckState(Qt::Unchecked);
  
         item -> setText((it -> nome) + '\n' +
                         '\n' +
                         (it -> categoria) + " - " + (it -> fase) + '\n' +
-                        ((it -> prossima_volta).toString("dd/MM/yyyy HH:mm")) + '\n');
+                        "Prossima volta: " + ((it -> prossima_volta).toString("dd/MM/yyyy")) + '\n' +
+                        "Volte di completamento: " + QString::number((it -> volte_puntuale) + (it -> volte_ritardo)));
         
         item -> setData(Qt::UserRole, it -> id);
               
         lista_routine -> addItem(item);
     }
+    
+    lista_routine -> blockSignals(false);
 }
 
 void home_corpo::aggiorna_liste(const std::vector<dati_impegno>& i, 
@@ -172,4 +189,14 @@ void home_corpo::filtra_liste(const QString& s) {
         bool corrispondenza = (oggetto_corrente -> text()).contains(s, Qt::CaseInsensitive);
         oggetto_corrente -> setHidden(!corrispondenza);
     }
+}
+
+void home_corpo::attivita_completata(QListWidgetItem* item) {
+    if ((item -> checkState() == Qt::Checked) && ((item -> listWidget()) == lista_routine)) {
+        lista_routine -> blockSignals(true);
+        item -> setCheckState(Qt::Unchecked);
+        lista_routine -> blockSignals(false);
+    }
+    emit segnale_attivita_completata(item -> data(Qt::UserRole).toString());
+    
 }

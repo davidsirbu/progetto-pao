@@ -31,7 +31,10 @@ void visitor_ricerca::visit(routine& r) {
     dto_routine.categoria = converti_enum(r.get_categoria());
     dto_routine.descrizione = r.get_descrizione();
     dto_routine.inizio = r.get_inizio();
+    dto_routine.prossima_volta = r.get_prossima_volta();
     dto_routine.intervallo = r.get_intervallo();
+    dto_routine.volte_puntuale = r.get_puntuale();
+    dto_routine.volte_ritardo = r.get_ritardo();
 
     emit trovata_routine(dto_routine, stato);
 }
