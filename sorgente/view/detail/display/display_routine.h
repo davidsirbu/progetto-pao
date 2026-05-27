@@ -5,8 +5,9 @@
 
 class display_routine: public display_astratto {
     private:
-        QLabel* etichetta_inizio;
-        QLabel* etichetta_intervallo;
+        QLabel* etichetta_inizio = nullptr;
+        QLabel* etichetta_intervallo = nullptr;
+        
     public:
         display_routine(const dati_routine& dto);
         ~display_routine() = default;

@@ -15,16 +15,19 @@ class gestore {
         gestore();
         ~gestore();
 
-        // Blocco della copia
+        // Blocco della copia, dato che,
+        // ad ogni esecuzione, il gestore è unico.
         gestore(const gestore& copia) = delete;
         gestore& operator=(const gestore& copia) = delete;
 
+        void svuota_lista();
+
         void aggiungi_attivita(attivita* a);
         void rimuovi_attivita(const QString& id);
-        void svuota_lista();
         attivita* cerca_attivita(const QString& id) const;
 
-        void accetta_visitatore(visitor& v);
+        // Itera la visita su tutte le attività
+        void accetta(visitor& v);
 
         void salva_dati(const QString& percorso);
         bool importa_dati(const QString& percorso);

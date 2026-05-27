@@ -1,4 +1,5 @@
 #include "gestore_file.h"
+
 #include <QFile>
 #include <QByteArray>
 

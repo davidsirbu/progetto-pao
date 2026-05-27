@@ -1,5 +1,6 @@
 #include "form_parte_variabile.h"
 #include "../../model/classi/attivita.h"
+
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QLabel>
@@ -9,6 +10,10 @@
 #include <QCheckBox>
 #include <QSpinBox>
 #include <QLineEdit>
+
+void form_impegno::controlla_coerenza_orari(const QDateTime& nuovo_inizio) {
+    selettore_fine -> setMinimumDateTime(nuovo_inizio);
+}
 
 form_impegno::form_impegno(QWidget* parent): QWidget(parent) {
     
@@ -22,7 +27,6 @@ form_impegno::form_impegno(QWidget* parent): QWidget(parent) {
     selettore_inizio = new QDateTimeEdit();
     selettore_inizio -> setDateTime(QDateTime::currentDateTime());
     connect(selettore_inizio, &QDateTimeEdit::dateTimeChanged, this, &form_impegno::controlla_coerenza_orari);
-
     layout_orari -> addWidget(selettore_inizio, 1);
 
     QWidget* spazio = new QWidget(this);
@@ -46,6 +50,7 @@ form_impegno::form_impegno(QWidget* parent): QWidget(parent) {
 
 mini_dto_impegno form_impegno::salva_dati() const {
     mini_dto_impegno i;
+
     i.inizio = selettore_inizio -> dateTime();
     i.fine = selettore_fine -> dateTime();
     i.luogo = etichetta_luogo -> text();
@@ -64,10 +69,6 @@ void form_impegno::reset() {
     selettore_fine -> setDateTime(QDateTime::currentDateTime());
 }
 
-void form_impegno::controlla_coerenza_orari(const QDateTime& nuovo_inizio) {
-    selettore_fine -> setMinimumDateTime(nuovo_inizio);
-}
-
 form_scadenza::form_scadenza(QWidget* parent): QWidget(parent) {
     
     QHBoxLayout* layout_principale = new QHBoxLayout();
@@ -84,7 +85,9 @@ form_scadenza::form_scadenza(QWidget* parent): QWidget(parent) {
 
 mini_dto_scadenza form_scadenza::salva_dati() const {
     mini_dto_scadenza s;
+
     s.limite = selettore_tempo_limite -> dateTime();
+
     return s;
 }
 
@@ -118,6 +121,7 @@ form_routine::form_routine(QWidget* parent): QWidget(parent) {
 
 mini_dto_routine form_routine::salva_dati() const {
     mini_dto_routine r;
+    
     r.inizio = QDateTime(selettore_inizio -> date(), QTime(23, 59, 59));
     r.intervallo = selettore_intervallo -> value();
 

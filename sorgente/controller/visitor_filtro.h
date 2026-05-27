@@ -3,6 +3,7 @@
 
 #include "../model/visitor.h"
 #include "../extra/dto.h"
+
 #include <vector>
 
 class impegno;
@@ -11,6 +12,7 @@ class routine;
 
 class visitor_filtro: public visitor {
     private:
+        // Liste di dati grezzi da passare alla GUI
         std::vector<dati_impegno> lista_impegni;
         std::vector<dati_scadenza> lista_scadenze;
         std::vector<dati_routine> lista_routine;
@@ -21,6 +23,8 @@ class visitor_filtro: public visitor {
     public:
         ~visitor_filtro() = default;
 
+        // Trasforma i dati delle classi del modello in dati
+        // grezzi da inserire nelle liste
         void visit(impegno& i) override;
         void visit(scadenza& v) override;
         void visit(routine& r) override;

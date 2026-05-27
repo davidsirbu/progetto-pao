@@ -73,5 +73,6 @@ void impegno::carica_da_json(const QJsonObject& oggetto_json) {
 }
 
 void impegno::esegui_completamento() {
-
+    // È vuota poichè il completamento
+    // di un impegno è automatico
 }

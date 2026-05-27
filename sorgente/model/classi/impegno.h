@@ -2,6 +2,7 @@
 #define IMPEGNO_H
 
 #include "attivita.h"
+
 #include <QDateTime>
 
 class impegno : public attivita {

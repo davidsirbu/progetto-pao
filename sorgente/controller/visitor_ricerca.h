@@ -3,6 +3,7 @@
 
 #include "../model/visitor.h"
 #include "../extra/dto.h"
+
 #include <QObject>
 #include <QString>
 
@@ -22,6 +23,7 @@ class visitor_ricerca: public QObject, public visitor {
     public:
         ~visitor_ricerca() = default;
 
+        // Trasforma i dati delle classi in dati grezzi per la GUI
         void visit(impegno& i) override;
         void visit(scadenza& v) override;
         void visit(routine& r) override;
@@ -32,6 +34,8 @@ class visitor_ricerca: public QObject, public visitor {
         void reset();
 
     signals:
+        // Connessi tramite il controller alla GUI, che si comporterà
+        // in modo diverso in base al tipo di attività
         void trovato_impegno(const dati_impegno& i, bool modifica);
         void trovata_scadenza(const dati_scadenza& s, bool modifica);
         void trovata_routine(const dati_routine& r, bool modifica);

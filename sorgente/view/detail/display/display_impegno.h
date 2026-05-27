@@ -5,9 +5,9 @@
 
 class display_impegno: public display_astratto {
     private:
-        QLabel* etichetta_inizio;
-        QLabel* etichetta_fine;
-        QLabel* etichetta_luogo;
+        QLabel* etichetta_inizio = nullptr;
+        QLabel* etichetta_fine = nullptr;
+        QLabel* etichetta_luogo = nullptr;
 
     public:
         display_impegno(const dati_impegno& dto);

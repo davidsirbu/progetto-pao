@@ -1,4 +1,5 @@
-#include "attivita.h" 
+#include "attivita.h"
+
 #include <QString>
 
 attivita::attivita(const QString& n, const QString& d, const Gruppo c) : id(QUuid::createUuid().toString()), nome(n), descrizione(d), categoria(c) {};

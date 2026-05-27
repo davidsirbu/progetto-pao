@@ -2,6 +2,7 @@
 #define ROUTINE_H
 
 #include "attivita.h"
+
 #include <QDateTime>
 
 class routine : public attivita {

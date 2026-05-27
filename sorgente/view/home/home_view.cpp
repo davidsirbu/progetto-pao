@@ -1,6 +1,7 @@
 #include "home_view.h"
 #include "home_header.h"
 #include "home_corpo.h"
+
 #include <QVBoxLayout>
 
 home_view::home_view(QWidget* parent): QWidget(parent) {
@@ -48,6 +49,6 @@ void home_view::elimina_attivita() {
     header -> disattiva_pulsanti();
 }
 
-void home_view::abilita_salvatggio_automatico() {
+void home_view::abilita_salvataggio_automatico() {
     header -> abilita_salvataggio_automatico();
 }

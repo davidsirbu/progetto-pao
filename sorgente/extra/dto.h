@@ -2,9 +2,13 @@
 #define DTO_H
 
 #include "enums.h"
+
 #include <QString>
 #include <QDateTime>
 
+// Il design pattern usato per il trasporto di informazioni tra controller e view è il Data Trasfer Object (DTO)
+// Contiene dati grezzi incapsulati in una struct, in modo da impedire alla view di sapere come sono fatti nel model,
+// aumentando così l'estensibilità del codice.
 
 struct dati_impegno {
     QString id;
@@ -40,6 +44,8 @@ struct dati_routine {
     int volte_puntuale = 0;
     int volte_ritardo = 0;
 };
+
+// Usati nella pagina di modifica per trasportare i dati dipendenti dal tipo di attività.
 
 struct mini_dto_impegno {
     QDateTime inizio;

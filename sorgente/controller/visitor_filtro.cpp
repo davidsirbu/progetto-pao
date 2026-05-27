@@ -2,11 +2,13 @@
 #include "../model/classi/impegno.h"
 #include "../model/classi/scadenza.h"
 #include "../model/classi/routine.h"
+
 #include <QListWidget>
 #include <QListWidgetItem>
 
 void visitor_filtro::visit(impegno& i) {
     dati_impegno dto;
+
     dto.id = i.get_id();
     dto.nome = i.get_nome();
     dto.categoria = converti_enum(i.get_categoria());
@@ -16,11 +18,13 @@ void visitor_filtro::visit(impegno& i) {
     dto.fine = i.get_fine();
     dto.durata = i.calcolo_durata();
     dto.luogo = i.get_luogo();
+
     lista_impegni.push_back(dto);
 }
 
 void visitor_filtro::visit(scadenza& s) {
     dati_scadenza dto;
+
     dto.id = s.get_id();
     dto.nome = s.get_nome();
     dto.categoria = converti_enum(s.get_categoria());
@@ -28,11 +32,13 @@ void visitor_filtro::visit(scadenza& s) {
     dto.descrizione = s.get_descrizione();
     dto.limite = s.get_limite();
     dto.completata = s.get_completato();
+
     lista_scadenze.push_back(dto);
 }
 
 void visitor_filtro::visit(routine& r) {
     dati_routine dto;
+
     dto.id = r.get_id();
     dto.nome = r.get_nome();
     dto.categoria = converti_enum(r.get_categoria());
@@ -43,6 +49,7 @@ void visitor_filtro::visit(routine& r) {
     dto.intervallo = r.get_intervallo();
     dto.volte_puntuale = r.get_puntuale();
     dto.volte_ritardo = r.get_ritardo();
+    
     lista_routine.push_back(dto);
 }
 

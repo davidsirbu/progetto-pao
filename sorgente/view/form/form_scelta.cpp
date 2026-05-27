@@ -1,4 +1,5 @@
 #include "form_scelta.h"
+
 #include <QPushButton>
 #include <QStackedLayout>
 #include <QVBoxLayout>
@@ -61,17 +62,17 @@ mini_dto_routine form_scelta::ricevi_dati_routine() const {
     return routine_window -> salva_dati();
 }
 
-void form_scelta::inoltra_dati_impegno(const dati_impegno& i) {
+void form_scelta::inoltra_dati(const dati_impegno& i) {
     cambia_in_impegno();
     impegno_window -> set_dati(i);
 }
 
-void form_scelta::inoltra_dati_scadenza(const dati_scadenza& s) {
+void form_scelta::inoltra_dati(const dati_scadenza& s) {
     cambia_in_scadenza();
     scadenza_window -> set_dati(s);
 }
 
-void form_scelta::inoltra_dati_routine(const dati_routine& r) {
+void form_scelta::inoltra_dati(const dati_routine& r) {
     cambia_in_routine();
     routine_window -> set_dati(r);
 }

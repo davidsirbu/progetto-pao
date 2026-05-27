@@ -2,6 +2,7 @@
 #define SCADENZA_H
 
 #include "attivita.h"
+
 #include <QDateTime>
 #include <QString>
 

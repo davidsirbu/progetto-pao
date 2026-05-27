@@ -2,13 +2,13 @@
 #define ATTIVITA_H
 
 #include "../../extra/enums.h"
+
 #include <QString>
 #include <QUuid>
 #include <QDateTime>
 #include <QJsonObject>
 
 class visitor;
-
 
 class attivita {
     private:
@@ -20,7 +20,10 @@ class attivita {
     public:
         attivita() = default;
         attivita(const QString& n, const QString& d, const Gruppo c);
-        virtual ~attivita() = default;
+        virtual ~attivita() = default; // Anche se la classe è astratta, non serve mettere il
+                                       // distruttore virtuale astratto, dato che ci sono già
+                                       // altri metodi virtuali astratti. Mettere "= default"
+                                       // risparmia righe di codice nel .cpp
 
         QString get_id() const;
         QString get_nome() const;
@@ -33,9 +36,13 @@ class attivita {
 
         virtual Fase calcola_stato() const = 0;
         virtual void esegui_completamento() = 0;
+
+        // Funzione usata dai visitor per far determinare a quest'ultimi
+        // il tipo dinamico di attività
         virtual void accetta(visitor& v) = 0;
-        virtual QJsonObject salva_in_json() const = 0;
+        
         virtual void carica_da_json(const QJsonObject& oggetto_json) = 0;
+        virtual QJsonObject salva_in_json() const = 0;
 };
 
 #endif

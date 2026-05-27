@@ -1,8 +1,26 @@
-# Ignora i file di configurazione di qmake
+# File di configurazione di qmake
 .qmake.stash
 Makefile*
 
-# Ignora la cartella temporanea che abbiamo creato
+# Cartella di build
 build/
-debug/
-release/
+
+# File temporanei di LaTeX
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
+*.toc
+*.out
+*.lof
+*.lot
+*.bbl
+*.blg
+
+# Artefatti di Windows/WSL
+*:Zone.Identifier
+*.Zone.Identifier
+
+# File compilato di LaTeX
+main.pdf

@@ -2,6 +2,7 @@
 #define DISPLAY_ASTRATTO_H
 
 #include "../../../extra/dto.h"
+
 #include <QWidget>
 
 class QFormLayout;
@@ -12,11 +13,11 @@ class display_astratto: public QWidget {
     Q_OBJECT;
 
     private:
-        QFormLayout* layout;
         const QString id;
-        QLabel* etichetta_titolo;
-        QTextBrowser* etichetta_descrizione;
-        QLabel* etichetta_categoria;
+        QFormLayout* layout = nullptr;
+        QLabel* etichetta_titolo = nullptr;
+        QTextBrowser* etichetta_descrizione = nullptr;
+        QLabel* etichetta_categoria = nullptr;
     
     public:
         display_astratto(const QString id, const QString& titolo, const QString& categoria, const QString& descrizione, QWidget* parent = nullptr);

@@ -1,4 +1,5 @@
 #include "display_astratto.h"
+
 #include <QFormLayout>
 #include <QLabel>
 #include <QTextBrowser>

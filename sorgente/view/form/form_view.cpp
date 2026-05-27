@@ -1,6 +1,7 @@
 #include "form_view.h"
 #include "form_scelta.h"
 #include "../../extra/dto.h"
+
 #include <QLineEdit>
 #include <QTextEdit>
 #include <QComboBox>
@@ -8,6 +9,18 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QLabel>
+
+void form_view::reset() {
+    id.clear();
+    etichetta_titolo -> setText("");
+    parte_scelta -> reset();
+    etichetta_descrizione -> setText("");
+}
+
+void form_view::controlla_stringa(const QString& input) {
+    if (input.trimmed().isEmpty()) pulsante_salva -> setEnabled(false);
+    else pulsante_salva -> setEnabled(true);
+}
 
 form_view::form_view(QWidget* parent): QWidget(parent) {
 
@@ -54,11 +67,8 @@ form_view::form_view(QWidget* parent): QWidget(parent) {
     setLayout(layout_principale);
 }
 
-void form_view::reset() {
-    id.clear();
-    etichetta_titolo -> setText("");
-    parte_scelta -> reset();
-    etichetta_descrizione -> setText("");
+void form_view::imposta_titolo_finestra(const QString& titolo) {
+    titolo_finestra -> setText(titolo);
 }
 
 void form_view::salva() {
@@ -115,7 +125,7 @@ void form_view::carica_impegno(const dati_impegno& i) {
     etichetta_titolo -> setText(i.nome);
     menu_gruppo -> setCurrentIndex(menu_gruppo -> findText(i.categoria));
     etichetta_descrizione -> setText(i.descrizione);
-    parte_scelta -> inoltra_dati_impegno(i);
+    parte_scelta -> inoltra_dati(i);
 }
 
 void form_view::carica_scadenza(const dati_scadenza& s) {
@@ -124,7 +134,7 @@ void form_view::carica_scadenza(const dati_scadenza& s) {
     etichetta_titolo -> setText(s.nome);
     menu_gruppo -> setCurrentIndex(menu_gruppo -> findText(s.categoria));
     etichetta_descrizione -> setText(s.descrizione);
-    parte_scelta -> inoltra_dati_scadenza(s);
+    parte_scelta -> inoltra_dati(s);
 }
 
 void form_view::carica_routine(const dati_routine& r) {
@@ -134,14 +144,5 @@ void form_view::carica_routine(const dati_routine& r) {
     
     menu_gruppo -> setCurrentIndex(menu_gruppo -> findText(r.categoria));
     etichetta_descrizione -> setText(r.descrizione);
-    parte_scelta -> inoltra_dati_routine(r);
-}
-
-void form_view::controlla_stringa(const QString& input) {
-    if (input.trimmed().isEmpty()) pulsante_salva -> setEnabled(false);
-    else pulsante_salva -> setEnabled(true);
-}
-
-void form_view::imposta_titolo_finestra(const QString& titolo) {
-    titolo_finestra -> setText(titolo);
+    parte_scelta -> inoltra_dati(r);
 }

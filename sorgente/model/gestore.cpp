@@ -14,6 +14,11 @@ gestore::~gestore() {
     svuota_lista();
 }
 
+void gestore::svuota_lista() {
+    for (auto it = gestore_attivita.begin(); it != gestore_attivita.end(); ++it) delete *it;
+    gestore_attivita.clear();
+}
+
 void gestore::aggiungi_attivita(attivita* a) {
     gestore_attivita.push_back(a);
 }
@@ -26,11 +31,6 @@ void gestore::rimuovi_attivita(const QString& id_r) {
     gestore_attivita.erase(it);
 }
 
-void gestore::svuota_lista() {
-    for (auto it = gestore_attivita.begin(); it != gestore_attivita.end(); ++it) delete *it;
-    gestore_attivita.clear();
-}
-
 attivita* gestore::cerca_attivita(const QString& id_c) const {
     auto it = gestore_attivita.begin();
     while ((it != gestore_attivita.end()) && ((*it) -> get_id() != id_c)) it++;
@@ -38,7 +38,7 @@ attivita* gestore::cerca_attivita(const QString& id_c) const {
     return *it;
 }
 
-void gestore::accetta_visitatore(visitor& v) {
+void gestore::accetta(visitor& v) {
     for (auto it = gestore_attivita.begin(); it != gestore_attivita.end(); ++it) {
         (**it).accetta(v);
     }

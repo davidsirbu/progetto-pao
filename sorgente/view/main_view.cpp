@@ -2,6 +2,7 @@
 #include "home/home_view.h"
 #include "detail/detail_view.h"
 #include "form/form_view.h"
+
 #include <QStackedLayout>
 #include <QFileDialog>
 
@@ -49,7 +50,7 @@ void main_view::passa_dati_impegno(const dati_impegno& i, bool stato) {
         stacked_layout -> setCurrentIndex(2);
     }
     else {
-        detail_window -> carica_dettagli_impegno(i);
+        detail_window -> inoltra_dettagli(i);
         stacked_layout -> setCurrentIndex(1);
     }
 }
@@ -61,7 +62,7 @@ void main_view::passa_dati_scadenza(const dati_scadenza& s, bool stato) {
         stacked_layout -> setCurrentIndex(2);
     }
     else {
-        detail_window -> carica_dettagli_scadenza(s);
+        detail_window -> inoltra_dettagli(s);
         stacked_layout -> setCurrentIndex(1);
     }
 }
@@ -73,7 +74,7 @@ void main_view::passa_dati_routine(const dati_routine& r, bool stato) {
         stacked_layout -> setCurrentIndex(2);
     }
     else {
-        detail_window -> carica_dettagli_routine(r);
+        detail_window -> inoltra_dettagli(r);
         stacked_layout -> setCurrentIndex(1);
     }
 }
@@ -89,7 +90,7 @@ QString main_view::chiedi_percorso_salvataggio() {
         "mia_agenda.json",
         "File JSON (*.json);;Tutti i file (*.*)");
 
-    home_window -> abilita_salvatggio_automatico();
+    home_window -> abilita_salvataggio_automatico();
     return percorso;
 }
 
@@ -100,6 +101,6 @@ QString main_view::chiedi_percorso_caricamento() {
         "",
         "File JSON (*.json);;Tutti i file (*.*)");
 
-    home_window -> abilita_salvatggio_automatico();
+    home_window -> abilita_salvataggio_automatico();
     return percorso;
 }

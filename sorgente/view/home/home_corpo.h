@@ -3,6 +3,7 @@
 
 #include "../../extra/enums.h"
 #include "../../extra/dto.h"
+
 #include <vector>
 #include <QWidget>
 
@@ -21,6 +22,7 @@ class home_corpo: public QWidget {
         QListWidget* lista_scadenze;
         QListWidget* lista_routine;
     
+        // Funzioni di utilità per creare le liste della home_view
         QListWidget* setup_lista();
         QVBoxLayout* crea_colonna(const QString& nome_attivita, QListWidget* lista);
 
@@ -41,17 +43,18 @@ class home_corpo: public QWidget {
         QString get_id_selezionato() const;
 
     signals:
-        void cambio_selezione();
-        void doppio_click_su_attivita();
-        void segnale_attivita_completata(const QString id);
+        // FLUSSO home_view <-- home_corpo
+        void cambio_selezione(); // Emesso da aggiorna_stato_pulsanti()
+        void doppio_click_su_attivita(); // Connesso in setup_lista()
+        void segnale_attivita_completata(const QString id); // Emesso da attivita_completata()
 
     public slots:
+        // Impediscono il click di più attività contemporaneamente
         void impegno_cliccato();
         void scadenza_cliccata();
         void routine_cliccata();
 
         void filtra_liste(const QString& s);
-
         void attivita_completata(QListWidgetItem* item);
 
 };

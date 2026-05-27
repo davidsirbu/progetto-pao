@@ -2,6 +2,7 @@
 #define FORM_PARTE_VARIABILE_H
 
 #include "../../extra/dto.h"
+
 #include <QWidget>
 #include <QDateTime>
 #include <QString>
@@ -16,9 +17,9 @@ class form_impegno: public QWidget {
     Q_OBJECT
 
     private:
-        QDateTimeEdit* selettore_inizio;
-        QDateTimeEdit* selettore_fine;
-        QLineEdit* etichetta_luogo;
+        QDateTimeEdit* selettore_inizio = nullptr;
+        QDateTimeEdit* selettore_fine = nullptr;
+        QLineEdit* etichetta_luogo = nullptr;
 
         void controlla_coerenza_orari(const QDateTime& nuovo_inizio);
 
@@ -36,7 +37,7 @@ class form_scadenza: public QWidget {
     Q_OBJECT
 
     private:
-        QDateTimeEdit* selettore_tempo_limite;
+        QDateTimeEdit* selettore_tempo_limite = nullptr;
         
     public:
         form_scadenza(QWidget* parent);
@@ -52,9 +53,9 @@ class form_routine: public QWidget {
     Q_OBJECT
 
     private:
-        QDateEdit* selettore_inizio;
-        QSpinBox* selettore_intervallo;
-        QCheckBox* selettore_tutto_il_giorno;
+        QDateEdit* selettore_inizio = nullptr;
+        QSpinBox* selettore_intervallo = nullptr;
+        QCheckBox* selettore_tutto_il_giorno = nullptr;
 
     public:
         form_routine(QWidget* parent);
