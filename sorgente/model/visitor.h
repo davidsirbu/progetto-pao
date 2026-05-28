@@ -7,6 +7,7 @@ class routine;
 
 class visitor {
     public:
+        visitor() = default;
         ~visitor() = default;
         virtual void visit(impegno& i) = 0;
         virtual void visit(scadenza& s) = 0;

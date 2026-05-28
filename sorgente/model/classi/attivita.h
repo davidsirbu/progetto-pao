@@ -20,10 +20,7 @@ class attivita {
     public:
         attivita() = default;
         attivita(const QString& n, const QString& d, const Gruppo c);
-        virtual ~attivita() = default; // Anche se la classe è astratta, non serve mettere il
-                                       // distruttore virtuale astratto, dato che ci sono già
-                                       // altri metodi virtuali astratti. Mettere "= default"
-                                       // risparmia righe di codice nel .cpp
+        virtual ~attivita() = 0;
 
         QString get_id() const;
         QString get_nome() const;

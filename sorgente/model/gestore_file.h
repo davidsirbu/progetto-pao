@@ -7,6 +7,7 @@
 class gestore_file {
     public:
         gestore_file() = default;
+        ~gestore_file() = default;
 
         bool scrivi_file(const QString& percorso, const QJsonDocument& documento) const;
 
