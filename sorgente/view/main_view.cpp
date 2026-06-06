@@ -5,6 +5,8 @@
 
 #include <QStackedLayout>
 #include <QFileDialog>
+#include <QCloseEvent>
+#include <QTimer>
 
 main_view::main_view(QWidget* parent): QWidget(parent) {
 
@@ -90,7 +92,7 @@ QString main_view::chiedi_percorso_salvataggio() {
         "mia_agenda.json",
         "File JSON (*.json);;Tutti i file (*.*)");
 
-    home_window -> abilita_salvataggio_automatico();
+    if (!(percorso.isEmpty())) home_window -> abilita_salvataggio_automatico();
     return percorso;
 }
 
@@ -101,6 +103,32 @@ QString main_view::chiedi_percorso_caricamento() {
         "",
         "File JSON (*.json);;Tutti i file (*.*)");
 
-    home_window -> abilita_salvataggio_automatico();
+    if (!(percorso.isEmpty())) home_window -> abilita_salvataggio_automatico();
     return percorso;
+}
+
+void main_view::closeEvent(QCloseEvent* event) {
+    if (chiusura_autorizzata) {
+        event -> accept();
+    }
+    else {
+        emit segnale_chiusura_finestra();
+
+        if (chiusura_autorizzata) event -> accept();
+        else event -> ignore();
+    }
+}
+
+QMessageBox::StandardButton main_view::mostra_popup_salvataggio() {
+    return QMessageBox::question(
+        this,
+        "Modifiche non salvate",
+        "Risultano modifiche non salvate. Effettuare il salvataggio?",
+        QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel,
+        QMessageBox::Cancel
+    );
+}
+
+void main_view::autorizza_chiusura() {
+    chiusura_autorizzata = true;
 }

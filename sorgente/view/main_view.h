@@ -6,6 +6,7 @@
 #include <vector>
 #include <QMainWindow>
 #include <QStackedLayout>
+#include <QMessageBox>
 
 class impegno;
 class scadenza;
@@ -23,6 +24,8 @@ class main_view : public QWidget {
         detail_view* detail_window;
         form_view* form_window;
 
+        bool chiusura_autorizzata = false;
+
     public:
         main_view(QWidget* parent = nullptr);
         ~main_view() = default;
@@ -34,6 +37,11 @@ class main_view : public QWidget {
 
         QString chiedi_percorso_salvataggio();
         QString chiedi_percorso_caricamento();
+
+        QMessageBox::StandardButton mostra_popup_salvataggio();
+        void autorizza_chiusura();
+
+        void closeEvent(QCloseEvent* event) override;
 
     signals:
         // FLUSSO: controller <-- main_view
@@ -53,6 +61,8 @@ class main_view : public QWidget {
         void invia_dati_impegno(const dati_impegno& i);
         void invia_dati_scadenza(const dati_scadenza& s);
         void invia_dati_routine(const dati_routine& r);
+
+        void segnale_chiusura_finestra();
 
     public slots:
         // Emesso da home_view

@@ -20,6 +20,8 @@ class controller: public QObject {
         visitor_ricerca ricercatore;
         QString percorso_salvataggio_attuale;
 
+        bool modifiche_non_salvate = false;
+
         Gruppo converti_stringa_in_enum(const QString& s) const;
 
         // Tramite il visitor_filtro, prende i dati grezzi dalle attività,
@@ -59,10 +61,12 @@ class controller: public QObject {
         // (Il flag "modifica" decide se in sola lettura o anche modifica)
         void esporta_a_gui(const QString& id, bool modifica);
 
-        void salva_su_file(bool manuale);
-        void carica_da_file();
+        bool salva_su_file(bool manuale);
+        bool carica_da_file();
 
         void completa_attivita(const QString& id);
+
+        void controllo_uscita();
 };
 
 #endif

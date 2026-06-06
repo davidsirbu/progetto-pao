@@ -28,8 +28,6 @@ class gestore {
 
         void ordina_attivita();
 
-        bool ha_modifiche() const;
-
         // Itera la visita su tutte le attività
         void accetta(visitor& v);
 
