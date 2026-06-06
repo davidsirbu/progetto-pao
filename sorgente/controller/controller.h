@@ -32,7 +32,7 @@ class controller: public QObject {
         controller(gestore* g, main_view* v);
         ~controller() = default;
 
-        // Sincronizza GUI e controller
+        // Sincronizza GUI e model
         void refresh();
 
         // Crea l'attività a partire dai dati grezzi

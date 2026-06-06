@@ -33,6 +33,7 @@ class attivita {
 
         virtual Fase calcola_stato() const = 0;
         virtual void esegui_completamento() = 0;
+        virtual QDateTime valore_ordinamento() const = 0;
 
         // Funzione usata dai visitor per far determinare a quest'ultimi
         // il tipo dinamico di attività

@@ -30,6 +30,7 @@ class impegno : public attivita {
         void esegui_completamento() override;
         void accetta(visitor& v) override;
         QJsonObject salva_in_json() const override;
+        QDateTime valore_ordinamento() const override;
         void carica_da_json(const QJsonObject& oggetto_json) override;
 };
 

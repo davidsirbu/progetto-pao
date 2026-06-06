@@ -45,6 +45,10 @@ Fase impegno::calcola_stato() const {
     return Fase::InCorso; 
 }
 
+QDateTime impegno::valore_ordinamento() const {
+    return inizio;
+}
+
 void impegno::accetta(visitor& v) {
     v.visit(*this);
 }

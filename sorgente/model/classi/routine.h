@@ -29,6 +29,7 @@ class routine : public attivita {
 
         Fase calcola_stato() const override;
         void esegui_completamento() override;
+        QDateTime valore_ordinamento() const override;
         void accetta(visitor& v) override;
         QJsonObject salva_in_json() const override;
         void carica_da_json(const QJsonObject& oggetto_json) override;

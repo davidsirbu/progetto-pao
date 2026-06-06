@@ -1,1 +1,47 @@
 \section{Utilizzo del polimorfismo}
+
+In linea con la separazione imposta dal design pattern MVC, l'applicazione del polimorfismo
+all'interno del progetto avviene in due fasi.
+
+\subsection{Modello logico}
+
+All'interno del modello logico, l'applicazione del polimorfismo si fonda sulla definizione di
+alcune funzioni virtuali pure nella classe base astratta \texttt{attivita}.
+Tali metodi forniscono un'interfaccia comune per caratteristiche trasversali ad ogni tipo di
+attività (come la possibilità di essere completate), lasciando alle classi derivate l'implementazione
+del comportamento specifico.
+Il dominio di applicazione di queste funzioni è esclusivamente il \textbf{Model}, garantendone l'indipendenza
+rispetto all'interfaccia grafica e permettendone il riutilizzo in altri contesti (cambio di framework
+per l'interfaccia, passaggio da interfaccia grafica a client a linea di comando (CLI), ...).
+
+\subsection{Design Pattern Visitor}
+
+Per rendere la \textbf{View} il più passiva possibile rispetto ai dati in input, si è scelto di
+affidare l'estrazione e la gestione dei dati grezzi al \textbf{Controller}. Alle classi
+intermedie dell'interfaccia grafica viene affidato solamente il compito di inoltrare i pacchetti ricevuti
+dal controller alle classi predisposte alla visualizzazione dei dati.
+Per gestire i dati grezzi è stato deciso di utilizzare i DTO (Data Transfer Object), in modo da
+slegare la logica delle classi dalla visualizzazione finale nell'interfaccia grafica.
+
+L'applicazione del polimorfismo a questo processo avviene nel controller, grazie all'applicazione
+del design pattern Visitor. Grazie al Double Dispatch (doppio smistamento), la classe concreta
+restituisce il puntatore a se stessa \texttt{this}, invocando autonomamente la funzione corretta
+del visitor.
+
+In particolare, nel progetto i visitor sono stati usati per generare dinamicamente i DTO contenenti
+i dettagli delle attività necessarie in un determinato momento all'interfaccia grafica.
+
+Nel primo caso, ad ogni aggiornamento della schermata principale (che avviene ad ogni creazione, modifica
+o eliminazione di un'attività, in modo da garantire la sincronizzazione tra \textit{Model} e
+\textit{View}), il controller prende tutte le attività presenti nel \texttt{gestore}, ne genera il
+DTO corrispondente e lo smista nella lista corretta, predisponendone la visualizzazione nella
+schermata principale.
+
+Invece, nel secondo caso, il visitor agisce su un'attività generica, identificata tramite ID
+univoco, estraendone dinamicamente i dati grezzi e generando il rispettivo DTO, che successivamente
+verrà inoltrato alla finestra richiedente (che sia essa di modifica o di visualizzazione dettagliata
+in sola lettura).
+
+Grazie all'applicazione del polimorfismo e del design pattern \textit{Visitor}, è possibile far
+lavorare la classe \texttt{gestore} esclusivamente con puntatori ad attività generiche,
+favorendo l'estensibilità del codice.

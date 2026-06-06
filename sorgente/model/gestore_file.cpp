@@ -24,3 +24,4 @@ QJsonDocument gestore_file::leggi_file(const QString& percorso) const {
     
     return QJsonDocument::fromJson(dati_grezzi);
 }
+

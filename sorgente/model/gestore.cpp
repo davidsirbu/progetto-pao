@@ -5,6 +5,7 @@
 #include "classi/scadenza.h"
 #include "classi/routine.h"
 
+#include <algorithm>
 #include <QJsonArray>
 #include <QJsonDocument>
 
@@ -36,6 +37,12 @@ attivita* gestore::cerca_attivita(const QString& id_c) const {
     while ((it != gestore_attivita.end()) && ((*it) -> get_id() != id_c)) it++;
     if (it == gestore_attivita.end()) return nullptr;
     return *it;
+}
+
+void gestore::ordina_attivita() {
+    std::sort(gestore_attivita.begin(), gestore_attivita.end(), [](attivita* a, attivita* b) {
+        return (a->valore_ordinamento()) < (b -> valore_ordinamento());
+    });
 }
 
 void gestore::accetta(visitor& v) {

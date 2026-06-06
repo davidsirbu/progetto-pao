@@ -52,6 +52,10 @@ Fase routine::calcola_stato() const {
     return Fase::Scaduto;
 }
 
+QDateTime routine::valore_ordinamento() const {
+    return prossima_volta;
+}
+
 void routine::accetta(visitor& v) {
     v.visit(*this);
 }

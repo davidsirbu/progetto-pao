@@ -36,9 +36,10 @@ categorie:
 
 La gestione vera e propria delle instanze delle classi è affidata alla classe \texttt{gestore},
 che, tramite un \texttt{std::vector<attivita*>} permette all'applicazione di effettuare le
-operazioni CRUD. Un vantaggio dell'uso di puntatori alla classe astratta \texttt{attivita} è il
-rispetto del principio Open-Closed: è possibile, infatti, inserire altre classi derivate concrete
-senza necessità di modificare il codice del gestore.
+operazioni CRUD. I vantaggi dell'uso di puntatori alla classe astratta \texttt{attivita} sono
+la possibilità di implementare il polimorfismo e il rispetto del principio Open-Closed:
+è possibile, infatti, inserire altre classi derivate concrete senza necessità di modificare
+il codice del gestore.
 
 Si è scelto di usare un \texttt{std::vector} per sfruttare la proprietà di continuità dei vettori:
 infatti, le operazioni effettuate più frequentemente sono l'accesso arbitrario (visualizzazione e

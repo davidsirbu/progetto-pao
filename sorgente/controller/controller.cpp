@@ -40,6 +40,7 @@ controller::controller(gestore* g, main_view* v): gestore_attivita(g), main_wind
 
 void controller::refresh() {
     filtratore.reset();
+    gestore_attivita -> ordina_attivita();
     gestore_attivita -> accetta(filtratore);
     passa_liste(filtratore.get_impegni(), filtratore.get_scadenze(), filtratore.get_routine());
 }
@@ -67,11 +68,12 @@ void controller::modifica_attivita(const dati_impegno& i) {
 
     // Il downcast è necessario poiché questa funzione trasforma dati grezzi della GUI
     // in informazioni per le classi (separazione MVC). Nonostante, grazie all'univocità
-    // dell'id, si conosca con esattezza il tipo dinamico di "aux", si è deciso di implementare
+    // dell'ID, si conosca con esattezza il tipo dinamico di "aux", si è deciso di implementare
     // un dynamic_cast al posto dello static_cast per rendere l'architettura robusta ad
     // eventuali errori di programmazione futuri.
 
-    if (impegno* impegno_da_modificare = dynamic_cast<impegno*>(aux)) {
+    impegno* impegno_da_modificare = dynamic_cast<impegno*>(aux);
+    if (impegno_da_modificare != nullptr) {
         impegno_da_modificare -> set_nome(i.nome);
         impegno_da_modificare -> set_descrizione(i.descrizione);
         impegno_da_modificare -> set_categoria(converti_stringa_in_enum(i.categoria));
@@ -90,7 +92,8 @@ void controller::modifica_attivita(const dati_scadenza& s) {
     // un dynamic_cast al posto dello static_cast per rendere l'architettura robusta ad
     // eventuali errori di programmazione futuri.
 
-    if (scadenza* scadenza_da_modificare = dynamic_cast<scadenza*>(aux)) {
+    scadenza* scadenza_da_modificare = dynamic_cast<scadenza*>(aux);
+    if (scadenza_da_modificare != nullptr) {
         scadenza_da_modificare -> set_nome(s.nome);
         scadenza_da_modificare -> set_descrizione(s.descrizione);
         scadenza_da_modificare -> set_categoria(converti_stringa_in_enum(s.categoria));
@@ -108,7 +111,8 @@ void controller::modifica_attivita(const dati_routine& r) {
     // un dynamic_cast al posto dello static_cast per rendere l'architettura robusta ad
     // eventuali errori di programmazione futuri.
 
-    if (routine* routine_da_modificare = dynamic_cast<routine*>(aux)) {
+    routine* routine_da_modificare = dynamic_cast<routine*>(aux);
+    if (routine_da_modificare != nullptr) {
         routine_da_modificare -> set_nome(r.nome);
         routine_da_modificare -> set_descrizione(r.descrizione);
         routine_da_modificare -> set_categoria(converti_stringa_in_enum(r.categoria));

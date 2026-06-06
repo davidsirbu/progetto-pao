@@ -30,6 +30,10 @@ Fase scadenza::calcola_stato() const {
     return Fase::Scaduto;    
 }
 
+QDateTime scadenza::valore_ordinamento() const {
+    return tempo_limite;
+}
+
 void scadenza::accetta(visitor& v) {
     v.visit(*this);
 }

@@ -26,6 +26,10 @@ class gestore {
         void rimuovi_attivita(const QString& id);
         attivita* cerca_attivita(const QString& id) const;
 
+        void ordina_attivita();
+
+        bool ha_modifiche() const;
+
         // Itera la visita su tutte le attività
         void accetta(visitor& v);
 

@@ -1,1 +1,16 @@
 \section{Metodo di persistenza dei dati}
+
+Per garantire la persistenza dei dati anche in seguito alla chiusura dell'applicazione, si è
+scelto di utilizzare il formato JSON, data la presenza di classi apposite nel framework Qt, tra cui
+\texttt{QJsonObject}, \texttt{QJsonArray}, \texttt{QJsonDocument}.
+
+La gestione a basso livello del file (con nome di default \texttt{agenda.json}) viene affidata
+alla classe \texttt{gestione\_file}, contenuta nella classe \texttt{gestore}.
+Tramite i dati ricevuti, il \texttt{gestore} è in grado di ricostruire lo storico di tutte
+le attività presenti all'ultimo salvataggio.
+
+Il file è unico, e, al suo interno, le attività sono contenute in un array. In ogni attività
+singola, i dati sono disposti in modalità chiave-valore. Tra queste coppie, ne è presente una
+che identifica la tipologia di attività, usata dalla classe \texttt{gestore} per creare il
+tipo di attività corretta. La coerenza dell'intero elenco di attività tra diverse esecuzioni
+del programma viene garantita dalla presenza del campo ID in ogni attività.
