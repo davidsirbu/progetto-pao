@@ -5,7 +5,7 @@ QT += \
         widgets \
         core
 
-CONFIG += c++17 console
+CONFIG += c++17 console debug
 CONFIG -= app_bundle
 
 HEADERS += \
@@ -21,6 +21,7 @@ HEADERS += \
         controller/controller.h \
         controller/visitor_filtro.h \
         controller/visitor_ricerca.h \
+        controller/visitor_modifica.h \
         view/main_view.h \
         view/home/home_view.h \
         view/home/home_header.h \
@@ -46,6 +47,7 @@ SOURCES += \
         controller/controller.cpp \
         controller/visitor_filtro.cpp \
         controller/visitor_ricerca.cpp \
+        controller/visitor_modifica.cpp \
         view/main_view.cpp \
         view/home/home_view.cpp \
         view/home/home_header.cpp \

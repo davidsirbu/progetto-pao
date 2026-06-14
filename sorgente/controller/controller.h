@@ -3,6 +3,7 @@
 
 #include "visitor_filtro.h"
 #include "visitor_ricerca.h"
+#include "visitor_modifica.h"
 #include "../extra/dto.h"
 
 #include <QObject>
@@ -18,6 +19,7 @@ class controller: public QObject {
         main_view* main_window;
         visitor_filtro filtratore;
         visitor_ricerca ricercatore;
+        visitor_modifica modificatore;
         QString percorso_salvataggio_attuale;
 
         bool modifiche_non_salvate = false;

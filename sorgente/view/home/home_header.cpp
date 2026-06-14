@@ -5,6 +5,8 @@
 #include <QPushButton>
 #include <QWidget>
 #include <QLineEdit>
+#include <QShortcut>
+#include <QKeySequence>
 
 home_header::home_header(QWidget* parent): QWidget(parent) {
 
@@ -13,15 +15,27 @@ home_header::home_header(QWidget* parent): QWidget(parent) {
     pulsante_salvataggio_manuale = new QPushButton("Salva con nome", this);
     connect(pulsante_salvataggio_manuale, &QPushButton::clicked, this, &home_header::salvataggio_manuale);
 
+    QShortcut* shortcut_salvataggio_manuale = new QShortcut(QKeySequence::SaveAs, this);
+    connect(shortcut_salvataggio_manuale, &QShortcut::activated, pulsante_salvataggio_manuale, &QPushButton::click);
+
     pulsante_salvataggio_automatico = new QPushButton("Salva", this);
     pulsante_salvataggio_automatico -> setEnabled(false);
     connect(pulsante_salvataggio_automatico, &QPushButton::clicked, this, &home_header::salvataggio_automatico);
 
+    QShortcut* shortcut_salvataggio_automatico = new QShortcut(QKeySequence::Save, this);
+    connect(shortcut_salvataggio_automatico, &QShortcut::activated, pulsante_salvataggio_automatico, &QPushButton::click);
+
     pulsante_caricamento_dati = new QPushButton("Apri", this);
     connect(pulsante_caricamento_dati, &QPushButton::clicked, this, &home_header::carica_dati);
 
+    QShortcut* shortcut_caricamento = new QShortcut(QKeySequence::Open, this);
+    connect(shortcut_caricamento, &QShortcut::activated, pulsante_caricamento_dati, &QPushButton::click);
+
     pulsante_nuova_attivita = new QPushButton("Nuova attivita", this);
     connect(pulsante_nuova_attivita, &QPushButton::clicked, this, &home_header::crea_attivita);
+
+    QShortcut* shortcut_nuova_attivita = new QShortcut(QKeySequence::New, this);
+    connect(shortcut_nuova_attivita, &QShortcut::activated, pulsante_nuova_attivita, &QPushButton::click);
 
     pulsante_modifica_attivita = new QPushButton("Modifica attivita", this);
     connect(pulsante_modifica_attivita, &QPushButton::clicked, this, &home_header::modifica_attivita);
@@ -30,6 +44,9 @@ home_header::home_header(QWidget* parent): QWidget(parent) {
     pulsante_elimina_attivita = new QPushButton("Elimina attivita", this);
     connect(pulsante_elimina_attivita, &QPushButton::clicked, this, &home_header::elimina_attivita);
     pulsante_elimina_attivita -> setEnabled(false);
+
+    QShortcut* shortcut_elimina_attivita = new QShortcut(QKeySequence::Delete, this);
+    connect(shortcut_elimina_attivita, &QShortcut::activated, pulsante_elimina_attivita, &QPushButton::click);
 
     QVBoxLayout* colonna_1 = new QVBoxLayout();
     colonna_1 -> addWidget(pulsante_salvataggio_manuale);
