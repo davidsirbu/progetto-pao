@@ -72,6 +72,7 @@ void controller::crea_attivita(const dati_routine& r) {
 
 void controller::modifica_attivita(const dati_impegno& i) {
     attivita* aux = gestore_attivita -> cerca_attivita(i.id);
+    modificatore.reset();
     modificatore.set_dati_impegno(i);
     aux -> accetta(modificatore);
     modifiche_non_salvate = true;
@@ -79,6 +80,7 @@ void controller::modifica_attivita(const dati_impegno& i) {
 
 void controller::modifica_attivita(const dati_scadenza& s) {
     attivita* aux = gestore_attivita -> cerca_attivita(s.id);
+    modificatore.reset();
     modificatore.set_dati_scadenza(s);
     aux -> accetta(modificatore);
     modifiche_non_salvate = true;
@@ -86,6 +88,7 @@ void controller::modifica_attivita(const dati_scadenza& s) {
 
 void controller::modifica_attivita(const dati_routine& r) {
     attivita* aux = gestore_attivita -> cerca_attivita(r.id);
+    modificatore.reset();
     modificatore.set_dati_routine(r);
     aux -> accetta(modificatore);
     modifiche_non_salvate = true;
@@ -164,7 +167,5 @@ void controller::controllo_uscita() {
         }
         else if (risposta == QMessageBox::Discard) main_window -> autorizza_chiusura();
     }
-    else {
-        main_window -> autorizza_chiusura();
-    }
+    else main_window -> autorizza_chiusura();
 }

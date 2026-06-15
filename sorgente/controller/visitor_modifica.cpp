@@ -49,3 +49,26 @@ void visitor_modifica::visit(routine& r) {
     r.set_inizio(dati_r.inizio);
     r.set_intervallo(dati_r.intervallo);
 }
+
+void visitor_modifica::reset() {
+    dati_i.id.clear();
+    dati_i.nome.clear();
+    dati_i.categoria.clear();
+    dati_i.descrizione.clear();
+    dati_i.inizio = QDateTime();
+    dati_i.fine = QDateTime();
+    dati_i.luogo.clear();
+
+    dati_s.id.clear();
+    dati_s.nome.clear();
+    dati_s.categoria.clear();
+    dati_s.descrizione.clear();
+    dati_s.limite = QDateTime();
+
+    dati_r.id.clear();
+    dati_r.nome.clear();
+    dati_r.categoria.clear();
+    dati_r.descrizione.clear();
+    dati_r.inizio = QDateTime();
+    dati_r.intervallo = 0;
+}

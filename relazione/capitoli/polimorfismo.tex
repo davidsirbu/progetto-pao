@@ -42,6 +42,10 @@ univoco, estraendone dinamicamente i dati grezzi e generando il rispettivo DTO, 
 verrà inoltrato alla finestra richiedente (che sia essa di modifica o di visualizzazione dettagliata
 in sola lettura).
 
+Inoltre, è stato implementato un visitor che si occupa della modifica delle attività, togliendo questo
+compito al gestore e permettendo di evitare l'uso di \texttt{dynamic\_cast} che, anche se non sostituisce
+il controllo di flusso grazie alla presenza del campo univoco ID, ostacola l'estensibilità del progetto.
+
 Grazie all'applicazione del polimorfismo e del design pattern \textit{Visitor}, è possibile far
 lavorare la classe \texttt{gestore} esclusivamente con puntatori ad attività generiche,
 favorendo l'estensibilità del codice.

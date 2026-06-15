@@ -60,9 +60,8 @@ void home_corpo::carica_scadenze(const std::vector<dati_scadenza>& s) const {
         else item -> setCheckState(Qt::Unchecked);
         
         item -> setText((it -> nome) + '\n' +
-                        '\n' +
                         (it -> categoria) + " - " + (it -> fase) + '\n' +
-                        ((it -> limite).toString("dd/MM/yyyy HH:mm")) + '\n');
+                        "Data scadenza: " + ((it -> limite).toString("dd/MM/yyyy HH:mm")) + '\n');
         item -> setData(Qt::UserRole, it -> id);
         lista_scadenze -> addItem(item);
     }
@@ -79,7 +78,6 @@ void home_corpo::carica_routine(const std::vector<dati_routine>& r) const {
         item -> setCheckState(Qt::Unchecked);
  
         item -> setText((it -> nome) + '\n' +
-                        '\n' +
                         (it -> categoria) + " - " + (it -> fase) + '\n' +
                         "Prossima volta: " + ((it -> prossima_volta).toString("dd/MM/yyyy")) + '\n' +
                         "Volte di completamento: " + QString::number((it -> volte_puntuale) + (it -> volte_ritardo)) + '\n');

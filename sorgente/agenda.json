@@ -1,0 +1,48 @@
+[
+    {
+        "categoria": 4,
+        "completato": false,
+        "id": "{ee403230-df1d-43af-be11-37b2d5c94c29}",
+        "nome": "Annaffiare le piante",
+        "tempo_limite": "Sat Jun 13 18:00:00 2026",
+        "tipo": "scadenza"
+    },
+    {
+        "categoria": 1,
+        "fine": "Mon Jun 15 12:30:00 2026",
+        "id": "{2db6771a-efc9-4c3c-9a04-59d9c19244b1}",
+        "inizio": "Mon Jun 15 10:30:00 2026",
+        "luogo": "Aula LUM250",
+        "nome": "Esame Programmazione a Oggetti",
+        "tipo": "impegno"
+    },
+    {
+        "categoria": 1,
+        "completato": true,
+        "id": "{11df9c95-9d24-4ccd-a400-72e4a4c14e72}",
+        "nome": "Consegna progetto Programmazione a Oggetti",
+        "tempo_completamento": "Mon Jun 15 19:56:38 2026",
+        "tempo_limite": "Mon Jun 15 23:59:59 2026",
+        "tipo": "scadenza"
+    },
+    {
+        "categoria": 3,
+        "conta_puntuale": 1,
+        "conta_ritardo": 0,
+        "id": "{e946c7af-5691-443f-afa6-644a79d5f38b}",
+        "inizio": "Mon Jun 15 23:59:59 2026",
+        "intervallo_giorni": 2,
+        "nome": "Andare a correre",
+        "prossima_volta": "Fri Jun 19 23:59:59 2026",
+        "tipo": "routine"
+    },
+    {
+        "categoria": 1,
+        "fine": "Wed Jun 24 18:00:00 2026",
+        "id": "{1d45d493-8224-491b-9722-6ae6641958cd}",
+        "inizio": "Wed Jun 24 14:30:00 2026",
+        "luogo": "Aula LUM250",
+        "nome": "Esame Basi di dati",
+        "tipo": "impegno"
+    }
+]
